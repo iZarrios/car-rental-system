@@ -30,7 +30,7 @@
     
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">ADMIN<span>CONTROLSECTION</span></a>
+	      <a class="navbar-brand" href="admin.html">ADMIN<span>CONTROLSECTION</span></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -44,7 +44,7 @@
 				</a>
 				<ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
 				  <li><a class="dropdown-item active" href="Add_Car.html" class="nav-link">Add car</a></li>
-				  <li><a class="dropdown-item" href="#" class="nav-link">Customize car</a></li>
+				  <li><a class="dropdown-item" href="Edit_car.html" class="nav-link">Customize car</a></li>
 				  <li><a class="dropdown-item" href="#" class="nav-link">Delete car</a></li>
 				</ul>
 				  <li class="nav-item dropdown">

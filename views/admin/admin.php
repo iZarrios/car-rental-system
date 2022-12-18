@@ -30,7 +30,7 @@
     
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">ADMIN<span>CONTROLSECTION</span></a>
+	      <a class="navbar-brand" href="admin.html">ADMIN<span>CONTROLSECTION</span></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -56,23 +56,34 @@
 				  <li><a class="dropdown-item" href="#" class="nav-link">Report2</a></li>
 				  <li><a class="dropdown-item" href="#" class="nav-link">Report3</a></li>
 	        </ul>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Search
+            </a>
+            <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#" class="nav-link">Search by Car</a></li>
+              <li><a class="dropdown-item" href="#" class="nav-link">Search by Customer</a></li>
+              <li><a class="dropdown-item" href="#" class="nav-link">Search by Reservation</a></li>
+              </ul>
 	      </div>
 	    </div>
 	  </nav>
     <!-- END nav -->
+    
     
     <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/test1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</p>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="admin.html">Home</p>
             <h1 class="mb-3 bread">Hello Admin</h1>
           </div>
         </div>
       </div>
     </section>
-		
+
+   
 
 		
     <footer class="ftco-footer ftco-bg-dark ftco-section">
