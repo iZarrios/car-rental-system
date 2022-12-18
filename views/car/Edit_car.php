@@ -28,6 +28,9 @@
   </head>
   <body>
     
+  </head>
+  <body>
+    
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="../admin/admin.php">ADMIN<span>CONTROLSECTION</span></a>
@@ -35,18 +38,26 @@
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
-        <div class="collapse navbar-collapse" id="ftco-nav">
+	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item "><a href="../admin/admin.php" class="nav-link">Home</a></li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				  Office
+				</a>
+				<ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+				  <li><a class="dropdown-item" href="../office/Add_office.php" class="nav-link">Add Office</a></li>
+				</ul>
 			  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 				  Customization Tools
 				</a>
 				<ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
 				  <li><a class="dropdown-item" href="Add_Car.php" class="nav-link">Add car</a></li>
-				  <li><a class="dropdown-item active" href="Edit_car.php" class="nav-link">Customize car</a></li>
+				  <li><a class="dropdown-item" href="Edit_car.php" class="nav-link active">Customize car</a></li>
 				  <li><a class="dropdown-item" href="#" class="nav-link">Delete car</a></li>
 				</ul>
+        
 				  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 				  Reports
@@ -56,6 +67,15 @@
 				  <li><a class="dropdown-item" href="#" class="nav-link">Report2</a></li>
 				  <li><a class="dropdown-item" href="#" class="nav-link">Report3</a></li>
 	        </ul>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Search
+            </a>
+            <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#" class="nav-link">Search by Car</a></li>
+              <li><a class="dropdown-item" href="#" class="nav-link">Search by Customer</a></li>
+              <li><a class="dropdown-item" href="#" class="nav-link">Search by Reservation</a></li>
+              </ul>
 	      </div>
 	    </div>
 	  </nav>
@@ -127,7 +147,7 @@
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2"><a href="#" class="logo">Admin<span>ControlSection</span></a></h2>
+              <h2 class="ftco-heading-2"><a href="../admin/admin.php" class="logo">Admin<span>ControlSection</span></a></h2>
 			  <div class="col-md">
 				<div class="ftco-footer-widget mb-4">
 					<h2 class="ftco-heading-2">Admin Information</h2>

@@ -43,7 +43,7 @@
 				  Office
 				</a>
 				<ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
-				  <li><a class="dropdown-item" href="../office/Add_office.php" class="nav-link">Add Office</a></li>
+				  <li><a class="dropdown-item" href="../office/Add_office.php" class="nav-link active">Add Office</a></li>
 				</ul>
 			  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -83,8 +83,8 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Add Car <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-3 bread">Add Car</h1>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Add office <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-3 bread">Add Office</h1>
           </div>
         </div>
       </div>

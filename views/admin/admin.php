@@ -38,6 +38,13 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				  Office
+				</a>
+				<ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+				  <li><a class="dropdown-item" href="../office/Add_office.php" class="nav-link">Add Office</a></li>
+				</ul>
 			  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 				  Customization Tools
@@ -47,6 +54,7 @@
 				  <li><a class="dropdown-item" href="../car/Edit_car.php" class="nav-link">Customize car</a></li>
 				  <li><a class="dropdown-item" href="#" class="nav-link">Delete car</a></li>
 				</ul>
+        
 				  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 				  Reports
