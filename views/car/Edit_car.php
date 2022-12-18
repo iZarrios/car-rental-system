@@ -47,6 +47,7 @@
 				</a>
 				<ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
 				  <li><a class="dropdown-item" href="../office/Add_office.php" class="nav-link">Add Office</a></li>
+          <li><a class="dropdown-item" href="../office/delete_office.php" class="nav-link">Delete Office</a></li>
 				</ul>
 			  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
