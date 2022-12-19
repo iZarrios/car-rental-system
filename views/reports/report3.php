@@ -1,0 +1,1 @@
+<!-- The status of all cars on a specific day. -->
