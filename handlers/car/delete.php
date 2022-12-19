@@ -10,16 +10,14 @@ if (isset($_GET['plate_id'])) {
     // check if this id car exist in car table in database
 
     $plate_id = $_GET['plate_id'];
-    $query = "DELETE FROM `car` WHERE `$plate_id` = $plate_id";
+    $query = "DELETE FROM `car` WHERE `plate_id` = $plate_id";
     $result = mysqli_query($conn, $query);
 
     $_SESSION['success'] = "Car Deleted Successfully";
-    //TODO:
     header("Location:" . URL . "views/car/all.php");
     exit;
 } else {
 
-    //TODO:
     header("Location:" . URL . "views/car/all.php");
     exit;
 }
