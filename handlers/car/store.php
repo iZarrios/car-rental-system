@@ -80,8 +80,8 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($affectedRow >= 1) {
             echo "Success car insert";
             // $_SESSION['success'] = "Product Inserted Successfully";
-            // header("Location:" . URL . "views/cars/all.php");
-            // exit;
+            header("Location:" . URL . "views/site/car.php");
+            exit;
         }
     } else {
         echo "error car insert";
