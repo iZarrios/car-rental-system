@@ -1,3 +1,27 @@
+<?php require_once '../../core/config.php'; ?>
+<?php require_once PATH . 'core/connection.php'; ?>
+
+
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
+
+$query = "SELECT `car`.* 
+        FROM `car`
+";
+
+$result = mysqli_query($conn, $query);
+
+$cars = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+# split into arrays or 3 ( each 3 cars will fill one row)
+$cars = (array_chunk($cars, 3));
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,179 +95,32 @@
 	<section class="ftco-section bg-light">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end" style="background-image: url(../../public/images/car-1.jpg);">
-						</div>
-						<div class="text">
-							<h2 class="mb-0"><a href="car-single.php">Mercedes Grand Sedan</a></h2>
-							<div class="d-flex mb-3">
-								<span class="cat">Cheverolet</span>
-								<p class="price ml-auto">$500 <span>/day</span></p>
+				<?php
+				foreach ($cars as $car_row) {
+					foreach ($car_row as $car) {
+				?>
+						<div class="col-md-4">
+							<div class="car-wrap rounded ftco-animate">
+								<div class="img rounded d-flex align-items-end" style="background-image: url(' <?= URL . "uploads/images/cars/" . $car['plate_id'] . ".jpg" ?>')">
+								</div>
+								<div class="text">
+									<h2 class="mb-0"><a href="car-single.php"><?= $car['model'] ?></a></h2>
+									<div class="d-flex mb-3">
+										<span class="cat"><?= $car['brand'] ?></span>
+										<p class="price ml-auto"><?= $car['price_per_day'] ?> <span>/day</span></p>
+									</div>
+									<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
+								</div>
 							</div>
-							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
 						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end" style="background-image: url(../../public/images/car-2.jpg);">
-						</div>
-						<div class="text">
-							<h2 class="mb-0"><a href="car-single.php">Range Rover</a></h2>
-							<div class="d-flex mb-3">
-								<span class="cat">Subaru</span>
-								<p class="price ml-auto">$500 <span>/day</span></p>
-							</div>
-							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end" style="background-image: url(../../public/images/car-3.jpg);">
-						</div>
-						<div class="text">
-							<h2 class="mb-0"><a href="car-single.php">Mercedes Grand Sedan</a></h2>
-							<div class="d-flex mb-3">
-								<span class="cat">Cheverolet</span>
-								<p class="price ml-auto">$500 <span>/day</span></p>
-							</div>
-							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end" style="background-image: url(../../public/images/car-4.jpg);">
-						</div>
-						<div class="text">
-							<h2 class="mb-0"><a href="car-single.php">Mercedes Grand Sedan</a></h2>
-							<div class="d-flex mb-3">
-								<span class="cat">Cheverolet</span>
-								<p class="price ml-auto">$500 <span>/day</span></p>
-							</div>
-							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end" style="background-image: url(../../public/images/car-5.jpg);">
-						</div>
-						<div class="text">
-							<h2 class="mb-0"><a href="car-single.php">Range Rover</a></h2>
-							<div class="d-flex mb-3">
-								<span class="cat">Subaru</span>
-								<p class="price ml-auto">$500 <span>/day</span></p>
-							</div>
-							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end" style="background-image: url(../../public/images/car-6.jpg);">
-						</div>
-						<div class="text">
-							<h2 class="mb-0"><a href="car-single.php">Mercedes Grand Sedan</a></h2>
-							<div class="d-flex mb-3">
-								<span class="cat">Cheverolet</span>
-								<p class="price ml-auto">$500 <span>/day</span></p>
-							</div>
-							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end" style="background-image: url(../../public/images/car-7.jpg);">
-						</div>
-						<div class="text">
-							<h2 class="mb-0"><a href="car-single.php">Mercedes Grand Sedan</a></h2>
-							<div class="d-flex mb-3">
-								<span class="cat">Cheverolet</span>
-								<p class="price ml-auto">$500 <span>/day</span></p>
-							</div>
-							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end" style="background-image: url(../../public/images/car-8.jpg);">
-						</div>
-						<div class="text">
-							<h2 class="mb-0"><a href="car-single.php">Range Rover</a></h2>
-							<div class="d-flex mb-3">
-								<span class="cat">Subaru</span>
-								<p class="price ml-auto">$500 <span>/day</span></p>
-							</div>
-							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end" style="background-image: url(../../public/images/car-9.jpg);">
-						</div>
-						<div class="text">
-							<h2 class="mb-0"><a href="car-single.php">Mercedes Grand Sedan</a></h2>
-							<div class="d-flex mb-3">
-								<span class="cat">Cheverolet</span>
-								<p class="price ml-auto">$500 <span>/day</span></p>
-							</div>
-							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-10.jpg);">
-						</div>
-						<div class="text">
-							<h2 class="mb-0"><a href="car-single.php">Mercedes Grand Sedan</a></h2>
-							<div class="d-flex mb-3">
-								<span class="cat">Cheverolet</span>
-								<p class="price ml-auto">$500 <span>/day</span></p>
-							</div>
-							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-11.jpg);">
-						</div>
-						<div class="text">
-							<h2 class="mb-0"><a href="car-single.php">Range Rover</a></h2>
-							<div class="d-flex mb-3">
-								<span class="cat">Subaru</span>
-								<p class="price ml-auto">$500 <span>/day</span></p>
-							</div>
-							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-12.jpg);">
-						</div>
-						<div class="text">
-							<h2 class="mb-0"><a href="car-single.php">Mercedes Grand Sedan</a></h2>
-							<div class="d-flex mb-3">
-								<span class="cat">Cheverolet</span>
-								<p class="price ml-auto">$500 <span>/day</span></p>
-							</div>
-							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a></p>
-						</div>
-					</div>
-				</div>
+				<?php
+					}
+				} ?>
 			</div>
-			<!-- <div class="row mt-5">
+		</div>
+		</div>
+
+		<!-- <div class="row mt-5">
 				<div class="col text-center">
 					<div class="block-27">
 						<ul>
