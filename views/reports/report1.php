@@ -139,15 +139,82 @@ if (isset($_SESSION['report1_result'])) {
             </div>
 
         </div>
+
+        <?php
+        if (isset($query_res)) {
+            // print_r($query_res);
+            // unset($query_res);
+        ?>
+            <!-- Array ( [0] => Array ( [plate_id] => 22408392 [brand] => Dodge [model] => MIMI [body] => Sedan [color] => blue [year] => 2010
+        [status] => reserved [price_per_day] => 519.16 [user_id] => 1 [fname] => Refugio [lname] => Deshawn [balance] => 60.67 
+        [email] => doreneadcock@gmail.com [password] => zZ123456 [bdate] => 1997-10-19 [gender] => 1 [country] => Swaziland [city] => Harlingen [is_admin] => 0 ) ) -->
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">plate_id</th>
+                        <th scope="col">brand</th>
+                        <th scope="col">model</th>
+                        <th scope="col">body</th>
+                        <th scope="col">color</th>
+                        <th scope="col">year</th>
+                        <th scope="col">status</th>
+                        <th scope="col">fname</th>
+                        <th scope="col">lname</th>
+                        <th colspan="2" scope="col" class="text-center">email</th>
+                        <th scope="col">password</th>
+                        <th scope="col">bdate</th>
+                        <th scope="col">gender</th>
+                        <th scope="col">country</th>
+                        <th scope="col">city</th>
+                        <th scope="col">is_admin</th>
+                    </tr>
+                </thead>
+
+                <tbody class="text-center">
+                    <?php
+                    foreach ($query_res as  $car) {
+                    ?>
+                        <tr>
+                            <td> <?php echo $car["plate_id"] ?></td>
+                            <td> <?php echo $car["brand"] ?></td>
+                            <td> <?php echo $car["model"] ?></td>
+                            <td> <?php echo $car["body"] ?></td>
+                            <td> <?php echo $car["color"] ?></td>
+                            <td> <?php echo $car["year"] ?></td>
+                            <td> <?php echo $car["status"] ?></td>
+                            <td> <?php echo $car["fname"] ?></td>
+                            <td> <?php echo $car["lname"] ?></td>
+                            <td colspan="2"> <?php echo $car["email"] ?></td>
+                            <td> <?php echo $car["password"] ?></td>
+                            <td> <?php echo $car["bdate"] ?></td>
+                            <td>
+                                <?php
+                                if ($car["gender"])
+                                    echo "M";
+                                else
+                                    echo "F";
+                                ?>
+                            </td>
+                            <td> <?php echo $car["country"] ?></td>
+                            <td> <?php echo $car["city"] ?></td>
+                            <td>
+                                <?php
+                                if ($car["is_admin"])
+                                    echo "True";
+                                else
+                                    echo "False";
+                                ?>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+
+
+        <?php } ?>
     </section>
-    <?php
-    if (isset($query_res)) {
-        print_r($query_res);
-        // unset($query_res);
-    }
-
-    ?>
-
 
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
