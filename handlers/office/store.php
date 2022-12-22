@@ -3,6 +3,10 @@
 <?php require_once PATH . 'core/validations.php'; ?>
 
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
@@ -12,13 +16,13 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $city = trim(htmlentities(htmlspecialchars($_POST['city'])));
 
     if (empty($office_Id)) {
-        $errors[] = "office_Id is empty <br>";
+        $errors[] = "office_Id is invalid";
     }
     if (empty($country)) {
-        $errors[] = "country is empty <br>";
+        $errors[] = "country is invalid";
     }
     if (empty($city)) {
-        $errors[] = "city is empty <br>";
+        $errors[] = "city is invalid";
     }
 
     if (empty($errors)) {
@@ -34,20 +38,23 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             // close connection
             mysqli_close($conn);
 
-            echo "done";
-            //TODO:
-            // header("Location: " . URL . "/views/office/all.php");
-            // exit;
-        } catch (\Throwable $th) {
-            echo "Failed to add office from SQL Query" . "<br>";
+            if ($affectedRows >= 1) {
+                $_SESSION['success'] = "Added Successfully";
+            } else {
+                $errors[] = "No changes" . "<br>";
+                $_SESSION['errors'] = $errors;
+            }
+            header("Location: " . URL . "views/office/add_office.php");
+            exit;
+        } catch (\Throwable $th) {;
+            $errors[] = "office_Id already exists";
+            $_SESSION['errors'] = $errors;
+            header("Location: " . URL . "views/office/add_office.php");
         }
     } else {
-        //TODO:
         $_SESSION['errors'] = $errors;
-        echo "Failed to add office" . "<br>";
-        // print_r($errors);
-        // header("Location: " . URL . "/handlers/reservation/store.php");
-        // exit;
+        header("Location: " . URL . "views/office/add_office.php");
+        exit;
     }
 }
 ?>

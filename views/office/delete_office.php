@@ -1,4 +1,12 @@
 <?php require_once '../../core/config.php'; ?>
+<?php require_once PATH . 'core/connection.php'; ?>
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,8 +15,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../../public/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../../public/css/animate.css">
@@ -35,8 +42,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="../car/admin.php">ADMIN<span>CONTROLSECTION</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
@@ -44,8 +50,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item "><a href="../admin/admin.php" class="nav-link">Home</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Office
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
@@ -55,8 +60,7 @@
                                     Office</a></li>
                         </ul>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Customization Tools
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
@@ -68,8 +72,7 @@
                         </ul>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Reports
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
@@ -78,8 +81,7 @@
                             <li><a class="dropdown-item" href="#" class="nav-link">Report3</a></li>
                         </ul>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Search
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
@@ -92,15 +94,12 @@
     </nav>
     <!-- END nav -->
 
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/test1.jpg');"
-        data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/test1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
                 <div class="col-md-9 ftco-animate pb-5">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i
-                                    class="ion-ios-arrow-forward"></i></a></span> <span>Delete Office <i
-                                class="ion-ios-arrow-forward"></i></span></p>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Delete Office <i class="ion-ios-arrow-forward"></i></span></p>
                     <h1 class="mb-3 bread">Delete Office</h1>
                 </div>
             </div>
@@ -109,16 +108,15 @@
 
     <section class="ftco-section contact-section">
         <div class="container">
+            <?php require_once PATH . "views/inc/messages.php" ?>
             <div class="row d-flex mb-5 contact-info">
 
                 <div class="col-md-8 block-9 mb-md-5">
-                    <form action="<?= URL . "handlers/office/delete.php"; ?>" class="bg-light p-5 contact-form"
-                        method="POST">
+                    <form action="<?= URL . "handlers/office/delete.php"; ?>" class="bg-light p-5 contact-form" method="POST">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Office ID" name="office_Id" required>
                             <div class="form-group">
-                                <input type="submit" value="Delete Office" class="btn btn-primary py-3 px-5"
-                                    name="submit">
+                                <input type="submit" value="Delete Office" class="btn btn-primary py-3 px-5" name="submit">
                             </div>
                     </form>
 
@@ -131,6 +129,7 @@
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
         <div class="container">
+            <?php require_once PATH . "views/inc/messages.php" ?>
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
@@ -144,9 +143,7 @@
                                                 Mandara, Alexandria, Egypt</span></li>
                                         <li><a href="#"><span class="icon icon-phone"></span><span class="text">+20 106
                                                     820 8828</span></a></li>
-                                        <li><a href="https://mail.google.com/"><span
-                                                    class="icon icon-envelope"></span><span
-                                                    class="text">a.salem3214@gmail.com</span></a></li>
+                                        <li><a href="https://mail.google.com/"><span class="icon icon-envelope"></span><span class="text">a.salem3214@gmail.com</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -162,8 +159,7 @@
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
 
 
@@ -181,8 +177,7 @@
     <script src="../../public/js/bootstrap-datepicker.js"></script>
     <script src="../../public/js/jquery.timepicker.min.js"></script>
     <script src="../../public/js/scrollax.min.js"></script>
-    <script
-        src="../../public/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+    <script src="../../public/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
     </script>
     <script src="../../public/js/google-map.js"></script>
     <script src="../../public/js/main.js"></script>
