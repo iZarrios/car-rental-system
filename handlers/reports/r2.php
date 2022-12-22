@@ -4,6 +4,10 @@
 <?php require_once PATH . 'core/connection.php'; ?>
 <?php require_once PATH . 'core/validations.php'; ?>
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
@@ -47,16 +51,20 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                 ";
             $result = mysqli_query($conn, $query);
 
-            // $affectedRows = mysqli_affected_rows($conn);
+            $affectedRows = mysqli_affected_rows($conn);
 
             // close connection
             mysqli_close($conn);
 
             // Printing Cars reserved
             $cars = mysqli_fetch_all($result, MYSQLI_ASSOC);
-            dd($cars);
 
-            header("Location: " . URL . "/views/reservation/all.php");
+            // dd($cars);
+            // Printing Cars reserved
+            if ($affectedRows >= 1) {
+                $_SESSION['report2_result'] = $cars;
+            }
+            header("Location: " . URL . "/views/reports/report2.php");;
             exit;
         } catch (\Throwable $th) {
             echo $th;
