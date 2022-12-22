@@ -18,23 +18,8 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $upper_date = validString($_POST['upper_date']);
     $upper_date_exploded = explode('-', $upper_date);
 
-
-    if (empty($lower_date)) {
-        $lower_date_col = 1;
-        $lower_date = 1;
-    } else if (!checkdate($lower_date_exploded[1], $lower_date_exploded[2], $lower_date_exploded[0])) {
-        $errors[] = "Invalid Date";
-    } else {
-        $lower_date_col = 'reservation_date';
-    }
-    if (empty($upper_date)) {
-        $upper_date_col = 1;
-        $upper_date = 1;
-    } else if (!checkdate($upper_date_exploded[1], $upper_date_exploded[2], $upper_date_exploded[0])) {
-        $errors[] = "Invalid Date";
-    } else {
-        $upper_date_col = 'reservation_date';
-    }
+    $lower_date_col = 'reservation_date';
+    $upper_date_col = 'reservation_date';
 
     if (empty($errors)) {
         if (session_status() === PHP_SESSION_NONE) {
@@ -60,23 +45,23 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             $cars = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
             // dd($cars);
-            // Printing Cars reserved
             if ($affectedRows >= 1) {
                 $_SESSION['report2_result'] = $cars;
+            } else {
+                $errors[] = "Returned 0 results" . "<br>";
+                $_SESSION['errors'] = $errors;
             }
-            header("Location: " . URL . "/views/reports/report2.php");;
+            header("Location: " . URL . "views/reports/report2.php");
             exit;
-        } catch (\Throwable $th) {
-            echo $th;
-            echo "Failed to get report from SQL Query" . "<br>";
+        } catch (\Throwable $th) {;
+            $errors[] = $th;
+            $_SESSION['errors'] = $errors;
+            header("Location: " . URL . "views/reports/report2.php");
         }
     } else {
-        //TODO:
         $_SESSION['errors'] = $errors;
-        echo "Failed to get report" . "<br>";
-        print_r($errors);
-        // exit;
-        // header("Location: " . URL . "/handlers/reservation/store.php");
+        header("Location: " . URL . "views/reports/report2.php");
+        exit;
     }
 }
 ?>

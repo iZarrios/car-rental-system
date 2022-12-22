@@ -111,6 +111,7 @@ if (isset($_SESSION['report2_result'])) {
 
     <section class="ftco-section contact-section">
         <div class="container">
+            <?php require_once PATH . "views/inc/messages.php" ?>
             <div class="row d-flex mb-5 contact-info">
 
                 <div class="col-md-8 block-9 mb-md-5">
@@ -118,12 +119,12 @@ if (isset($_SESSION['report2_result'])) {
 
                         <div class="form-group">
                             <label for="html">Date Range is from:</label><br>
-                            <input type="text" name="lower_date" id="plate_id" class="form-control" placeholder="Start Date" required>
+                            <input type="date" name="lower_date" id="plate_id" class="form-control" placeholder="Start Date" required>
                         </div>
 
                         <div class="form-group">
                             <label for="html">To:</label><br>
-                            <input type="text" name="upper_date" id="brand" class="form-control" placeholder="End Date" required>
+                            <input type="date" name="upper_date" id="brand" class="form-control" placeholder="End Date" required>
                         </div>
 
 
@@ -134,47 +135,48 @@ if (isset($_SESSION['report2_result'])) {
             </div>
 
         </div>
-
-        <?php
-        if (isset($query_res)) {
-            // print_r($query_res);
-            // unset($query_res);
-        ?>
-            <!-- Array ( [0] => Array ( [plate_id] => 22408392 [brand] => Dodge [model] => MIMI [body] => Sedan [color] => blue [year] => 2010
+        <div class="container">
+            <?php
+            if (isset($query_res)) {
+                // print_r($query_res);
+                // unset($query_res);
+            ?>
+                <!-- Array ( [0] => Array ( [plate_id] => 22408392 [brand] => Dodge [model] => MIMI [body] => Sedan [color] => blue [year] => 2010
         [status] => reserved [price_per_day] => 519.16 [user_id] => 1 [fname] => Refugio [lname] => Deshawn [balance] => 60.67 
         [email] => doreneadcock@gmail.com [password] => zZ123456 [bdate] => 1997-10-19 [gender] => 1 [country] => Swaziland [city] => Harlingen [is_admin] => 0 ) ) -->
-            <table class="table table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">plate_id</th>
-                        <th scope="col">brand</th>
-                        <th scope="col">model</th>
-                        <th scope="col">body</th>
-                        <th scope="col">color</th>
-                        <th scope="col">year</th>
-                        <th scope="col">status</th>
-                    </tr>
-                </thead>
-
-                <tbody class="m-2">
-                    <?php
-                    foreach ($query_res as  $car) {
-                    ?>
+                <table class="table table-bordered">
+                    <thead class="thead-dark text-center">
                         <tr>
-                            <td> <?php echo $car["plate_id"] ?></td>
-                            <td> <?php echo $car["brand"] ?></td>
-                            <td> <?php echo $car["model"] ?></td>
-                            <td> <?php echo $car["body"] ?></td>
-                            <td> <?php echo $car["color"] ?></td>
-                            <td> <?php echo $car["year"] ?></td>
-                            <td> <?php echo $car["status"] ?></td>
+                            <th scope="col">plate_id</th>
+                            <th scope="col">brand</th>
+                            <th scope="col">model</th>
+                            <th scope="col">body</th>
+                            <th scope="col">color</th>
+                            <th scope="col">year</th>
+                            <th scope="col">status</th>
                         </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
-        <?php } ?>
+                    </thead>
+
+                    <tbody class="text-center">
+                        <?php
+                        foreach ($query_res as  $car) {
+                        ?>
+                            <tr>
+                                <td> <?php echo $car["plate_id"] ?></td>
+                                <td> <?php echo $car["brand"] ?></td>
+                                <td> <?php echo $car["model"] ?></td>
+                                <td> <?php echo $car["body"] ?></td>
+                                <td> <?php echo $car["color"] ?></td>
+                                <td> <?php echo $car["year"] ?></td>
+                                <td> <?php echo $car["status"] ?></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            <?php } ?>
+        </div>
     </section>
 
 

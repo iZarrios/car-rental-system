@@ -14,30 +14,10 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = [];
 
     $lower_date = validString($_POST['lower_date']);
-    $lower_date_exploded = explode('-', $lower_date);
-
     $upper_date = validString($_POST['upper_date']);
-    $upper_date_exploded = explode('-', $upper_date);
 
-
-    if (empty($lower_date)) {
-        $lower_date_col = 1;
-        $lower_date = 1;
-
-        // month,day,year
-    } else if (!checkdate($lower_date_exploded[1], $lower_date_exploded[2], $lower_date_exploded[0])) {
-        $errors[] = "Invalid Lower(From) Date";
-    } else {
-        $lower_date_col = 'reservation_date';
-    }
-    if (empty($upper_date)) {
-        $upper_date_col = 1;
-        $upper_date = 1;
-    } else if (!checkdate($upper_date_exploded[1], $upper_date_exploded[2], $upper_date_exploded[0])) {
-        $errors[] = "Invalid Upper(To) Date";
-    } else {
-        $upper_date_col = 'reservation_date';
-    }
+    $lower_date_col = 'reservation_date';
+    $upper_date_col = 'reservation_date';
 
     if (empty($errors)) {
         try {
@@ -64,16 +44,20 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             // dd($cars);
             if ($affectedRows >= 1) {
                 $_SESSION['report1_result'] = $cars;
+            } else {
+                $errors[] = "Returned 0 results" . "<br>";
+                $_SESSION['errors'] = $errors;
             }
-            header("Location: " . URL . "/views/reports/report1.php");
+            header("Location: " . URL . "views/reports/report1.php");
             exit;
-        } catch (\Throwable $th) {
-            echo $th;
-            echo "Failed to get report from SQL Query" . "<br>";
+        } catch (\Throwable $th) {;
+            $errors[] = $th;
+            $_SESSION['errors'] = $errors;
+            header("Location: " . URL . "views/reports/report1.php");
         }
     } else {
         $_SESSION['errors'] = $errors;
-        header("Location: " . URL . "/views/reports/report1.php");
+        header("Location: " . URL . "views/reports/report1.php");
         exit;
     }
 }
