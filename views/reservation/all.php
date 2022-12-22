@@ -30,7 +30,51 @@ $reservations = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 <body>
     <h1 class="my-2 text-center"> All Reservations</h1>
-    <?php dd($reservations) ?>
+    <div class="container">
+        <?php
+        // dd($reservations);
+        if (isset($reservations)) {
+
+        ?>
+            <table class="table table-bordered">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th scope="col">user_id</th>
+                        <th scope="col">plate_id</th>
+                        <th scope="col">office_Id</th>
+                        <th scope="col">reservation_id</th>
+                        <th scope="col">reservation_date</th>
+                        <th scope="col">plate_id</th>
+                        <th scope="col">pick_up_date</th>
+                        <th scope="col">return_date</th>
+                        <th scope="col">payment</th>
+                    </tr>
+                </thead>
+
+                <tbody class="text-center">
+                    <?php
+                    foreach ($reservations as  $reservation) {
+                    ?>
+                        <tr>
+                            <td> <?php echo $reservation["user_id"] ?></td>
+                            <td> <?php echo $reservation["plate_id"] ?></td>
+                            <td> <?php echo $reservation["office_Id"] ?></td>
+                            <td> <?php echo $reservation["reservation_id"] ?></td>
+                            <td> <?php echo $reservation["reservation_date"] ?></td>
+                            <td> <?php echo $reservation["pick_up_date"] ?></td>
+                            <td> <?php echo $reservation["return_date"] ?></td>
+                            <td> <?php echo $reservation["payment"] ?></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        <?php
+            unset($offices);
+        } ?>
+    </div>
+
 
 
 </body>
