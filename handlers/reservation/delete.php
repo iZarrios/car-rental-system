@@ -43,11 +43,12 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $query = "DELETE FROM `reservation` WHERE `user_id`=$user_id AND `plate_id`=$plate_id AND `office_Id`=$office_Id ";
             $result = mysqli_query($conn, $query);
+            $affectedRows = mysqli_affected_rows($conn);
             // Updating Car status
             $query = "UPDATE car SET `status` = 'active' WHERE `plate_id`=$plate_id";
             $result = mysqli_query($conn, $query);
 
-            $affectedRows = mysqli_affected_rows($conn);
+            $affectedRows += mysqli_affected_rows($conn);
 
             // close connection
             mysqli_close($conn);

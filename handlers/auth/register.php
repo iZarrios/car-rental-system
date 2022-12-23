@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $country = validString($_POST['country']);
 
     //TODO: Uncomment
-    // $city = validString($_POST['city']);
+    $city = validString($_POST['city']);
 
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ?? "";
 
@@ -70,6 +70,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "Last Name should be between 3 and 50 characters";
     }
 
+    if (empty($city)) {
+        $errors[] = "City field is required";
+    }
+
     if (empty($email)) {
         $errors[] = "Email field is required";
     }
@@ -77,6 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($password)) {
         $errors[] = "Password field is required";
     }
+
 
     // if there are no errors
     if (empty($errors)) {
@@ -88,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Insert Statement
 
         $query = "INSERT INTO `user` (`fname`, `lname`,`balance`,`email`, `password`, `bdate`,`gender`,`country`,`city`,`is_admin`)
-                    VALUES ('$f_name', '$l_name','0', '$email', '$password', '$b_date','$gender_val','$country','$city','0')";
+                    VALUES ('$f_name', '$l_name',0, '$email', '$password', '$b_date',$gender_val,'$country','$city',0)";
         $result = mysqli_query($conn, $query);
         $affectedRows = mysqli_affected_rows($conn);
 
