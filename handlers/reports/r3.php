@@ -42,9 +42,10 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             ";
 
             $result1 = mysqli_query($conn, $query_not_reserved_cars);
-            $result2 = mysqli_query($conn, $query_reserved_cars);
-
             $affectedRows = mysqli_affected_rows($conn);
+
+            $result2 = mysqli_query($conn, $query_reserved_cars);
+            $affectedRows += mysqli_affected_rows($conn);
 
 
             // close connection
@@ -67,7 +68,6 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // dd($result);
             if ($affectedRows >= 1) {
-
                 $_SESSION['report3_result'] = $result;
             } else {
                 $errors[] = "Returned 0 results" . "<br>";
