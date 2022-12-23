@@ -188,7 +188,7 @@ if (isset($_SESSION['report1_result'])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-12 ftco-animate">
-                    <h2 class="mb-3">Show my cars</h2>
+                    <h2 class="mb-3">Rent Car</h2>
                     <div class="card-body">
                         <?php require_once PATH . "views/inc/messages.php" ?>
                         <!-- Pass data through a form -->
