@@ -1,7 +1,11 @@
 
 <?php require_once '../../core/config.php'; ?>
 <?php require_once PATH . 'core/connection.php'; ?>
+
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
@@ -23,42 +27,49 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $brand_col = 'brand';
     }
+
     if (empty($model)) {
         $model_col = 1;
         $model = 1;
     } else {
         $model_col = 'model';
     }
+
     if (empty($body)) {
         $body_col = 1;
         $body = 1;
     } else {
         $body_col = 'body';
     }
+
     if (empty($color)) {
         $color_col = 1;
         $color = 1;
     } else {
         $color_col = 'color';
     }
+
     if (empty($year)) {
         $year_col = 1;
         $year = 1;
     } else {
         $year_col = 'year';
     }
+
     if (empty($lower_price)) {
         $lower_price_col = 1;
         $lower_price = 1;
     } else {
         $lower_price_col = 'price_per_day';
     }
+    
     if (empty($upper_price)) {
         $upper_price_col = 1;
         $upper_price = 1;
     } else {
         $upper_price_col = 'price_per_day';
     }
+    
 
     // SELECT * FROM `car` 
     // WHERE `brand`= 'Dodge' AND `model`='MIMI' AND `body`='Sedan' AND `color`='blue' AND `year`=2010 AND `price_per_day` <700;
@@ -73,16 +84,29 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         AND $upper_price_col<= $upper_price ";
 
         $result = mysqli_query($conn, $query);
-        $affectedRow = mysqli_affected_rows($conn);
+        $affectedRows = mysqli_affected_rows($conn);
+
+        // close connection
+        mysqli_close($conn);
 
         $cars = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        dd($cars);
 
-        // Close DB Connection
-        mysqli_close($conn);
-    } catch (\Throwable $th) {
-        // throw $th;
-        echo "Failed to get SQL Query" . "<br>";
+        if ($affectedRows >= 1) {
+            $_SESSION['search_result'] = $cars;
+        } else {
+            $errors[] = "Returned 0 results";
+            $_SESSION['errors'] = $errors;
+        }
+        header("Location: " . URL . "views/car/search_by_specs.php");
+        exit;
+    } catch (\Throwable $th) {;
+        $errors[] = $th;
+        $_SESSION['errors'] = $errors;
+        header("Location: " . URL . "views/car/search_by_specs.php");
     }
+} else {
+    $_SESSION['errors'] = $errors;
+    header("Location: " . URL . "views/car/search_by_specs.php");
+    exit;
 }
 ?>

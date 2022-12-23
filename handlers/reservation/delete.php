@@ -3,6 +3,11 @@
 <?php require_once PATH . 'core/validations.php'; ?>
 
 <?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
@@ -11,25 +16,15 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $plate_id = filter_var($_POST['plate_id'], FILTER_VALIDATE_INT);
     $office_Id = filter_var($_POST['office_Id'], FILTER_VALIDATE_INT);
 
-    // $reservation_date = validString($_POST['reservation_date']);
-    // $reservation_date_exploded = explode('-', $reservation_date);
-
     if (empty($user_id)) {
-        $errors[] = "user_id is empty <br>";
+        $errors[] = "user_id is invalid";
     }
     if (empty($plate_id)) {
-        $errors[] = "plate_id is empty <br>";
+        $errors[] = "plate_id is invalid";
     }
     if (empty($office_Id)) {
-        $errors[] = "office_Id is empty <br>";
+        $errors[] = "office_Id is invalid ";
     }
-
-    // if (empty($reservation_date)) {
-    //     $errors[] = "reservation_date is empty <br>";
-    // } else if (!checkdate($reservation_date_exploded[1], $reservation_date_exploded[2], $reservation_date_exploded[0])) {
-
-    //     $errors[] = "Invalid Date";
-    // }
 
     if (empty($errors)) {
 
@@ -57,19 +52,23 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             // close connection
             mysqli_close($conn);
 
-            echo "done";
-            header("Location: " . URL . "/views/reservation/all.php");
+            if ($affectedRows >= 1) {
+                $_SESSION['success'] = "Deleted Successfully";
+            } else {
+                $errors[] = "Not deleted, Please check your data";
+                $_SESSION['errors'] = $errors;
+            }
+            header("Location: " . URL . "/views/reservation/cancel_reservation.php");
             exit;
-        } catch (\Throwable $th) {
-            echo "Failed to delete" . "<br>";
+        } catch (\Throwable $th) {;
+            $errors[] = $th;
+            $_SESSION['errors'] = $errors;
+            header("Location: " . URL . "/views/reservation/cancel_reservation.php");
         }
     } else {
-        //TODO:
         $_SESSION['errors'] = $errors;
-        echo "Failed to delete" . "<br>";
-        print_r($errors);
-        // exit;
-        // header("Location: " . URL . "/handlers/reservation/store.php");
+        header("Location: " . URL . "/views/reservation/cancel_reservation.php");
+        exit;
     }
 }
 ?>

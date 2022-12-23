@@ -1,4 +1,12 @@
 <?php require_once '../../core/config.php'; ?>
+<?php require_once PATH . 'core/connection.php'; ?>
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,17 +19,8 @@
 
 <body>
     <!-- Pass data through a form -->
+    <?php require_once PATH . "views/inc/messages.php" ?>
     <form action="<?= URL . "handlers/reservation/delete.php"; ?>" method="POST">
-        <!--attributes: -
-        user_id 	
-        plate_id 	
-        office_Id 	
-        reservation_id 	
-        reservation_date 	
-        pick_up_date 	
-        return_date 	
-        payment 	
-      -->
         <div>
             <label>user_id: </label>
             <input type="text" name="user_id">

@@ -1,4 +1,17 @@
 <?php require_once '../../core/config.php'; ?>
+<?php require_once PATH . 'core/connection.php'; ?>
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_SESSION['report1_result'])) {
+
+    $query_res = $_SESSION['report1_result'];
+    unset($_SESSION['report1_result']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +24,18 @@
 
 <body>
 
+    <!-- 
+
+
+
+        Important Note
+        default value of payment = 0
+
+
+
+    -->
+
+    <?php require_once PATH . "views/inc/messages.php" ?>
     <!-- Pass data through a form -->
     <form action="<?= URL . "handlers/reservation/store.php"; ?>" method="POST">
         <!--attributes: -
@@ -40,17 +65,17 @@
         <br>
         <div>
             <label>reservation_date: </label>
-            <input type="text" name="reservation_date">
+            <input type="date" name="reservation_date">
         </div>
         <br>
         <div>
             <label>pick_up_date: </label>
-            <input type="text" name="pick_up_date">
+            <input type="date" name="pick_up_date">
         </div>
         <br>
         <div>
             <label>return_date: </label>
-            <input type="text" name="return_date">
+            <input type="date" name="return_date">
         </div>
         <br>
         <div>

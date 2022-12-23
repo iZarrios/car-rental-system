@@ -3,6 +3,10 @@
 <?php require_once PATH . 'core/validations.php'; ?>
 
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
@@ -12,44 +16,41 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $office_Id = filter_var($_POST['office_Id'], FILTER_VALIDATE_INT);
 
     $reservation_date = validString($_POST['reservation_date']);
-    $reservation_date_exploded = explode('-', $reservation_date);
-
     $pick_up_date = validString($_POST['pick_up_date']);
-    $pick_up_date_exploded = explode('-', $pick_up_date);
-
     $return_date = validString($_POST['return_date']);
-    $return_date_exploded = explode('-', $return_date);
 
     $payment = filter_var($_POST['payment'], FILTER_VALIDATE_INT);
 
+
     if (empty($user_id)) {
-        $errors[] = "user_id is empty <br>";
+        $errors[] = "user_id is invalid";
     }
+
     if (empty($plate_id)) {
-        $errors[] = "plate_id is empty <br>";
+        $errors[] = "plate_id is invalid";
     }
+
     if (empty($office_Id)) {
-        $errors[] = "office_Id is empty <br>";
+        $errors[] = "office_Id is invalid";
     }
+
     if (empty($reservation_date)) {
-        $errors[] = "reservation_date is empty <br>";
-    } else if (!checkdate($reservation_date_exploded[1], $reservation_date_exploded[2], $reservation_date_exploded[0])) {
-
-        $errors[] = "Invalid Date";
+        $errors[] = "reservation_date is empty";
     }
+
     if (empty($pick_up_date)) {
-        $errors[] = "pick_up_date is empty <br>";
-    } else if (!checkdate($pick_up_date_exploded[1], $pick_up_date_exploded[2], $pick_up_date_exploded[0])) {
-        $errors[] = "Invalid Date";
+        $errors[] = "pick_up_date is empty";
     }
+
     if (empty($return_date)) {
-        $errors[] = "return_date is empty <br>";
-    } else if (!checkdate($pick_up_date_exploded[1], $pick_up_date_exploded[2], $pick_up_date_exploded[0])) {
-
-        $errors[] = "Invalid Date";
+        $errors[] = "return_date is empty";
     }
-    if (empty($errors)) {
 
+    if (empty($payment)) {
+        $errors[] = "payment is invalid";
+    }
+
+    if (empty($errors)) {
         /* Testcase
         1
         22408392
@@ -64,11 +65,16 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         try {
             // Inserting a reservation
-            $query = "INSERT INTO `reservation` (`user_id`, `plate_id`, `office_Id`, `reservation_date`, `pick_up_date`,`return_date`,`payment`)
-                VALUES ($user_id,$plate_id, $office_Id, '$reservation_date', '$pick_up_date','$return_date',$payment)";
+            $query = "
+            INSERT INTO `reservation` (`user_id`, `plate_id`, `office_Id`, `reservation_date`, `pick_up_date`,`return_date`,`payment`)
+            VALUES ($user_id,$plate_id, $office_Id, '$reservation_date', '$pick_up_date','$return_date',$payment)
+            ";
+
             $result = mysqli_query($conn, $query);
             // Updating Car status
+            // FIXME: by adding a trigger.
             $query = "UPDATE car SET `status` = 'reserved' WHERE `plate_id`=$plate_id";
+
             $result = mysqli_query($conn, $query);
 
             $affectedRows = mysqli_affected_rows($conn);
@@ -76,19 +82,23 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             // close connection
             mysqli_close($conn);
 
-            echo "done";
-            header("Location: " . URL . "/views/reservation/all.php");
+            if ($affectedRows >= 1) {
+                $_SESSION['success'] = "Reservation is done successfully";
+            } else {
+                $errors[] = "Couldn't Reserve the car!";
+                $_SESSION['errors'] = $errors;
+            }
+            header("Location: " . URL . "views/car/rent_car.php");
             exit;
-        } catch (\Throwable $th) {
-            echo "Failed to reserve" . "<br>";
+        } catch (\Throwable $th) {;
+            $errors[] = $th;
+            $_SESSION['errors'] = $errors;
+            header("Location: " . URL . "views/car/rent_car.php");
         }
     } else {
-        //TODO:
         $_SESSION['errors'] = $errors;
-        echo "Failed to reserve" . "<br>";
-        print_r($errors);
-        // exit;
-        // header("Location: " . URL . "/handlers/reservation/store.php");
+        header("Location: " . URL . "views/car/rent_car.php");
+        exit;
     }
 }
 ?>

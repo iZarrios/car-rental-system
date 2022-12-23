@@ -1,4 +1,17 @@
 <?php require_once '../../core/config.php'; ?>
+<?php require_once PATH . 'core/connection.php'; ?>
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_SESSION['search_result'])) {
+
+    $query_res = $_SESSION['search_result'];
+    unset($_SESSION['search_result']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,9 +24,27 @@
 
 <body>
 
+    <!-- 
+
+
+
+    Very important note!!
+    1. There must be a validation for input data in the form (Front-end)
+    2. Placeholder="Any" just a place holder not a text
+    3. Fields are not required to be filled
+
+
+    
+
+    -->
+
+
+
+
     <!-- Pass data through a form -->
     <!-- SELECT * FROM `car`
     WHERE `brand`= 'Dodge' AND `model`='MIMI' AND `body`='Sedan' AND `color`='blue' AND `year`=2010 AND `price_per_day` <700; -->
+    <?php require_once PATH . "views/inc/messages.php" ?>
     <form action="<?= URL . "handlers/car/search.php"; ?>" method="POST">
         <div>
             <label>brand: </label>
@@ -49,6 +80,39 @@
         <br>
         <input type="submit" name="submit" value="submit">
     </form>
+    <?php
+    if (isset($query_res)) {
+        // print_r($query_res);
+        // unset($query_res);
+    ?>
+        <table class="table table-bordered">
+            <thead class="thead-dark text-center">
+                <tr>
+                    <th scope="col">brand</th>
+                    <th scope="col">model</th>
+                    <th scope="col">body</th>
+                    <th scope="col">year</th>
+                    <th scope="col"> price_per_day </th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                <?php
+                foreach ($query_res as  $car) {
+                ?>
+                    <tr>
+                        <td> <?php echo $car["brand"] ?></td>
+                        <td> <?php echo $car["model"] ?></td>
+                        <td> <?php echo $car["body"] ?></td>
+                        <td> <?php echo $car["year"] ?></td>
+                        <td> <?php echo $car["price_per_day"] ?></td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+    <?php } ?>
 </body>
 
 </html>
