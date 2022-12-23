@@ -158,7 +158,7 @@ if (isset($_SESSION['search_result'])) {
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Car<span>Book</span></a>
+            <a class="navbar-brand" href="../site/index.php">Car<span>Book</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
@@ -237,7 +237,7 @@ if (isset($_SESSION['search_result'])) {
                                 <input type="text" name="upper_price" placeholder="Any">
                             </div>
                             <br>
-                            <input type="submit" name="submit" value="submit">
+                            <input class="submit" type="submit" name="submit" value="submit">
                         </form>
                         <?php
                         if (isset($query_res)) {
@@ -273,11 +273,7 @@ if (isset($_SESSION['search_result'])) {
                             </table>
                         <?php } ?>
                     </div>
-                    <div class="d-flex">
-                        <input class="submit" type="submit" id="submitButton" value="Edit" />
-                        <input class="submit" type="submit" id="submitButton" value="Delete" />
 
-                    </div>
 
                 </div>
             </div>
@@ -294,18 +290,6 @@ if (isset($_SESSION['search_result'])) {
                             <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                             <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
                             <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-5">
-                        <h2 class="ftco-heading-2">Information</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">About</a></li>
-                            <li><a href="#" class="py-2 d-block">Services</a></li>
-                            <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
-                            <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
-                            <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
                         </ul>
                     </div>
                 </div>

@@ -60,11 +60,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
     .un {
       width: 76%;
-      color: rgb(23, 23, 23);
+      color: rgb(15, 0, 0);
       font-weight: 700;
       font-size: 14px;
       letter-spacing: 1px;
-      background: rgba(255, 255, 255);
+      background: rgb(236, 236, 236);
       padding: 10px 20px;
       border: none;
       border-radius: 20px;
@@ -153,9 +153,20 @@ if (session_status() === PHP_SESSION_NONE) {
     <div class="container">
       <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
         <div class="col-md-9 ftco-animate pb-5">
-          <?php require_once PATH . "views/inc/messages.php" ?>
-          <!-- <div class="request-form ftco-animate bg-primary"> -->
-          <form class="form1" name="myform2" id="myform2" method="post" action="login.php" onsubmit="return validateForm2();">
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+
+  <section class="ftco-section ftco-degree-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ftco-animate">
+          <div class="card-body">
+            <?php require_once PATH . "views/inc/messages.php" ?>
+            <form class="form1" name="myform2" id="myform2" method="post" action="login.php" onsubmit="return validateForm2();">
             <p class="sign" align="center">Log in</p>
             <input class="un " type="text" name="email" id="email" placeholder="Email" />
             <br />
@@ -165,12 +176,11 @@ if (session_status() === PHP_SESSION_NONE) {
             <p class="forgot" align="center"><a href="SignUp.php">New User, Register ?</p>
             <div id="result"></div>
           </form>
+          </div>
         </div>
       </div>
-    </div>
-    </div>
-  </section>
-
+  </section> <!-- .section -->
+  
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
         <div class="row mb-5">
@@ -182,30 +192,6 @@ if (session_status() === PHP_SESSION_NONE) {
                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Information</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">About</a></li>
-                <li><a href="#" class="py-2 d-block">Services</a></li>
-                <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
-                <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
-                <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Customer Support</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">FAQ</a></li>
-                <li><a href="#" class="py-2 d-block">Payment Option</a></li>
-                <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
-                <li><a href="#" class="py-2 d-block">How it works</a></li>
-                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
               </ul>
             </div>
           </div>

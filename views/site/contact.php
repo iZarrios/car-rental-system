@@ -181,7 +181,7 @@ $offices = mysqli_fetch_all($result, MYSQLI_ASSOC);
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">
-              <a href="#" class="logo">Car<span>book</span></a>
+              <a href="../site/index.php" class="logo">Car<span>book</span></a>
             </h2>
             <p>
               A new car rent office which provide multiple types of car to
@@ -200,24 +200,7 @@ $offices = mysqli_fetch_all($result, MYSQLI_ASSOC);
             </ul>
           </div>
         </div>
-        <div class="col-md">
-          <div class="ftco-footer-widget mb-4 ml-md-5">
-            <h2 class="ftco-heading-2">Information</h2>
-            <ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">About</a></li>
-              <li><a href="#" class="py-2 d-block">Services</a></li>
-              <li>
-                <a href="#" class="py-2 d-block">Term and Conditions</a>
-              </li>
-              <li>
-                <a href="#" class="py-2 d-block">Best Price Guarantee</a>
-              </li>
-              <li>
-                <a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+        
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">Have a Questions?</h2>

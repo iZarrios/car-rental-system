@@ -154,7 +154,7 @@ if (isset($_SESSION['report1_result'])) {
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Car<span>Book</span></a>
+            <a class="navbar-brand" href="../site/index.php">Car<span>Book</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
@@ -168,7 +168,7 @@ if (isset($_SESSION['report1_result'])) {
                     <li class="nav-item"><a href="../site/contact.php" class="nav-link">Contact</a></li>
                     <li class="nav-item"><a href="../site/LogIn.php" class="nav-link">Log in</a></li>
                     <li class="nav-item"><a href="../site/SignUp.php" class="nav-link">Sign UP</a></li>
-                    <li class="nav-item"><a href="Welcome_User.php" class="nav-link">My profile</a></li>
+                    <li class="nav-item"><a href="../user/Welcome_User.php" class="nav-link">My profile</a></li>
 
 
                 </ul>
@@ -262,18 +262,6 @@ if (isset($_SESSION['report1_result'])) {
                             <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                             <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
                             <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-5">
-                        <h2 class="ftco-heading-2">Information</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">About</a></li>
-                            <li><a href="#" class="py-2 d-block">Services</a></li>
-                            <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
-                            <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
-                            <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
                         </ul>
                     </div>
                 </div>

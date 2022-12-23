@@ -1,0 +1,34 @@
+Frontend
+---------------------------------------------------------------
+User:
+View details (Card) (DONE)
+http://localhost/car-rental-system/views/site/car-single.php?plate_id=22404492
+
+Related cars (delete in car/all.php) (DONE)
+http://localhost/car-rental-system/views/site/car-single.php?plate_id=22404492
+
+Book now (redirection to rent_car.php)(delete in car/all.php) (DONE)
+
+Search vechile (Redirection to car) (DONE)
+http://localhost/car-rental-system/views/site/index.php?#
+
+
+Search_by_specs(Edit/delete/submit buttons) (DONE)
+http://localhost/car-rental-system/views/car/search_by_specs.php
+
+
+Edit table of show my cars (DONE)
+http://localhost/car-rental-system/views/user/Rental_history.php
+
+delete rental reservations
+http://localhost/car-rental-system/views/user/Welcome_User.php
+
+Website title (redirection)
+CarBook
+
+Change admin picture
+http://localhost/car-rental-system/views/user/Welcome_User.php
+
+Alerts and warnings
+http://localhost/car-rental-system/views/site/Login.php
+http://localhost/car-rental-system/views/site/SignUp.php
