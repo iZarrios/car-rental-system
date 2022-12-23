@@ -227,7 +227,7 @@
 
             <p>A small new car rent office which provide multiple types of car to rent starting from low end to high end and luxurious cars .</p>
             <p>We Have a lot of customers around the world, due to our commitment, high service and support that we provide to our customers, we seek to be one of the top car rental office around the wolrd, you can contact us by our website or Application .</p>
-            <p><a href="#" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
+            <p><a href="car.php" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
           </div>
         </div>
       </div>

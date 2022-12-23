@@ -100,72 +100,60 @@ $car = mysqli_fetch_assoc($result);
     </div>
   </section>
   <?php print_r($car) ?>
+  <section class="ftco-section ftco-car-details">
+      <div class="container">
+      	<div class="row justify-content-center">
+      		<div class="col-md-12">
+      			<div class="car-details">
+      				<div class="img rounded" style="background-image: url(images/bg_1.jpg);"></div>
+      				<div class="text text-center">
+      					<span class="subheading">Cheverolet</span>
+      					<h2>Mercedes Grand Sedan</h2>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+      	<div class="row">
+      		
+          <div class="col-md-8 ftco-animate">
+          <table style="width:100%">
+            <tr>
+              <th>plate_id</th>
+              <th>brand</th>
+              <th>model</th>
+              <th>body</th>
+              <th>color</th>
+              <th>year</th>
+              <th>status</th>
+              <th>price_per_day</th>
+            </tr>
+            <tr>
+              <td>22408392 </td>
+              <td>Dodge</td>
+              <td>MIMI </td>
+              <td>Sedan </td>
+              <td>blue </td>
+              <td>2010 </td>
+              <td>active </td>
+              <td>519.16 </td>
+            </tr>
+          </table>
+        </div>
+				</div>
+      </div>
+    </section>
 
-
-  <section class="ftco-section ftco-no-pt">
+  <section class="ftco-section ftco-degree-bg">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-          <span class="subheading">Choose Car</span>
-          <h2 class="mb-2">Related Cars</h2>
-        </div>
-      </div>
       <div class="row">
-        <div class="col-md-4">
-          <div class="car-wrap rounded ftco-animate">
-            <div class="img rounded d-flex align-items-end" style="background-image: url(../../public/images/car-1.jpg)"></div>
-            <div class="text">
-              <h2 class="mb-0">
-                <a href="car-single.php">Mercedes Grand Sedan</a>
-              </h2>
-              <div class="d-flex mb-3">
-                <span class="cat">Cheverolet</span>
-                <p class="price ml-auto">$500 <span>/day</span></p>
-              </div>
-              <p class="d-flex mb-0 d-block">
-                <a href="#" class="btn btn-primary py-2 mr-1">Book now</a>
-                <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="car-wrap rounded ftco-animate">
-            <div class="img rounded d-flex align-items-end" style="background-image: url(../../public/images/car-2.jpg)"></div>
-            <div class="text">
-              <h2 class="mb-0"><a href="car-single.php">Range Rover</a></h2>
-              <div class="d-flex mb-3">
-                <span class="cat">Subaru</span>
-                <p class="price ml-auto">$500 <span>/day</span></p>
-              </div>
-              <p class="d-flex mb-0 d-block">
-                <a href="#" class="btn btn-primary py-2 mr-1">Book now</a>
-                <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="car-wrap rounded ftco-animate">
-            <div class="img rounded d-flex align-items-end" style="background-image: url(../../public/images/car-3.jpg)"></div>
-            <div class="text">
-              <h2 class="mb-0">
-                <a href="car-single.php">Mercedes Grand Sedan</a>
-              </h2>
-              <div class="d-flex mb-3">
-                <span class="cat">Cheverolet</span>
-                <p class="price ml-auto">$500 <span>/day</span></p>
-              </div>
-              <p class="d-flex mb-0 d-block">
-                <a href="#" class="btn btn-primary py-2 mr-1">Book now</a>
-                <a href="car-single.php" class="btn btn-secondary py-2 ml-1">Details</a>
-              </p>
-            </div>
-          </div>
-        </div>
+        
+
+        <br><br><br><br><br>
       </div>
+
     </div>
-  </section>
+    </div>
+  </section> <!-- .section -->
 
   <footer class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">
