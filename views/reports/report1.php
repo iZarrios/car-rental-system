@@ -22,7 +22,8 @@ if (isset($_SESSION['report1_result'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="../../public/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../../public/css/animate.css">
@@ -48,16 +49,18 @@ if (isset($_SESSION['report1_result'])) {
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="../car/admin.php">ADMIN<span>CONTROLSECTION</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="admin.php">ADMIN<span>CONTROLSECTION</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item "><a href="../admin/admin.php" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="../admin/admin.php" class="nav-link">Home</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Office
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
@@ -65,51 +68,92 @@ if (isset($_SESSION['report1_result'])) {
                             </li>
                             <li><a class="dropdown-item" href="../office/delete_office.php" class="nav-link">Delete
                                     Office</a></li>
+                            <li><a class="dropdown-item" href="../office/all.php" class="nav-link">View
+                                    Offices</a></li>
                         </ul>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Customization Tools
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="Add_Car.php" class="nav-link">Add car</a></li>
-                            <li><a class="dropdown-item" href="Edit_car.php" class="nav-link">Customize car</a></li>
+                            <li><a class="dropdown-item" href="#" class="nav-link">View cars</a></li>
+                            <li><a class="dropdown-item" href="../car/Add_Car.php" class="nav-link">Add car</a></li>
+                            <li><a class="dropdown-item" href="../car/Edit_car.php" class="nav-link">Customize car</a>
+                            </li>
                             <li><a class="dropdown-item" href="#" class="nav-link">Delete car</a></li>
                         </ul>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Reports
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="../reports/report1.php" class="nav-link active">Report1</a></li>
+                            <li><a class="dropdown-item active" href="../reports/report1.php"
+                                    class="nav-link">Report1</a></li>
                             <li><a class="dropdown-item" href="../reports/report2.php" class="nav-link">Report2</a></li>
-                            <li><a class="dropdown-item" href="#" class="nav-link">Report3</a></li>
+                            <li><a class="dropdown-item" href="../reports/report3.php" class="nav-link">Report3</a></li>
+                            <li><a class="dropdown-item" href="../reports/report4.php" class="nav-link">Report4</a></li>
+                            <li><a class="dropdown-item" href="../reports/report5.php" class="nav-link">Report5</a></li>
                         </ul>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Search
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Reservations
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#" class="nav-link">Search by Car</a></li>
-                            <li><a class="dropdown-item" href="#" class="nav-link">Search by Customer</a></li>
-                            <li><a class="dropdown-item" href="#" class="nav-link">Search by Reservation</a></li>
+                            <li><a class="dropdown-item" href="../reservation/all.php" class="nav-link">View
+                                    Reservations</a></li>
+                            <li><a class="dropdown-item" href="../reservation/cancel_reservation.php"
+                                    class="nav-link">Delete Reservations</a></li>
                         </ul>
             </div>
         </div>
     </nav>
     <!-- END nav -->
 
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/test1.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/test1.jpg');"
+        data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
                 <div class="col-md-9 ftco-animate pb-5">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Report 1 <i class="ion-ios-arrow-forward"></i></span></p>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i
+                                    class="ion-ios-arrow-forward"></i></a></span> <span>Report 1 <i
+                                class="ion-ios-arrow-forward"></i></span></p>
                     <h1 class="mb-3 bread">Report 1</h1>
                 </div>
             </div>
         </div>
     </section>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-7 text-center heading-section ftco-animate">
+
+                    <h2 class="mb-3">Reports</h2>
+                </div>
+            </div>
+
+            <div>
+                <div class="services services-2 w-100 text-center">
+                    <div class="icon d-flex align-items-center justify-content-center"
+                        style="background-image: url('../../public/images/document.png')">
+
+                    </div>
+                    <div class="text w-100">
+                        <h3 class="heading mb-2">Report 1</h3>
+                        <p>
+                            All reservations within a specified period including all car and customer information
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
 
 
     <section class="ftco-section contact-section">
@@ -119,16 +163,19 @@ if (isset($_SESSION['report1_result'])) {
             <div class="row d-flex mb-5 contact-info">
 
                 <div class="col-md-8 block-9 mb-md-5">
-                    <form class="bg-light p-5 contact-form" action="<?= URL . "handlers/reports/r1.php"; ?>" method="POST" enctype="multipart/form-data">
+                    <form class="bg-light p-5 contact-form" action="<?= URL . "handlers/reports/r1.php"; ?>"
+                        method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
                             <label for="html">Date Range is from:</label><br>
-                            <input type="date" name="lower_date" id="lower_date.png" class="form-control" placeholder="yyyy-mm-dd" value='' required>
+                            <input type="date" name="lower_date" id="lower_date.png" class="form-control"
+                                placeholder="yyyy-mm-dd" value='' required>
                         </div>
 
                         <div class="form-group">
                             <label for="html">To:</label><br>
-                            <input type="date" name="upper_date" id="upper_date" class="form-control" placeholder="yyyy-mm-dd" required>
+                            <input type="date" name="upper_date" id="upper_date" class="form-control"
+                                placeholder="yyyy-mm-dd" required>
                         </div>
 
 
@@ -139,78 +186,80 @@ if (isset($_SESSION['report1_result'])) {
             </div>
 
         </div>
-        <div class="container">
+
+        <div class="container-fluid">
             <?php
             if (isset($query_res)) {
                 // print_r($query_res);
                 // unset($query_res);
             ?>
-                <!-- Array ( [0] => Array ( [plate_id] => 22408392 [brand] => Dodge [model] => MIMI [body] => Sedan [color] => blue [year] => 2010
+            <!-- Array ( [0] => Array ( [plate_id] => 22408392 [brand] => Dodge [model] => MIMI [body] => Sedan [color] => blue [year] => 2010
         [status] => reserved [price_per_day] => 519.16 [user_id] => 1 [fname] => Refugio [lname] => Deshawn [balance] => 60.67 
         [email] => doreneadcock@gmail.com [password] => zZ123456 [bdate] => 1997-10-19 [gender] => 1 [country] => Swaziland [city] => Harlingen [is_admin] => 0 ) ) -->
-                <table class="table table-bordered">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">plate_id</th>
-                            <th scope="col">brand</th>
-                            <th scope="col">model</th>
-                            <th scope="col">body</th>
-                            <th scope="col">color</th>
-                            <th scope="col">year</th>
-                            <th scope="col">status</th>
-                            <th scope="col">fname</th>
-                            <th scope="col">lname</th>
-                            <th colspan="2" scope="col" class="text-center">email</th>
-                            <th scope="col">password</th>
-                            <th scope="col">bdate</th>
-                            <th scope="col">gender</th>
-                            <th scope="col">country</th>
-                            <th scope="col">city</th>
-                            <th scope="col">is_admin</th>
-                        </tr>
-                    </thead>
+            <h1 class="mb-3 bread">Report 1:</h1>
+            <table class="  table table-bordered text-center table-hover" style="width:100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" class="text-center">plate_id</th>
+                        <th scope="col" class="text-center">brand</th>
+                        <th scope="col" class="text-center">model</th>
+                        <th scope="col" class="text-center">body</th>
+                        <th scope="col" class="text-center">color</th>
+                        <th scope="col" class="text-center">year</th>
+                        <th scope="col" class="text-center">status</th>
+                        <th scope="col" class="text-center">fname</th>
+                        <th scope="col" class="text-center">lname</th>
+                        <th colspan="2" scope="col" class="text-center">email</th>
+                        <th scope="col" class="text-center">password</th>
+                        <th scope="col" class="text-center">bdate</th>
+                        <th scope="col" class="text-center">gender</th>
+                        <th scope="col" class="text-center">country</th>
+                        <th scope="col" class="text-center">city</th>
+                        <th scope="col" class="text-center">is_admin</th>
+                    </tr>
+                </thead>
 
-                    <tbody class="text-center">
-                        <?php
+                <tbody class="text-center">
+                    <?php
                         foreach ($query_res as  $car) {
                         ?>
-                            <tr>
-                                <td> <?php echo $car["plate_id"] ?></td>
-                                <td> <?php echo $car["brand"] ?></td>
-                                <td> <?php echo $car["model"] ?></td>
-                                <td> <?php echo $car["body"] ?></td>
-                                <td> <?php echo $car["color"] ?></td>
-                                <td> <?php echo $car["year"] ?></td>
-                                <td> <?php echo $car["status"] ?></td>
-                                <td> <?php echo $car["fname"] ?></td>
-                                <td> <?php echo $car["lname"] ?></td>
-                                <td colspan="2"> <?php echo $car["email"] ?></td>
-                                <td> <?php echo $car["password"] ?></td>
-                                <td> <?php echo $car["bdate"] ?></td>
-                                <td>
-                                    <?php
+                    <tr>
+                        <td> <?php echo $car["plate_id"] ?></td>
+                        <td> <?php echo $car["brand"] ?></td>
+                        <td> <?php echo $car["model"] ?></td>
+                        <td> <?php echo $car["body"] ?></td>
+                        <td> <?php echo $car["color"] ?></td>
+                        <td> <?php echo $car["year"] ?></td>
+                        <td> <?php echo $car["status"] ?></td>
+                        <td> <?php echo $car["fname"] ?></td>
+                        <td> <?php echo $car["lname"] ?></td>
+                        <td colspan="2"> <?php echo $car["email"] ?></td>
+                        <td> <?php echo $car["password"] ?></td>
+                        <td> <?php echo $car["bdate"] ?></td>
+                        <td>
+                            <?php
                                     if ($car["gender"])
                                         echo "Male";
                                     else
                                         echo "Female";
                                     ?>
-                                </td>
-                                <td> <?php echo $car["country"] ?></td>
-                                <td> <?php echo $car["city"] ?></td>
-                                <td>
-                                    <?php
+                        </td>
+                        <td> <?php echo $car["country"] ?></td>
+                        <td> <?php echo $car["city"] ?></td>
+                        <td>
+                            <?php
                                     if ($car["is_admin"])
                                         echo "True";
                                     else
                                         echo "False";
                                     ?>
-                                </td>
-                            </tr>
-                        <?php
+                        </td>
+                    </tr>
+                    <?php
                         }
                         ?>
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
 
 
             <?php } ?>
@@ -233,7 +282,9 @@ if (isset($_SESSION['report1_result'])) {
                                                 Mandara, Alexandria, Egypt</span></li>
                                         <li><a href="#"><span class="icon icon-phone"></span><span class="text">+20 0106
                                                     820 8828</span></a></li>
-                                        <li><a href="https://mail.google.com/"><span class="icon icon-envelope"></span><span class="text">a.salem3214@gmail.com</span></a></li>
+                                        <li><a href="https://mail.google.com/"><span
+                                                    class="icon icon-envelope"></span><span
+                                                    class="text">a.salem3214@gmail.com</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -249,7 +300,8 @@ if (isset($_SESSION['report1_result'])) {
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
         </svg></div>
 
 
@@ -267,7 +319,8 @@ if (isset($_SESSION['report1_result'])) {
     <script src="../../public/js/bootstrap-datepicker.js"></script>
     <script src="../../public/js/jquery.timepicker.min.js"></script>
     <script src="../../public/js/scrollax.min.js"></script>
-    <script src="../../public/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+    <script
+        src="../../public/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
     </script>
     <script src="../../public/js/google-map.js"></script>
     <script src="../../public/js/main.js"></script>

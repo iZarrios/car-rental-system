@@ -52,6 +52,8 @@
                             </li>
                             <li><a class="dropdown-item" href="../office/delete_office.php" class="nav-link">Delete
                                     Office</a></li>
+                            <li><a class="dropdown-item" href="../office/all.php" class="nav-link">View
+                                    Offices</a></li>
                         </ul>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button"
@@ -59,6 +61,7 @@
                             Customization Tools
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#" class="nav-link">View cars</a></li>
                             <li><a class="dropdown-item" href="../car/Add_Car.php" class="nav-link">Add car</a></li>
                             <li><a class="dropdown-item" href="../car/Edit_car.php" class="nav-link">Customize car</a>
                             </li>
@@ -73,17 +76,20 @@
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="../reports/report1.php" class="nav-link">Report1</a></li>
                             <li><a class="dropdown-item" href="../reports/report2.php" class="nav-link">Report2</a></li>
-                            <li><a class="dropdown-item" href="#" class="nav-link">Report3</a></li>
+                            <li><a class="dropdown-item" href="../reports/report3.php" class="nav-link">Report3</a></li>
+                            <li><a class="dropdown-item" href="../reports/report4.php" class="nav-link">Report4</a></li>
+                            <li><a class="dropdown-item" href="../reports/report5.php" class="nav-link">Report5</a></li>
                         </ul>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Search
+                            Reservations
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#" class="nav-link">Search by Car</a></li>
-                            <li><a class="dropdown-item" href="#" class="nav-link">Search by Customer</a></li>
-                            <li><a class="dropdown-item" href="#" class="nav-link">Search by Reservation</a></li>
+                            <li><a class="dropdown-item" href="../reservation/all.php" class="nav-link">View
+                                    Reservations</a></li>
+                            <li><a class="dropdown-item" href="../reservation/cancel_reservation.php"
+                                    class="nav-link">Delete Reservations</a></li>
                         </ul>
             </div>
         </div>
