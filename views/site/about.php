@@ -47,9 +47,6 @@
             <a href="services.php" class="nav-link">Services</a>
           </li>
           <li class="nav-item">
-            <a href="pricing.php" class="nav-link">Pricing</a>
-          </li>
-          <li class="nav-item">
             <a href="car.php" class="nav-link">Cars</a>
           </li>
           <li class="nav-item">
@@ -252,18 +249,6 @@
               <li>
                 <a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a>
               </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Customer Support</h2>
-            <ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">FAQ</a></li>
-              <li><a href="#" class="py-2 d-block">Payment Option</a></li>
-              <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
-              <li><a href="#" class="py-2 d-block">How it works</a></li>
-              <li><a href="#" class="py-2 d-block">Contact Us</a></li>
             </ul>
           </div>
         </div>

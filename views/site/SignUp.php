@@ -1,3 +1,14 @@
+<?php require_once '../../core/config.php'; ?>
+<?php require_once PATH . 'core/connection.php'; ?>
+<?php require_once PATH . 'core/validations.php'; ?>
+<?php
+
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,30 +111,30 @@
     }
   </style>
   <script>
-    function validateForm1() {
-      var x1 = document.forms["myform1"]["lname"].value;
-      var x2 = document.forms["myform1"]["fname"].value;
-      var y = document.forms["myform1"]["pass"].value;
-      var z = document.forms["myform1"]["email"].value;
-      if (x1 == null || x1 == "") {
-        alert("Last name must be filled out");
-        return false;
-      }
-      if (x2 == null || x2 == "") {
-        alert("First name must be filled out");
-        return false;
-      }
-      if (y == null || y == "") {
-        alert("password must be filled out");
-        return false;
-      }
-      var emailRegEx = /^[A-Z0-9_-]+@[A-Z0-9]+\.[A-Z]{2,4}$/i;
-      if (z.search(emailRegEx) == -1) {
-        alert("Please enter a valid email address.");
-        return false;
-      }
-      return true;
-    }
+    // function validateForm1() {
+    //   var x1 = document.forms["myform1"]["lname"].value;
+    //   var x2 = document.forms["myform1"]["fname"].value;
+    //   var y = document.forms["myform1"]["pass"].value;
+    //   var z = document.forms["myform1"]["email"].value;
+    //   if (x1 == null || x1 == "") {
+    //     alert("Last name must be filled out");
+    //     return false;
+    //   }
+    //   if (x2 == null || x2 == "") {
+    //     alert("First name must be filled out");
+    //     return false;
+    //   }
+    //   if (y == null || y == "") {
+    //     alert("password must be filled out");
+    //     return false;
+    //   }
+    //   var emailRegEx = /^[A-Z0-9_-]+@[A-Z0-9]+\.[A-Z]{2,4}$/i;
+    //   if (z.search(emailRegEx) == -1) {
+    //     alert("Please enter a valid email address.");
+    //     return false;
+    //   }
+    //   return true;
+    // }
   </script>
 </head>
 
@@ -141,7 +152,6 @@
           <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
           <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
-          <li class="nav-item"><a href="pricing.php" class="nav-link">Pricing</a></li>
           <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
           <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
           <li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
@@ -159,39 +169,40 @@
     <div class="container">
       <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
         <div class="col-md-9 ftco-animate pb-5">
-          <!-- <div class="request-form ftco-animate bg-primary"> -->
-          <form class="form1" name="myform1" id="myform1" method="post" action="login.php" onsubmit="return validateForm1();">
-            <p class="sign" align="center">Sign Up</p>
-            <div class="d-flex">
-              <input class="un " type="text" name="fname" id="fname" placeholder="First name" />
+          <div class="container">
+            <!-- <div class='alert alert-success'>hii</div> -->
+            <?php require_once PATH . "views/inc/messages.php" ?>
+            <form class="form1" method="POST" action="<?= URL . "handlers/auth/register.php" ?>">
+              <p class="sign" align="center">Sign Up</p>
+              <div class="d-flex">
+                <input class="un" type="text" name="fname" id="fname" placeholder="First name" required />
+                <br />
+                <input class="un" type="text" name="lname" id="lname" placeholder="Last name" required />
+                <br />
+              </div>
+              <div class="d-flex">
+                <input class="un" type="text" name="email" id="email" placeholder="Email" required />
+                <br />
+                <input class="un" type="password" name="password" id="password" placeholder="password" required />
+                <br />
+              </div>
+              <div class="d-flex">
+                <input class="un" type="date" name="bdate" id="bdate" placeholder="bdate" required />
+                <input class="un" type="country" name="country" id="country" placeholder="country" required />
+              </div>
+              <input class="gender" type="radio" id="gender" name="gender" value="male" required> Male
+              <div class="d-flex">
+              </div>
+              <input class="gender" type="radio" id="gender" name="gender" value="female" required> Female
               <br />
-              <input class="un " type="text" name="lname" id="lname" placeholder="last name" />
-              <br />
-            </div>
-            <div class="d-flex">
-              <input class="un " type="text" name="email" id="email" placeholder="Email" />
-              <br />
-              <input class="un " type="password" name="pass" id="pass" placeholder="password" />
-              <br />
-            </div>
-            <div class="d-flex">
-              <input class="un " type="date" name="bdate" id="bdate" placeholder="bdate" />
-              <input class="un " type="country" name="country" id="country" placeholder="country" />
 
-            </div>
-            <input class="gender" type="radio" name="gender" value="male"> Male
-            <div class="d-flex">
+              <input class="submit" type="submit" id="submit" name="submit" value="Sign Up" />
+              <p class="forgot" align="center"><a href="LogIn.php">Old User, Login?</p>
+            </form>
+          </div>
 
-            </div>
-            <input class="gender" type="radio" name="gender" value="female"> Female
-            <br />
-            <input class="submit" type="submit" id="submitButton" value="Sign Up" />
-            <p class="forgot" align="center"><a href="LogIn.php">Old User, Login?</p>
-            <div id="result"></div>
-          </form>
         </div>
       </div>
-    </div>
     </div>
   </section>
 
@@ -218,18 +229,6 @@
               <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
               <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
               <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Customer Support</h2>
-            <ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">FAQ</a></li>
-              <li><a href="#" class="py-2 d-block">Payment Option</a></li>
-              <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
-              <li><a href="#" class="py-2 d-block">How it works</a></li>
-              <li><a href="#" class="py-2 d-block">Contact Us</a></li>
             </ul>
           </div>
         </div>

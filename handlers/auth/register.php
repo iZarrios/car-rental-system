@@ -4,32 +4,43 @@
 
 <?php
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
 
     // Sanitize Inputs
-    $f_name = validString($_POST['f_name']);
-    $l_name = validString($_POST['l_name']);
+    $f_name = validString($_POST['fname']);
+    $l_name = validString($_POST['lname']);
 
     // dropdown menu in form
     $gender = validString($_POST['gender']);
+
     $gender_val = 0;
     if ($gender == 'male') {
         $gender_val = 1;
     }
+
     $country = validString($_POST['country']);
-    $city = validString($_POST['city']);
+
+    //TODO: Uncomment
+    // $city = validString($_POST['city']);
 
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ?? "";
 
     $password = trim($_POST['password']);
 
-    $b_date = validString($_POST['b_date']);
+    $b_date = validString($_POST['bdate']);
 
-    $b_date_exploded = explode('/', $b_date);
-    if (!checkdate($b_date_exploded[0], $b_date_exploded[1], $b_date_exploded[2])) {
+    $b_date_exploded = explode('-', $b_date);
+    // dd($b_date_exploded);
+
+
+    // month, day, year
+    if (!checkdate($b_date_exploded[1], $b_date_exploded[2], $b_date_exploded[0])) {
 
         $errors[] = "Invalid Date";
     }
@@ -42,7 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         mysqli_free_result($result);
     }
 
-    if (empty($f_name)) $errors[] = "First Name is required";
+    if (empty($b_date_exploded)) {
+        $errors[] = "Date of Birth is Required";
+    }
+    if (empty($f_name)) {
+        $errors[] = "First Name is required";
+    }
+
     if (minVal($f_name, 3) || maxVal($f_name, 50)) {
         $errors[] = "First Name should be between 3 and 50 characters";
     }
@@ -52,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (minVal($l_name, 3) || maxVal($l_name, 50)) {
         $errors[] = "Last Name should be between 3 and 50 characters";
     }
+
     if (empty($email)) {
         $errors[] = "Email field is required";
     }
@@ -68,27 +86,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // $password = sha1($password);
 
         // Insert Statement
-        $query = "INSERT INTO `user` (`f_name`, `l_name`, `email`, `password`, `bdate`,`gender`,`country`,`city`,`is_admin`)
-                    VALUES ('$f_name', '$l_name', '$email', '$password', `$b_date`,`$gender_val`,`$country`,`$city`,'0')";
+
+        $query = "INSERT INTO `user` (`fname`, `lname`,`balance`,`email`, `password`, `bdate`,`gender`,`country`,`city`,`is_admin`)
+                    VALUES ('$f_name', '$l_name','0', '$email', '$password', '$b_date','$gender_val','$country','$city','0')";
         $result = mysqli_query($conn, $query);
         $affectedRows = mysqli_affected_rows($conn);
 
         // close connection
         mysqli_close($conn);
 
-        // TODO:
         $_SESSION['success'] = "You Have been registered successfully!";
-        header("Location: " . URL . "views/auth/login.php");
+        header("Location: " . URL . "views/site/Login.php");
         exit;
     } else {
-        //TODO:
         $_SESSION['errors'] = $errors;
-        header("Location: " . URL . "views/auth/register.php");
+        header("Location: " . URL . "views/site/SignUp.php");
         exit;
     }
 } else {
-    //TODO:
-    header("Location: " . URL . "views/auth/login.php");
+    header("Location: " . URL . "views/site/SignUp.php");
     exit;
 }
 ?>
