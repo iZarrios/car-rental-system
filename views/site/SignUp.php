@@ -141,7 +141,6 @@
           <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
           <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
-          <li class="nav-item"><a href="pricing.php" class="nav-link">Pricing</a></li>
           <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
           <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
           <li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
@@ -177,6 +176,7 @@
             <div class="d-flex">
               <input class="un " type="date" name="bdate" id="bdate" placeholder="bdate" />
               <input class="un " type="country" name="country" id="country" placeholder="country" />
+              <input class="un " type="country" name="city" id="city" placeholder="city" />
 
             </div>
             <input class="gender" type="radio" name="gender" value="male"> Male
@@ -218,18 +218,6 @@
               <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
               <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
               <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Customer Support</h2>
-            <ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">FAQ</a></li>
-              <li><a href="#" class="py-2 d-block">Payment Option</a></li>
-              <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
-              <li><a href="#" class="py-2 d-block">How it works</a></li>
-              <li><a href="#" class="py-2 d-block">Contact Us</a></li>
             </ul>
           </div>
         </div>
