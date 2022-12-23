@@ -47,40 +47,128 @@ $offices = mysqli_fetch_all($result, MYSQLI_ASSOC);
 </head>
 
 <body>
-    <h1 class="my-2 text-center"> All Offices</h1>
-    <div class="container">
-        <?php
-        // dd($offices);
-        if (isset($offices)) {
 
-        ?>
-        <table class="table table-bordered">
-            <thead class="thead-dark text-center">
-                <tr>
-                    <th scope="col">office_id</th>
-                    <th scope="col">country</th>
-                    <th scope="col">city</th>
-                </tr>
-            </thead>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="admin.php">ADMIN<span>CONTROLSECTION</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
 
-            <tbody class="text-center">
-                <?php
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="../admin/admin.php" class="nav-link">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Office
+                        </a>
+                        <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="../office/Add_office.php" class="nav-link">Add Office</a>
+                            </li>
+                            <li><a class="dropdown-item" href="../office/delete_office.php" class="nav-link">Delete
+                                    Office</a></li>
+                            <li><a class="dropdown-item active" href="../office/all.php" class="nav-link">View
+                                    Offices</a></li>
+                        </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Customization Tools
+                        </a>
+                        <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#" class="nav-link">View cars</a></li>
+                            <li><a class="dropdown-item" href="../car/Add_Car.php" class="nav-link">Add car</a></li>
+                            <li><a class="dropdown-item" href="../car/Edit_car.php" class="nav-link">Customize car</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#" class="nav-link">Delete car</a></li>
+                        </ul>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Reports
+                        </a>
+                        <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="../reports/report1.php" class="nav-link">Report1</a></li>
+                            <li><a class="dropdown-item" href="../reports/report2.php" class="nav-link">Report2</a></li>
+                            <li><a class="dropdown-item" href="../reports/report3.php" class="nav-link">Report3</a></li>
+                            <li><a class="dropdown-item" href="../reports/report4.php" class="nav-link">Report4</a></li>
+                            <li><a class="dropdown-item" href="../reports/report5.php" class="nav-link">Report5</a></li>
+                        </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Reservations
+                        </a>
+                        <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="../reservation/all.php" class="nav-link">View
+                                    Reservations</a></li>
+                            <li><a class="dropdown-item" href="../reservation/cancel_reservation.php"
+                                    class="nav-link">Delete Reservations</a></li>
+                        </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/test1.jpg');"
+        data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+                <div class="col-md-9 ftco-animate pb-5">
+                    <p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i
+                                    class="ion-ios-arrow-forward"></i></a></span> <span>View Offices <i
+                                class="ion-ios-arrow-forward"></i></span></p>
+                    <h1 class="mb-3 bread">View offices</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="ftco-section contact-section">
+
+
+
+        <div class="container-fluid">
+            <?php
+            if (isset($offices)) {
+           
+            ?>
+
+            <h1 class="mb-3 bread">Offices :</h1>
+            <table class="  table table-bordered text-center table-hover" style="width:100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">office_id</th>
+                        <th scope="col">country</th>
+                        <th scope="col">city</th>
+                    </tr>
+                </thead>
+
+                <tbody class="text-center">
+                    <?php
                     foreach ($offices as  $office) {
                     ?>
-                <tr>
-                    <td> <?php echo $office["office_Id"] ?></td>
-                    <td> <?php echo $office["country"] ?></td>
-                    <td> <?php echo $office["city"] ?></td>
-                </tr>
-                <?php
+                    <tr>
+                        <td> <?php echo $office["office_Id"] ?></td>
+                        <td> <?php echo $office["country"] ?></td>
+                        <td> <?php echo $office["city"] ?></td>
+                    </tr>
+                    <?php
                     }
                     ?>
-            </tbody>
-        </table>
-        <?php
+                </tbody>
+            </table>
+            <?php
             unset($offices);
         } ?>
-    </div>
+        </div>
     </section>
 
 
