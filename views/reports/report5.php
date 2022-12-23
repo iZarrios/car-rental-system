@@ -49,7 +49,7 @@ if (isset($_SESSION['report5_result'])) {
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="admin.php">ADMIN<span>CONTROLSECTION</span></a>
+            <a class="navbar-brand" href="../admin/admin.php">ADMIN<span>CONTROLSECTION</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
@@ -81,7 +81,8 @@ if (isset($_SESSION['report5_result'])) {
                             <li><a class="dropdown-item" href="../car/Add_Car.php" class="nav-link">Add car</a></li>
                             <li><a class="dropdown-item" href="../car/Edit_car.php" class="nav-link">Customize car</a>
                             </li>
-                            <li><a class="dropdown-item" href="#" class="nav-link">Delete car</a></li>
+                            <li><a class="dropdown-item" href="../car/Delete_car.php" class="nav-link">Delete car</a>
+                            </li>
                         </ul>
 
                     <li class="nav-item dropdown">

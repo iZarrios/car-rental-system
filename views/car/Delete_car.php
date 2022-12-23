@@ -1,11 +1,3 @@
-<?php require_once "../../core/config.php"; ?>
-<?php if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-} ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +33,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="admin.php">ADMIN<span>CONTROLSECTION</span></a>
+            <a class="navbar-brand" href="../admin/admin.php">ADMIN<span>CONTROLSECTION</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
@@ -113,9 +105,9 @@
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
                 <div class="col-md-9 ftco-animate pb-5">
                     <p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i
-                                    class="ion-ios-arrow-forward"></i></a></span> <span>Add Car <i
+                                    class="ion-ios-arrow-forward"></i></a></span> <span>Delete Car <i
                                 class="ion-ios-arrow-forward"></i></span></p>
-                    <h1 class="mb-3 bread">Add Car</h1>
+                    <h1 class="mb-3 bread">Delete Car</h1>
                 </div>
             </div>
         </div>
@@ -126,67 +118,18 @@
             <div class="row d-flex mb-5 contact-info">
 
                 <div class="col-md-8 block-9 mb-md-5">
-                    <form class="bg-light p-5 contact-form" method="POST" action="<?= URL . "handlers/car/store.php" ?>"
-                        enctype="multipart/form-data">
+                    <form class="bg-light p-5 contact-form" "
+                        enctype=" multipart/form-data">
 
                         <div class="form-group">
                             <input type="text" name="plate_id" id="plate_id" class="form-control" placeholder="Plate ID"
                                 required>
                         </div>
 
-                        <div class="form-group">
-                            <input type="text" name="brand" id="brand" class="form-control" placeholder="Brand"
-                                required>
-                        </div>
 
-                        <div class="form-group">
-                            <input type="text" name="model" id="model" class="form-control" placeholder="Model"
-                                required>
-                        </div>
 
-                        <div class="form-group">
-                            <input type="text" name="body" id="body" class="form-control" placeholder="body" required>
-                        </div>
 
-                        <div class="form-group">
-                            <input type="text" name="color" id="color" class="form-control" placeholder="color"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" name="year" id="year" class="form-control" placeholder="year" required>
-                        </div>
-
-                        <div class="form-group">
-                            <select name="status" required>
-                                <option selected>Status</option>
-                                <option value="active" name="status">active</option>
-                                <option value="out of service">out of service</option>
-                                <option value="rented">rented</option>
-                            </select>
-
-                        </div>
-
-                        <div class="form-group">
-                            <input type="number" name="price_per_day" id="price_per_day" class="form-control"
-                                placeholder="Price per day" required>
-                        </div>
-
-                        <div class="form-group">
-                            <p><label for="image" style=" cursor: pointer;"
-                                    class="form-label btn btn-secondary py-0 px-2">Upload Car Image</label></p>
-                            <p><input type="file" name="image" id="image" class="form-control"
-                                    onchange="loadFile(event)" style="display: none;"></p>
-                            <p><img id="output" width="200" /></p>
-                        </div>
-
-                        <script>
-                        var loadFile = function(event) {
-                            var image = document.getElementById('output');
-                            image.src = URL.createObjectURL(event.target.files[0]);
-                        };
-                        </script>
-
-                        <input type="submit" name="submit" value="Add Car" class="btn btn-primary py-3 px-5">
+                        <input type="submit" name="submit" value="Delete Car" class="btn btn-primary py-3 px-5">
                     </form>
 
                 </div>
