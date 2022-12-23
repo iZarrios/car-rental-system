@@ -1,6 +1,9 @@
 <?php require_once '../../core/config.php'; ?>
 <?php require_once PATH . 'core/connection.php'; ?>
 
+<?php if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+} ?>
 <?php
 if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -86,15 +89,15 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($affectedRow >= 1) {
             echo "Success car update";
-            // $_SESSION['success'] = "Product Inserted Successfully";
-            // header("Location:" . URL . "views/cars/all.php");
-            // exit;
+            $_SESSION['success'] = "Car Updated Successfully";
+            header("Location:" . URL . "views/car/Edit_car.php?plate_id=" . $plate_id);
+            exit;
         }
     } else {
         echo "error car insert";
-        // $_SESSION['errors'] = $errors;
-        // header("Location:" . URL . "views/products/add.php");
-        // exit;
+        $_SESSION['errors'] = $errors;
+        header("Location:" . URL . "views/car/Edit_car.php?plate_id=" . $plate_id);
+        exit;
     }
 }
 ?>
