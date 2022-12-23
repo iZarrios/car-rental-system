@@ -189,6 +189,7 @@ if (session_status() === PHP_SESSION_NONE) {
               <div class="d-flex">
                 <input class="un" type="date" name="bdate" id="bdate" placeholder="bdate" required />
                 <input class="un" type="country" name="country" id="country" placeholder="country" required />
+                <input class="un" type="city" name="city" id="city" placeholder="city" required />
               </div>
               <input class="gender" type="radio" id="gender" name="gender" value="male" required> Male
               <div class="d-flex">
