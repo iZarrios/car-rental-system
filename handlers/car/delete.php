@@ -20,20 +20,27 @@ if (isset($_GET['plate_id'])) {
         $query = "DELETE FROM `car` WHERE `plate_id` = $plate_id";
         $result = mysqli_query($conn, $query);
         // if file exists for that car
-        if (file_exists(PATH . "uploads/images/cars/" . $car['plate_id'])) {
+        if (file_exists(PATH . "uploads/images/cars/" . $car['plate_id']) . ".jpg") {
             // delete the file
-            unlink(PATH . "uploads/images/cars/" . $car['plate_id']);
+            unlink(PATH . "uploads/images/cars/" . $car['plate_id'] . ".jpg");
+        } else {
+            $errors[] = "Could not delete image ";
+            $_SESSION['errors']  = $errors;
+            header("Location:" . URL . "views/car/Delete_car.php");
         }
         $_SESSION['success'] = "Car Deleted Successfully";
         header("Location:" . URL . "views/car/Delete_car.php");
         exit;
     } else {
-        $_SESSION['errors']  = "This car does not exist on the database";
+        $errors[] = "This car does not exist on the database";
+        $_SESSION['errors']  = $errors;
         header("Location:" . URL . "views/car/Delete_car.php");
         exit;
     }
 } else {
 
+    $errors[] = "Could not delete the car";
+    $_SESSION['errors']  = $errors;
     header("Location:" . URL . "views/car/Delete_car.php");
     exit;
 }
