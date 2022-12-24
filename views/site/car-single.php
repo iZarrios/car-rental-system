@@ -117,11 +117,12 @@ $car = mysqli_fetch_assoc($result);
 			<?php
 			if ($car) {
 			?>
-				<img style="text-align: center;" src="<?= URL . "uploads/images/cars/" . $car['plate_id'] . ".jpg" ?>" alt="Car of The Image">
+				<img style="text-align: center;  max-height: 100%;
+  max-width: 100%;" src="<?= URL . "uploads/images/cars/" . $car['plate_id'] . ".jpg" ?>" alt="Car of The Image">
 
 				<div class="row">
 					<div class="col-md-8 ftco-animate">
-						<table style="width:100%">
+						<table style="text-align:center;width:100%">
 							<tr>
 								<th>plate_id</th>
 								<th>brand</th>
