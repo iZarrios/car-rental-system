@@ -77,9 +77,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $result = mysqli_query($conn, "SELECT * FROM `user` WHERE `user_id` = '$user_id'");
             $user = mysqli_fetch_assoc($result);
             $_SESSION['logged'] = $user;
+            $_SESSION['logged']['full_name'] = $user['fname'] . " " . $user['lname'];
 
             mysqli_close($conn);
             $_SESSION['success'] = "User Updated Successfully";
+            header("Location:" . URL . "views/user/Edit_User.php");
+            exit;
+        } else {
+            $_SESSION['success'] = "User Updated Successfully(with no new info changed)";
             header("Location:" . URL . "views/user/Edit_User.php");
             exit;
         }
