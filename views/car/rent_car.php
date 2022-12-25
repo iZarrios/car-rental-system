@@ -10,6 +10,27 @@ if (isset($_SESSION['report1_result'])) {
     $query_res = $_SESSION['report1_result'];
     unset($_SESSION['report1_result']);
 }
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    // if user not logged in
+    if (!isset($_SESSION['logged'])) {
+        header("Location: " . URL . "views/site/LogIn.php");
+        exit;
+    }
+
+    //wrong url 
+    if (!isset($_GET['plate_id'])) {
+        header("Location: " . URL . "views/site/index.php");
+        exit;
+    }
+    $plate_id = $_GET['plate_id'];
+    $current_date = new DateTime();
+    $current_date = $current_date->format('d-m-Y');
+} else {
+    header("Location: " . URL . "views/site/index.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -111,6 +132,7 @@ if (isset($_SESSION['report1_result'])) {
             padding-top: 15px;
         }
     </style>
+    <script src='http://code.jquery.com/jquery-1.9.1.js'></script>
     <script>
         function validateForm1() {
             var x1 = document.forms["myform1"]["lname"].value;
@@ -191,62 +213,47 @@ if (isset($_SESSION['report1_result'])) {
                     <h2 class="mb-3">Rent Car</h2>
                     <div class="card-body">
                         <?php require_once PATH . "views/inc/messages.php" ?>
-                        <!-- Pass data through a form -->
-                        <form action="<?= URL . "handlers/reservation/store.php"; ?>" method="POST">
-                            <!--attributes: -
-        user_id 	
-        plate_id 	
-        office_Id 	
-        reservation_id 	
-        reservation_date 	
-        pick_up_date 	
-        return_date 	
-        payment 	
-      -->
+                        <form method="POST" action="<?= URL . "handlers/reservation/store.php"; ?>">
+                            <input type="hidden" name="user_id" value="<?= $_SESSION['logged']['user_id'] ?>" />
                             <div>
-                                <label>user_id: </label>
-                                <input type="text" name="user_id">
+                                <label>plate ID: </label>
+                                <input type="text" name="plate_id" value="<?= $plate_id ?>">
                             </div>
                             <br>
                             <div>
-                                <label>plate_id: </label>
-                                <input type="text" name="plate_id">
+                                <!-- <label>office ID: </label> -->
+                                <input type="hidden" name="office_id" id="office_id" value="1">
+                            </div>
+                            <!-- <br> -->
+                            <div>
+                                <!-- <label>Reservation Date: </label> -->
+                                <input type="hidden" name="reservation_date" id="reservation_date" value="<?= $current_date ?>">
+                            </div>
+                            <!-- <br> -->
+                            <div>
+                                <label>Pick Up Date: </label>
+                                <input type="date" name="pick_up_date" id="pick_up_date">
                             </div>
                             <br>
                             <div>
-                                <label>office_Id: </label>
-                                <input type="text" name="office_Id">
-                            </div>
-                            <br>
-                            <div>
-                                <label>reservation_date: </label>
-                                <input type="date" name="reservation_date">
-                            </div>
-                            <br>
-                            <div>
-                                <label>pick_up_date: </label>
-                                <input type="date" name="pick_up_date">
-                            </div>
-                            <br>
-                            <div>
-                                <label>return_date: </label>
+                                <label>Return Date: </label>
                                 <input type="date" name="return_date">
                             </div>
                             <br>
+                            <h1>TODO:Using jQuery</h1>
                             <div>
                                 <label>payment: </label>
-                                <input type="text" name="payment">
+                                <input type="text" disabled="disabled" id="payment" name="payment" value="0">
                             </div>
                             <br>
-                            <input type="submit" name="submit" value="submit">
+                            <div class="d-flex">
+                                <input type="submit" name="submit" value="submit">
+                            </div>
+
                         </form>
                     </div>
-                    <div class="d-flex">
-                        <input class="submit" type="submit" id="submitButton" value="Edit" />
-                        <input class="submit" type="submit" id="submitButton" value="Delete" />
-
-                    </div>
-
+                    <!-- <input class="submit" type="submit" id="submitButton" value="Edit" /> -->
+                    <!-- <input class="submit" type="submit" id="submitButton" value="Delete" /> -->
                 </div>
             </div>
     </section> <!-- .section -->
