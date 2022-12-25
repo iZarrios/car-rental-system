@@ -9,9 +9,9 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// if user is already logged in
 if (isset($_SESSION['logged'])) {
-    //TODO:
-    header("Location: " . URL . "views/home.php");
+    header("Location: " . URL . "views/site/index.php");
     exit;
 }
 
@@ -20,14 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = [];
 
     // Inputs
-    // $email = $_POST['email'];
+    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ?? "";
     // $password = sha1($_POST['password']);
     $password = trim($_POST['password']);
-    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ?? "";
 
     if (empty($email)) {
-        //TODO: Redirection ??
-        $errors[] = "Email wrong";
+        $errors[] = "Insufficient info";
+        exit;
+    }
+    if (empty($password)) {
+        $errors[] = "Insufficient info";
         exit;
     }
 
@@ -35,24 +37,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = mysqli_fetch_assoc($result);
 
     if (mysqli_num_rows($result) > 0) {
-
         mysqli_free_result($result);
-        //TODO: XD
         if ($user['password'] == $password) {
 
             $_SESSION['logged'] = $user;
-            $_SESSION['logged']['full_name'] = $user['f_name'] . " " . $user['l_name'];
-            //TODO: yes.
-            header("Location:" . URL . "views/home.php");
+            $_SESSION['logged']['full_name'] = $user['fname'] . " " . $user['lname'];
+            header("Location:" . URL . "views/site/index.php");
             exit;
         } else {
-            //TODO:
             $errors[] = "Wrong combination of credentials";
+            $_SESSION['errors'] = $errors;
+            header("Location: " . URL . "views/site/login.php");
             exit;
         }
     }
 } else {
-    //TODO:
-    header("Location: " . URL . "views/auth/login.php");
+    header("Location: " . URL . "views/site/login.php");
     exit;
 }
