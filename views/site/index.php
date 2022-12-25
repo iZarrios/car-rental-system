@@ -1,3 +1,13 @@
+<?php require_once '../../core/config.php'; ?>
+<!-- <?php require_once PATH . 'core/connection.php'; ?> -->
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,10 +54,26 @@
                     <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
                     <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
                     <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
-                    <li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
-                    <li class="nav-item"><a href="SignUp.php" class="nav-link">Sign UP</a></li>
-                    <li class="nav-item"><a href="SignUp.php" class="nav-link">Profile</a></li>
-                    <li class="nav-item"><a href="../user/Welcome_User.php" class="nav-link">My profile</a></li>
+                    <?php
+                    if (isset($_SESSION['logged'])) {
+
+                    ?>
+                        <li class="nav-item">
+                            <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello <?= $_SESSION['logged']['full_name'] ?></strong></a>
+
+                        </li>
+                        <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign out</a></li>
+
+                    <?php
+                    } else {
+                    ?>
+                        <li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
+                        <li class="nav-item"><a href="SignUp.php" class="nav-link">Sign Up</a></li>
+                    <?php
+                    }
+                    ?>
+
+
 
                 </ul>
             </div>
@@ -216,9 +242,6 @@
             </div>
         </div>
     </section>
-
-
-
 
     <section class="ftco-section testimony-section bg-light">
         <div class="container">
