@@ -107,32 +107,6 @@ if (!isset($_SESSION['logged'])) {
       padding-top: 15px;
     }
   </style>
-  <script>
-    function validateForm1() {
-      var x1 = document.forms["myform2"]["lname"].value;
-      var x2 = document.forms["myform2"]["fname"].value;
-      var y = document.forms["myform2"]["pass"].value;
-      var z = document.forms["myform2"]["email"].value;
-      if (x1 == null || x1 == "") {
-        alert("Last name must be filled out");
-        return false;
-      }
-      if (x2 == null || x2 == "") {
-        alert("First name must be filled out");
-        return false;
-      }
-      if (y == null || y == "") {
-        alert("password must be filled out");
-        return false;
-      }
-      var emailRegEx = /^[A-Z0-9_-]+@[A-Z0-9]+\.[A-Z]{2,4}$/i;
-      if (z.search(emailRegEx) == -1) {
-        alert("Please enter a valid email address.");
-        return false;
-      }
-      return true;
-    }
-  </script>
 </head>
 
 <body>
@@ -173,8 +147,9 @@ if (!isset($_SESSION['logged'])) {
         <div class="col-md-8 ftco-animate">
           <h2 class="mb-3">Edit your info</h2>
 
-          <!-- //TODO: Update user info -->
-          <form class="form1" name="myform2" id="myform2" method="post" action="login.php" onsubmit="return validateForm1();">
+          <!-- TODO: Update user info -->
+          <?php require_once PATH . "views/inc/messages.php" ?>
+          <form class="form1" name="form" id="form" method="POST" action="<?= URL . "handlers/auth/update.php" ?>">
             <!-- <div>
               <input class="un " type="text" name="user_id" id="user_id" placeholder="User_id" value="<?= $_SESSION['logged']['user_id'] ?>" />
             </div> -->
@@ -187,7 +162,7 @@ if (!isset($_SESSION['logged'])) {
             <div class="d-flex">
               <input class="un " type="text" name="email" id="email" placeholder="Email" value="<?= $_SESSION['logged']['email'] ?>" />
               <br />
-              <input class="un " type="text" name="pass" id="pass" placeholder="password" value="<?= $_SESSION['logged']['password'] ?>" />
+              <input class="un " disabled="disabled" type="text" name="pass" id="pass" placeholder="password" value="<?= $_SESSION['logged']['password'] ?>" />
               <br />
             </div>
             <div class="d-flex">
@@ -197,11 +172,11 @@ if (!isset($_SESSION['logged'])) {
             </div>
             <div class="d-flex">
               <!-- <input class="un " type="city" name="city" id="city" placeholder="City" value="<?= $_SESSION['logged']['city'] ?>" />  -->
-              <input class="un " type="date" name="bdate" id="bdate" placeholder="bdate" value="<?= $_SESSION['logged']['bdate'] ?>" />
+              <input class="un " disabled="disabled" type="date" name="bdate" id="bdate" placeholder="bdate" value="<?= $_SESSION['logged']['bdate'] ?>" />
               <?php
               if ($_SESSION['logged']['gender'] == 1) {
               ?>
-                <input class="un " type="text" name="gender" id="gender" placeholder="Gender" value="male" />
+                <input class="un " disabled="disabled" type="text" name="gender" id="gender" placeholder="Gender" value="male" />
               <?php
               } else {
               ?>
@@ -212,9 +187,8 @@ if (!isset($_SESSION['logged'])) {
           ?>
           <br />
           <div class="d-flex">
-            <input class="submit" type="submit" id="submitButton" value="Edit" />
+            <input class="submit" type="submit" id="submit" value="Edit" />
           </div>
-          <!-- <div id="result"></div> -->
           </form>
 
 
