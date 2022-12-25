@@ -63,6 +63,14 @@ if (session_status() === PHP_SESSION_NONE) {
 
                         </li>
                         <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign out</a></li>
+                        <?php
+                        if ($_SESSION['logged']['is_admin'] == "1") {
+                        ?>
+                            <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin Panel</a></li>
+                        <?php
+                        }
+
+                        ?>
 
                     <?php
                     } else {
