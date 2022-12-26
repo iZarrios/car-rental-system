@@ -7,6 +7,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+?>
+
+<?php
 
 // if user is already logged in
 if (!isset($_SESSION['logged'])) {

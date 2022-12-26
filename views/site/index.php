@@ -1,7 +1,9 @@
 <?php require_once '../../core/config.php'; ?>
-<!-- <?php require_once PATH . 'core/connection.php'; ?> -->
+<?php require_once PATH . 'core/connection.php'; ?>
+<?php require_once PATH . 'core/validations.php'; ?>
 
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -80,14 +82,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <?php
                     }
                     ?>
-
-
-
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- END nav -->
 
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('../../public/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>

@@ -7,6 +7,10 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+?>
+
+
+<?php
 
 // if user is already logged in
 if (!isset($_SESSION['logged'])) {
@@ -117,7 +121,6 @@ if ($_SESSION['logged']['is_admin'] == "0") {
             </div>
         </div>
     </nav>
-    <!-- END nav -->
 
 
     <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/test1.jpg');" data-stellar-background-ratio="0.5">

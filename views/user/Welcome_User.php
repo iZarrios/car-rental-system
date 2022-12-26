@@ -156,6 +156,9 @@ if (!isset($_SESSION['logged'])) {
                             <li>
                                 <h2><a href="Rental_reservations.php" class="nav-link">Rental reservations</a></h2>
                             </li>
+                            <li>
+                                <h2><a href="<?= URL . "views/user/balance.php" ?>" class="nav-link">Add Balance</a></h2>
+                            </li>
                         </ul>
                     </div>
                 </div>

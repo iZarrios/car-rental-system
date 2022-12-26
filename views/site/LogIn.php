@@ -7,6 +7,10 @@
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
+if (isset($_SESSION['logged'])) {
+  header("Location: " . URL . "views/site/index.php");
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
