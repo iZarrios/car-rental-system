@@ -217,12 +217,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <input type="hidden" name="user_id" value="<?= $_SESSION['logged']['user_id'] ?>" />
                             <div>
                                 <label>plate ID: </label>
-                                <input type="text" name="plate_id" value="<?= $plate_id ?>">
+                                <input type="text" disabled="disabled" name="plate_id" id="plate_id" value="<?= $plate_id ?>">
                             </div>
                             <br>
                             <div>
                                 <!-- <label>office ID: </label> -->
-                                <input type="hidden" name="office_id" id="office_id" value="1">
+                                <input type="hidden" name="office_Id" id="office_Id" value="1">
                             </div>
                             <!-- <br> -->
                             <div>
@@ -237,10 +237,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <br>
                             <div>
                                 <label>Return Date: </label>
-                                <input type="date" name="return_date">
+                                <input type="date" name="return_date" id="return_date">
                             </div>
                             <br>
-                            <h1>TODO:Using jQuery</h1>
                             <div>
                                 <label>payment: </label>
                                 <input type="text" disabled="disabled" id="payment" name="payment" value="0">
@@ -248,6 +247,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <br>
                             <div class="d-flex">
                                 <input type="submit" name="submit" value="submit">
+                            </div>
+
+                            <?php
+                            require_once PATH . 'handlers/reservation/store_helper.php';
+
+                            $query = "SELECT `car`.* FROM `car` WHERE `plate_id` = '$plate_id'";
+                            $result = mysqli_query($conn, $query);
+                            $cars = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                            $price_per_day = floatval($cars[0]['price_per_day']);
+                            ?>
+
+                            <div>
+                                <input type="hidden" name="price_per_day" id="price_per_day" value="<?php echo $price_per_day ?>"></input>
+                                <span id="message"></span>
                             </div>
 
                         </form>
