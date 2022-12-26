@@ -10,6 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $query = "SELECT `car`.* 
         FROM `car`
+		WHERE `car`.`status` != 'out of service'
 ";
 
 $result = mysqli_query($conn, $query);
