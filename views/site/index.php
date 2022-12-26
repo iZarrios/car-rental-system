@@ -44,7 +44,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="../site/index.php">Car<span>Book</span></a>
+            <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
+            <!-- AHEZ -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
@@ -357,7 +358,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2"><a href="#" class="logo">Car<span>book</span></a></h2>
+                        <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
                         <p>A small new car rent office which provide multiple types of car to rent starting from low end
                             to high end and luxurious cars .</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
