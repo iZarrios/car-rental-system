@@ -16,6 +16,8 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $plate_id = filter_var($_POST['plate_id'], FILTER_VALIDATE_INT);
     $office_Id = filter_var($_POST['office_Id'], FILTER_VALIDATE_INT);
 
+    // dd($plate_id);
+
     if (empty($user_id)) {
         $errors[] = "user_id is invalid";
     }
