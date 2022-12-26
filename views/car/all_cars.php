@@ -183,6 +183,7 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                                         <td><?= $car['price_per_day'] ?></td>
                                         <td>
                                             <a class="btn btn-primary" href="<?= URL . "views/car/Edit_car.php?plate_id=" . $car['plate_id'] ?>" role="button">Edit</a>
+                                            <a class="btn btn-danger" href="<?= URL . "handlers/car/delete.php?plate_id=" . $car['plate_id'] ?>" role="button">Delete</a>
                                         </td>
                                     </tr>
                                 <?php
