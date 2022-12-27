@@ -5,6 +5,12 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+if (!isset($_SESSION['logged']) || $_SESSION['logged']['is_admin'] == '0') {
+    header("Location: " . URL . "views/site/index.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -15,8 +21,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../../public/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../../public/css/animate.css">
@@ -43,8 +48,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="../admin/admin.php">ADMIN<span>CONTROLSECTION</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
@@ -52,8 +56,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item "><a href="../admin/admin.php" class="nav-link">Home</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Office
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
@@ -66,8 +69,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                     Offices</a></li>
                         </ul>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Customization Tools
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
@@ -80,8 +82,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         </ul>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Reports
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
@@ -92,30 +93,25 @@ if (session_status() === PHP_SESSION_NONE) {
                             <li><a class="dropdown-item" href="../reports/report5.php" class="nav-link">Report5</a></li>
                         </ul>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Reservations
                         </a>
                         <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="../reservation/all.php" class="nav-link">View
                                     Reservations</a></li>
-                            <li><a class="dropdown-item" href="../reservation/cancel_reservation.php"
-                                    class="nav-link">Delete Reservations</a></li>
+                            <li><a class="dropdown-item" href="../reservation/cancel_reservation.php" class="nav-link">Delete Reservations</a></li>
                         </ul>
             </div>
         </div>
     </nav>
     <!-- END nav -->
 
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/test1.jpg');"
-        data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/test1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
                 <div class="col-md-9 ftco-animate pb-5">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i
-                                    class="ion-ios-arrow-forward"></i></a></span> <span>Cancel Reservation <i
-                                class="ion-ios-arrow-forward"></i></span></p>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Cancel Reservation <i class="ion-ios-arrow-forward"></i></span></p>
                     <h1 class="mb-3 bread">Cancel Reservation</h1>
                 </div>
             </div>
@@ -128,10 +124,10 @@ if (session_status() === PHP_SESSION_NONE) {
             <div class="row d-flex mb-5 contact-info">
 
                 <div class="col-md-8 block-9 mb-md-5">
-                    <form action="<?= URL . "handlers/reservation/delete.php"; ?>" class="bg-light p-5 contact-form"
-                        method="POST">
+                    <form action="<?= URL . "handlers/reservation/delete.php"; ?>" class="bg-light p-5 contact-form" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="user_id" name="user_id" required>
+                            <input type="tex" class="form-control" placeholder="user_id" name="user_id">
+                            <!-- value=<? $_SESSION['logged']['user_id'] ?> -->
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="plate_id" name="plate_id" required>
@@ -139,10 +135,8 @@ if (session_status() === PHP_SESSION_NONE) {
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="office_Id" name="office_Id" required>
                         </div>
-
                         <div class="form-group">
-                            <input type="submit" value="Cancel Reservation" class="btn btn-primary py-3 px-5"
-                                name="submit">
+                            <input type="submit" value="Cancel Reservation" class="btn btn-primary py-3 px-5" name="submit">
                         </div>
                     </form>
                 </div>
@@ -166,9 +160,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                                 Mandara, Alexandria, Egypt</span></li>
                                         <li><a href="#"><span class="icon icon-phone"></span><span class="text">+20 106
                                                     820 8828</span></a></li>
-                                        <li><a href="https://mail.google.com/"><span
-                                                    class="icon icon-envelope"></span><span
-                                                    class="text">a.salem3214@gmail.com</span></a></li>
+                                        <li><a href="https://mail.google.com/"><span class="icon icon-envelope"></span><span class="text">a.salem3214@gmail.com</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -184,8 +176,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
 
 
@@ -203,8 +194,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <script src="../../public/js/bootstrap-datepicker.js"></script>
     <script src="../../public/js/jquery.timepicker.min.js"></script>
     <script src="../../public/js/scrollax.min.js"></script>
-    <script
-        src="../../public/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+    <script src="../../public/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
     </script>
     <script src="../../public/js/google-map.js"></script>
     <script src="../../public/js/main.js"></script>

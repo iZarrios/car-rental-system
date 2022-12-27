@@ -10,6 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $query = "SELECT `car`.* 
         FROM `car`
+		WHERE `car`.`status` != 'out of service'
 ";
 
 $result = mysqli_query($conn, $query);
@@ -92,13 +93,13 @@ $cars = (array_chunk($cars, 3));
 
 
 	<section class="ftco-section bg-light">
-		<div class="container">				
+		<div class="container">
 			<h5><a href="../car/search_by_specs.php" class="nav-link">Search Cars by Specs</a></h5>
 			<br>
 			<h5>Car Catalogs</a></h5>
 
 			<div class="row">
-				
+
 				<?php
 				foreach ($cars as $car_row) {
 					foreach ($car_row as $car) {
@@ -113,7 +114,7 @@ $cars = (array_chunk($cars, 3));
 										<span class="cat"><?= $car['brand'] ?></span>
 										<p class="price ml-auto"><?= $car['price_per_day'] ?> <span>/day</span></p>
 									</div>
-									<p class="d-flex mb-0 d-block"><a href="../car/rent_car.php?= $car['plate_id'] ?>" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php?plate_id=<?= $car['plate_id'] ?>" class="btn btn-secondary py-2 ml-1">Details</a></p>
+									<p class="d-flex mb-0 d-block"><a href="../car/rent_car.php?plate_id=<?= $car['plate_id'] ?>" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php?plate_id=<?= $car['plate_id'] ?>" class="btn btn-secondary py-2 ml-1">Details</a></p>
 								</div>
 							</div>
 						</div>
@@ -157,7 +158,7 @@ $cars = (array_chunk($cars, 3));
 						</ul>
 					</div>
 				</div>
-				
+
 				<div class="col-md">
 					<div class="ftco-footer-widget mb-4">
 						<h2 class="ftco-heading-2">Have a Questions?</h2>

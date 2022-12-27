@@ -6,6 +6,14 @@
 if (session_status() === PHP_SESSION_NONE) {
 	session_start();
 }
+?>
+
+<?php
+
+if (isset($_SESSION['logged'])) {
+	header("Location: " . URL . "views/site/index.php");
+	exit;
+}
 
 ?>
 
@@ -64,25 +72,25 @@ if (session_status() === PHP_SESSION_NONE) {
 
 		}
 
-    .un {
-      width: 76%;
-      color: rgb(15, 0, 0);
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 1px;
-      background: rgb(236, 236, 236);
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      outline: none;
-      box-sizing: border-box;
-      border: 2px solid rgba(255, 255, 255, 0.02);
-      margin-bottom: 50px;
-      margin-left: 46px;
-      text-align: center;
-      margin-bottom: 27px;
-      font-family: 'Ubuntu', sans-serif;
-    }
+		.un {
+			width: 76%;
+			color: rgb(15, 0, 0);
+			font-weight: 700;
+			font-size: 14px;
+			letter-spacing: 1px;
+			background: rgb(236, 236, 236);
+			padding: 10px 20px;
+			border: none;
+			border-radius: 20px;
+			outline: none;
+			box-sizing: border-box;
+			border: 2px solid rgba(255, 255, 255, 0.02);
+			margin-bottom: 50px;
+			margin-left: 46px;
+			text-align: center;
+			margin-bottom: 27px;
+			font-family: 'Ubuntu', sans-serif;
+		}
 
 		form.form1 {
 			padding-top: 40px;
@@ -164,50 +172,50 @@ if (session_status() === PHP_SESSION_NONE) {
 	</nav>
 	<!-- END nav -->
 
-  <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/yellowCar.jpeg');" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
-        <div class="col-md-9 ftco-animate pb-5">
+	<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/yellowCar.jpeg');" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+				<div class="col-md-9 ftco-animate pb-5">
 
 
-        </div>
-      </div>
+				</div>
+			</div>
 
-  </section>
+	</section>
 
 
 
-  <section class="ftco-section ftco-degree-bg">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 ftco-animate">
-          <div class="card-body">
-            <?php require_once PATH . "views/inc/messages.php" ?>
-            <form class="form1" method="POST" action="<?= URL . "handlers/auth/register.php" ?>">
-              <p class="sign" align="center"><b>Sign Up</b></p>
-              <div class="d-flex">
-                <input class="un" type="text" name="fname" id="fname" placeholder="First name" required />
-                <br />
-                <input class="un" type="text" name="lname" id="lname" placeholder="Last name" required />
-                <br />
-              </div>
-              <div class="d-flex">
-                <input class="un" type="text" name="email" id="email" placeholder="Email" required />
-                <br />
-                <input class="un" type="password" name="password" id="password" placeholder="password" required />
-                <br />
-              </div>
-              <div class="d-flex">
-                <input class="un" type="date" name="bdate" id="bdate" placeholder="bdate" required />
-                <input class="un" type="country" name="country" id="country" placeholder="country" required />
-                <input class="un" type="city" name="city" id="city" placeholder="city" required />
-              </div>
-              <input class="gender" type="radio" id="gender" name="gender" value="male" required> Male
-              <div class="d-flex">
-              </div>
-              <input class="gender" type="radio" id="gender" name="gender" value="female" required> Female
-              <br />
+	<section class="ftco-section ftco-degree-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 ftco-animate">
+					<div class="card-body">
+						<?php require_once PATH . "views/inc/messages.php" ?>
+						<form class="form1" method="POST" action="<?= URL . "handlers/auth/register.php" ?>">
+							<p class="sign" align="center"><b>Sign Up</b></p>
+							<div class="d-flex">
+								<input class="un" type="text" name="fname" id="fname" placeholder="First name" required />
+								<br />
+								<input class="un" type="text" name="lname" id="lname" placeholder="Last name" required />
+								<br />
+							</div>
+							<div class="d-flex">
+								<input class="un" type="text" name="email" id="email" placeholder="Email" required />
+								<br />
+								<input class="un" type="password" name="password" id="password" placeholder="password" required />
+								<br />
+							</div>
+							<div class="d-flex">
+								<input class="un" type="date" name="bdate" id="bdate" placeholder="bdate" required />
+								<input class="un" type="country" name="country" id="country" placeholder="country" required />
+								<input class="un" type="city" name="city" id="city" placeholder="city" required />
+							</div>
+							<input class="gender" type="radio" id="gender" name="gender" value="male" required> Male
+							<div class="d-flex">
+							</div>
+							<input class="gender" type="radio" id="gender" name="gender" value="female" required> Female
+							<br />
 
 							<input class="submit" type="submit" id="submit" name="submit" value="Sign Up" />
 							<p class="forgot" align="center"><a href="LogIn.php">Old User, Login?</p>
@@ -215,40 +223,40 @@ if (session_status() === PHP_SESSION_NONE) {
 					</div>
 
 
-        </div>
-      </div>
-  </section> <!-- .section -->
+				</div>
+			</div>
+	</section> <!-- .section -->
 
-  
-  <footer class="ftco-footer ftco-bg-dark ftco-section">
-    <div class="container">
-      <div class="row mb-5">
-        <div class="col-md">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2"><a href="../site/index.php" class="logo">Car<span>book</span></a></h2>
-            <p>A small new car rent office which provide multiple types of car to rent starting from low end to high end and luxurious cars .</p>
-            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-            </ul>
-          </div>
-        </div>
 
-        <div class="col-md">
-          <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Have a Questions?</h2>
-            <div class="block-23 mb-3">
-              <ul>
-                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
+	<footer class="ftco-footer ftco-bg-dark ftco-section">
+		<div class="container">
+			<div class="row mb-5">
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2"><a href="../site/index.php" class="logo">Car<span>book</span></a></h2>
+						<p>A small new car rent office which provide multiple types of car to rent starting from low end to high end and luxurious cars .</p>
+						<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+							<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+							<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+							<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2">Have a Questions?</h2>
+						<div class="block-23 mb-3">
+							<ul>
+								<li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+								<li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+								<li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
 
 			</div>
 		</div>

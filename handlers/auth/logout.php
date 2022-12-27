@@ -12,11 +12,9 @@ if (isset($_SESSION['logged'])) {
     $_SESSION = [];
     session_unset();
     session_destroy();
-    //TODO:
-    header("Location:" . URL . "views/auth/login.php");
+    header("Location:" . URL . "views/site/index.php");
     exit;
 } else {
-    //TODO:
-    header("Location:" . URL . "views/auth/login.php");
+    header("Location:" . URL . "views/site/index.php");
     exit;
 }

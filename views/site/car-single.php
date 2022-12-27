@@ -103,17 +103,16 @@ $car = mysqli_fetch_assoc($result);
 
 	<section class="ftco-section ftco-car-details">
 		<div class="container">
-			<!-- <div class="row justify-content-center">
+			<div class="row justify-content-center">
 				<div class="col-md-12">
 					<div class="car-details">
-						<div class="img rounded" style="background-image: url(images/bg_1.jpg);"></div>
 						<div class="text text-center">
-							<span class="subheading">Cheverolet</span>
-							<h2>Mercedes Grand Sedan</h2>
+							<span class="subheading"><?= $car['model'] ?></span>
+							<h2><?= $car['brand'] ?></h2>
 						</div>
 					</div>
 				</div>
-			</div> -->
+			</div>
 			<?php
 			if ($car) {
 			?>

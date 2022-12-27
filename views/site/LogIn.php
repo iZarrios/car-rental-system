@@ -7,6 +7,10 @@
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
+if (isset($_SESSION['logged'])) {
+  header("Location: " . URL . "views/site/index.php");
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +108,7 @@ if (session_status() === PHP_SESSION_NONE) {
     }
   </style>
   </script>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     function validateForm2() {
       var y = document.forms["myform2"]["pass"].value;
       var z = document.forms["myform2"]["email"].value;
@@ -119,7 +123,7 @@ if (session_status() === PHP_SESSION_NONE) {
       }
       return true;
     }
-  </script>
+  </script> -->
 </head>
 
 <body>
@@ -131,22 +135,23 @@ if (session_status() === PHP_SESSION_NONE) {
         <span class="oi oi-menu"></span> Menu
       </button>
 
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
-	          <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
-	          <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
-            <li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
-            <li class="nav-item"><a href="SignUp.php" class="nav-link">Sign UP</a></li>
-            <li class="nav-item"><a href="../user/Welcome_User.php" class="nav-link">My profile</a></li>
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
+          <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
+          <li class="nav-item"><a href="SignUp.php" class="nav-link">Sign UP</a></li>
+          <li class="nav-item"><a href="../user/Welcome_User.php" class="nav-link">My profile</a></li>
 
         </ul>
       </div>
     </div>
   </nav>
   <!-- END nav -->
+
 
   <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -166,49 +171,47 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="col-md-12 ftco-animate">
           <div class="card-body">
             <?php require_once PATH . "views/inc/messages.php" ?>
-            <form class="form1" name="myform2" id="myform2" method="post" action="login.php" onsubmit="return validateForm2();">
-            <p class="sign" align="center">Log in</p>
-            <input class="un " type="text" name="email" id="email" placeholder="Email" />
-            <br />
-            <input class="un " type="password" name="pass" id="pass" placeholder="password" />
-            <br />
-            <input class="submit" type="submit" id="submitButton" value="Log in" />
-            <p class="forgot" align="center"><a href="SignUp.php">New User, Register ?</p>
-            <div id="result"></div>
-          </form>
+            <form class="form1" name="myform2" id="myform2" method="POST" action="<?= URL . "handlers/auth/login.php" ?>">
+              <p class="sign" align="center">Log in</p>
+              <input class="un" type="text" name="email" id="email" placeholder="Email" />
+              <input class="un" type="password" name="password" id="password" placeholder="Password" />
+              <input class="submit" type="submit" id="submit" value="Log in" />
+              <p class="forgot" align="center"><a href="SignUp.php">New User, Register ?</p>
+              <!-- <div id="result"></div> -->
+            </form>
           </div>
         </div>
       </div>
   </section> <!-- .section -->
-  
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2"><a href="#" class="logo">Car<span>book</span></a></h2>
-              <p>A small new car rent office which provide multiple types of car to rent starting from low end to high end and luxurious cars .</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+
+  <footer class="ftco-footer ftco-bg-dark ftco-section">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2"><a href="#" class="logo">Car<span>book</span></a></h2>
+            <p>A small new car rent office which provide multiple types of car to rent starting from low end to high end and luxurious cars .</p>
+            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">Have a Questions?</h2>
+            <div class="block-23 mb-3">
+              <ul>
+                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
               </ul>
             </div>
           </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
         </div>
-        <div class="row">
+      </div>
+      <div class="row">
 
       </div>
     </div>

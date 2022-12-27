@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $country = validString($_POST['country']);
 
-    //TODO: Uncomment
     $city = validString($_POST['city']);
 
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ?? "";
@@ -49,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = mysqli_query($conn, "SELECT `email` FROM `user` WHERE `email` = '$email'");
 
     if (mysqli_num_rows($result) > 0) {
-        $errors[] = "Sorry this email already exists choose another one";
+        $errors[] = "This Email has already been used!";
         mysqli_free_result($result);
     }
 

@@ -9,8 +9,37 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
+<?php
+
+// if user is already logged in
+if (!isset($_SESSION['logged'])) {
+    header("Location: " . URL . "views/site/LogIn.php");
+    exit;
+}
+if ($_SESSION['logged']['is_admin'] == "0") {
+    header("Location: " . URL . "views/site/index.php");
+    exit;
+}
+
+
+
+$query = "SELECT `car`.* 
+        FROM `car`";
+
+$result = mysqli_query($conn, $query);
+
+$cars = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+?>
+<?php require_once '../../core/config.php'; ?>
+<?php require_once PATH . 'core/connection.php'; ?>
+<?php require_once PATH . 'core/validations.php'; ?>
 
 <?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // if user is already logged in
 if (!isset($_SESSION['logged'])) {
@@ -121,18 +150,54 @@ if ($_SESSION['logged']['is_admin'] == "0") {
             </div>
         </div>
     </nav>
+    <!-- END nav -->
 
 
     <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/test1.jpg');" data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
+
+        <!-- <div class="overlay"></div> -->
         <div class="container">
-            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
-                <div class="col-md-9 ftco-animate pb-5">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="admin.php">Home</p>
-                    <h1 class="mb-3 bread">Hello Admin</h1>
+            <div class="container">
+                <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+                    <div class="col-md-9 ftco-animate pb-5">
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Plate ID</th>
+                                    <th scope="col">Brand</th>
+                                    <th scope="col">Body</th>
+                                    <th scope="col">Color</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Price Per Day</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($cars as $car) {
+                                ?>
+                                    <tr>
+                                        <th scope="row"><?= $car['plate_id'] ?></th>
+                                        <td><?= $car['plate_id'] ?></td>
+                                        <td><?= $car['brand'] ?></td>
+                                        <td><?= $car['body'] ?></td>
+                                        <td><?= $car['color'] ?></td>
+                                        <td><?= $car['status'] ?></td>
+                                        <td><?= $car['price_per_day'] ?></td>
+                                        <td>
+                                            <a class="btn btn-primary" href="<?= URL . "views/car/Edit_car.php?plate_id=" . $car['plate_id'] ?>" role="button">Edit</a>
+                                            <a class="btn btn-danger" href="<?= URL . "handlers/car/delete.php?plate_id=" . $car['plate_id'] ?>" role="button">Delete</a>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
 
 
