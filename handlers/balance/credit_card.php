@@ -17,7 +17,10 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $lname = validString($_POST['lname']);
 
     $cvv = filter_var($_POST['cvv'], FILTER_VALIDATE_INT);
-    $card_number = filter_var($_POST['card_number'], FILTER_VALIDATE_INT);
+
+    $card_number = trim(htmlentities(htmlspecialchars($_POST['card_number'])));
+    $card_number = str_replace(' ', '', $card_number);
+    $card_number = filter_var($card_number, FILTER_VALIDATE_INT);
 
     $month = (int)filter_var($_POST['expiration_month'], FILTER_VALIDATE_INT);
     $year = (int)filter_var($_POST['expiration_year'], FILTER_VALIDATE_INT);
@@ -35,7 +38,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($cvv)) {
         $errors[] = "cvv is empty";
     } else {
-        if (strlen($cvv) != 4) {
+        if (strlen($cvv) != 3) {
             $errors[] = "cvv is invalid";
         }
     }
@@ -43,7 +46,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($card_number)) {
         $errors[] = "Card Number is empty";
     } else {
-        if (strlen($card_number) != 8) {
+        if (strlen($card_number) != 16) {
             $errors[] = "card_number is invalid";
         }
     }

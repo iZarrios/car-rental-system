@@ -174,8 +174,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 <body>
 
-    
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
             <!-- AHEZ -->
@@ -241,14 +241,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <input type="hidden" name="user_id" value="<?= $_SESSION['logged']['user_id'] ?>" />
                             <div>
                                 <label>plate ID: </label>
-                                <input type="text" disabled="disabled" name="plate_id" id="plate_id" value="<?= $plate_id ?>">
+                                <input type="text" name="plate_id" id="plate_id" value="<?= $plate_id ?>" readonly>
                             </div>
                             <br>
                             <div>
                                 <!-- <label>office ID: </label> -->
-                                <input type="hidden" name="office_Id" id="office_Id" value="1">
+                                <!-- <input type="hidden" name="office_Id" id="office_Id" value="1"> -->
+                                <label for="office_Id">Office: </label>
+                                <select name="office_Id" id="office_Id">
+                                    <?php
+                                    $query = "SELECT `office`.* FROM `office`";
+                                    $result = mysqli_query($conn, $query);
+                                    $offices = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                    foreach ($offices as $office) {
+                                    ?>
+
+                                        <?php
+                                        echo  "<option value='$office[office_Id]'>$office[country], $office[city]</option>";
+                                        ?>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </div>
-                            <!-- <br> -->
+                            <br>
                             <div>
                                 <!-- <label>Reservation Date: </label> -->
                                 <input type="hidden" name="reservation_date" id="reservation_date" value="<?= $current_date ?>">
@@ -265,8 +281,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             </div>
                             <br>
                             <div>
-                                <label>payment: </label>
-                                <input type="text" disabled="disabled" id="payment" name="payment" value="0">
+                                <input type="radio" id="purchase" name="purchase" value="cash_on_delivery"> cash on delivery
+                                <br>
+                                <input type="radio" id="purchase" name="purchase" value="using_balance"> buy using your balance
                             </div>
                             <br>
                             <div class="d-flex">
@@ -300,7 +317,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
+                        <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
                         <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                             <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>

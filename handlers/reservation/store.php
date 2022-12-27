@@ -11,6 +11,8 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
 
+    $purchase = validString($_POST['purchase']);
+
     $user_id = filter_var($_POST['user_id'], FILTER_VALIDATE_INT);
     $plate_id = filter_var($_POST['plate_id'], FILTER_VALIDATE_INT);
     $office_Id = filter_var($_POST['office_Id'], FILTER_VALIDATE_INT);
@@ -27,14 +29,16 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($number_of_days <= 0) {
         $errors[] = "Wrong Dates";
     }
-    $query = "SELECT `car`.* FROM `car` WHERE `plate_id` = '$plate_id'";
 
-    $result = mysqli_query($conn, $query);
-
-    $cars = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    // $payment = filter_var($_POST['payment'], FILTER_VALIDATE_INT);
-    $payment = $number_of_days * floatval($cars[0]['price_per_day']);
+    if ($purchase == "using_balance") {
+        $query = "SELECT `car`.* FROM `car` WHERE `plate_id` = '$plate_id'";
+        $result = mysqli_query($conn, $query);
+        $cars = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // $payment = filter_var($_POST['payment'], FILTER_VALIDATE_INT);
+        $payment = $number_of_days * floatval($cars[0]['price_per_day']);
+    } else {
+        $payment = 0;
+    }
 
 
     if (empty($user_id)) {
@@ -66,12 +70,14 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "The car you are trying to rent is out of service";
     }
 
-    $query = "SELECT `user`.* FROM `user` WHERE `user_id` = $user_id";
-    $result = mysqli_query($conn, $query);
-    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    if ($purchase == "using_balance") {
+        $query = "SELECT `user`.* FROM `user` WHERE `user_id` = $user_id";
+        $result = mysqli_query($conn, $query);
+        $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-    if ((float)$users[0]['balance'] < (float)$payment) {
-        $errors[] = "Your balance is not enough";
+        if ((float)$users[0]['balance'] < (float)$payment) {
+            $errors[] = "Your balance is not enough";
+        }
     }
 
     if (empty($errors)) {

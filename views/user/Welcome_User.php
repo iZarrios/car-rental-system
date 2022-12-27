@@ -118,8 +118,8 @@ if (!isset($_SESSION['logged'])) {
 
 <body>
 
-    
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
             <!-- AHEZ -->
@@ -176,13 +176,13 @@ if (!isset($_SESSION['logged'])) {
                         <h1 class="mb-3 bread">Welcome, <?= $_SESSION['logged']['full_name'] ?></h1>
                         <ul>
                             <li>
+                                <h2><a href="<?= URL . "views/user/balance.php" ?>" class="nav-link">Add Balance</a></h2>
+                            </li>
+                            <li>
                                 <h2><a href="Edit_User.php" class="nav-link" bg-dark>Edit my Information</a></h2>
                             </li>
                             <li>
-                                <h2><a href="Rental_reservations.php" class="nav-link">Rental reservations</a></h2>
-                            </li>
-                            <li>
-                                <h2><a href="<?= URL . "views/user/balance.php" ?>" class="nav-link">Add Balance</a></h2>
+                                <h2><a href="Rental_reservations.php" class="nav-link">My rental reservations</a></h2>
                             </li>
                         </ul>
                     </div>
@@ -196,7 +196,7 @@ if (!isset($_SESSION['logged'])) {
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
+                        <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
                         </h2>
                         <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
                             there live the blind texts.</p>
