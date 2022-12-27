@@ -6,6 +6,21 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 ?>
+
+
+<?php
+
+// if user is already logged in
+if (!isset($_SESSION['logged'])) {
+    header("Location: " . URL . "views/site/LogIn.php");
+    exit;
+}
+if ($_SESSION['logged']['is_admin'] == "0") {
+    header("Location: " . URL . "views/site/index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">

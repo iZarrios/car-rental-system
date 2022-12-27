@@ -17,6 +17,18 @@ $result = mysqli_query($conn, $query);
 $reservations = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 ?>
+<?php
+
+// if user is already logged in
+if (!isset($_SESSION['logged'])) {
+    header("Location: " . URL . "views/site/LogIn.php");
+    exit;
+}
+if ($_SESSION['logged']['is_admin'] == "0") {
+    header("Location: " . URL . "views/site/index.php");
+    exit;
+}
+?>
 
 
 
@@ -55,8 +67,7 @@ $reservations = mysqli_fetch_all($result, MYSQLI_ASSOC);
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="../admin/admin.php">ADMIN<span>CONTROLSECTION</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 

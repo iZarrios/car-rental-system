@@ -2,10 +2,17 @@
 <?php require_once PATH . 'core/connection.php'; ?>
 <?php require_once PATH . 'core/validations.php'; ?>
 
+
 <?php
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
+// if user is already logged in
+if (isset($_SESSION['logged'])) {
+    header("Location: " . URL . "views/site/index.php");
+    exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -12,6 +12,18 @@ if (isset($_SESSION['report4_result'])) {
     unset($_SESSION['report4_result']);
 }
 ?>
+<?php
+
+// if user is already logged in
+if (!isset($_SESSION['logged'])) {
+    header("Location: " . URL . "views/site/LogIn.php");
+    exit;
+}
+if ($_SESSION['logged']['is_admin'] == "0") {
+    header("Location: " . URL . "views/site/index.php");
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,8 +60,7 @@ if (isset($_SESSION['report4_result'])) {
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="../admin/admin.php">ADMIN<span>CONTROLSECTION</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
