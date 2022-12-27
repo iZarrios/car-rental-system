@@ -246,9 +246,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <br>
                             <div>
                                 <!-- <label>office ID: </label> -->
-                                <input type="hidden" name="office_Id" id="office_Id" value="1">
+                                <!-- <input type="hidden" name="office_Id" id="office_Id" value="1"> -->
+                                <label for="office_Id">Office: </label>
+                                <select name="office_Id" id="office_Id">
+                                    <?php
+                                    $query = "SELECT `office`.* FROM `office`";
+                                    $result = mysqli_query($conn, $query);
+                                    $offices = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                    foreach ($offices as $office) {
+                                    ?>
+
+                                        <?php
+                                        echo  "<option value='$office[office_Id]'>$office[country], $office[city]</option>";
+                                        ?>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </div>
-                            <!-- <br> -->
+                            <br>
                             <div>
                                 <!-- <label>Reservation Date: </label> -->
                                 <input type="hidden" name="reservation_date" id="reservation_date" value="<?= $current_date ?>">
