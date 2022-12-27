@@ -156,8 +156,8 @@ if (isset($_SESSION['search_result'])) {
 
 <body>
 
-    
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
             <!-- AHEZ -->
@@ -274,6 +274,7 @@ if (isset($_SESSION['search_result'])) {
                                         <th scope="col">brand</th>
                                         <th scope="col">model</th>
                                         <th scope="col">body</th>
+                                        <th scope="col">color</th>
                                         <th scope="col">year</th>
                                         <th scope="col"> price_per_day </th>
                                     </tr>
@@ -287,6 +288,7 @@ if (isset($_SESSION['search_result'])) {
                                             <td> <?php echo $car["brand"] ?></td>
                                             <td> <?php echo $car["model"] ?></td>
                                             <td> <?php echo $car["body"] ?></td>
+                                            <td> <?php echo $car["color"] ?></td>
                                             <td> <?php echo $car["year"] ?></td>
                                             <td> <?php echo $car["price_per_day"] ?></td>
                                         </tr>
@@ -308,7 +310,7 @@ if (isset($_SESSION['search_result'])) {
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
+                        <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
                         <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                             <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
