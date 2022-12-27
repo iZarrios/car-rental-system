@@ -293,9 +293,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 <input type="radio" id="purchase" name="purchase" value="using_balance" required> buy using your balance
                             </div>
                             <br>
-                            <div class="d-flex">
-                                <input class="submit" type="submit" name="submit" value="submit">
-                            </div>
 
                             <?php
                             require_once PATH . 'handlers/reservation/store_helper.php';
@@ -305,10 +302,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             $cars = mysqli_fetch_all($result, MYSQLI_ASSOC);
                             $price_per_day = floatval($cars[0]['price_per_day']);
                             ?>
+                            <div>
+                                <input type="hidden" name="price_per_day" id="price_per_day" value="<?php echo $price_per_day ?>"></input>
+                                <span STYLE="font-size:14.0pt;" id="message"></span>
+                            </div>
 
-                            <div><br>
-                            <input type="hidden" name="price_per_day" id="price_per_day" value="<?php echo $price_per_day ?>"></input>
-                            <span  STYLE="font-size:18.0pt;margin-left: 35%;" id="message"></span>
+                            <div class="d-flex">
+                                <input class="submit" type="submit" name="submit" value="submit">
                             </div>
 
                         </form>
