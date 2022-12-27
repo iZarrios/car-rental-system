@@ -114,13 +114,13 @@ if (session_status() === PHP_SESSION_NONE) {
             width: 60px;
         }
 
-        /* CREDIT CARD IMAGE STYLING */
-        .preload * {
+        /* Credit Card image styling */
+        /* .preload * {
             -webkit-transition: none !important;
             -moz-transition: none !important;
             -ms-transition: none !important;
             -o-transition: none !important;
-        }
+        } */
 
 
         #ccsingle {
