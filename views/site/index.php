@@ -379,9 +379,8 @@ if (session_status() === PHP_SESSION_NONE) {
                             <ul>
                                 <li><span class="icon icon-map-marker"></span><span class="text">203 Fawzy Moaz, Smouha,
                                         Alexandria, Egypt</span></li>
-                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+20 101 1792
-                                            631</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">carhub@gmail.com</span></a></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><a href="tel://1234567920">+ 1235 2355 98</a></span></a></li>
+                                <li><a href="mailto:info@yoursite.com">HotWheels@gmail.com</a></li>
                             </ul>
                         </div>
                     </div>
