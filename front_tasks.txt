@@ -20,15 +20,17 @@ http://localhost/car-rental-system/views/car/search_by_specs.php
 Edit table of show my cars (DONE)
 http://localhost/car-rental-system/views/user/Rental_history.php
 
-delete rental reservations
+delete rental history (DONE)
 http://localhost/car-rental-system/views/user/Welcome_User.php
 
-Website title (redirection)
+Change admin picture (didin't want to change)
+http://localhost/car-rental-system/views/user/Welcome_User.php
+
+Website title (redirection) (DONE)
 CarBook
 
-Change admin picture
-http://localhost/car-rental-system/views/user/Welcome_User.php
+Website footer (DONE)
 
-Alerts and warnings
+Alerts and warnings (DONE)
 http://localhost/car-rental-system/views/site/Login.php
 http://localhost/car-rental-system/views/site/SignUp.php
