@@ -13,13 +13,21 @@
         var dateFirst = new Date(pick_up_date.value);
         var dateSecond = new Date(return_date.value);
         // time difference
-        var timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+        var timeDiff = dateSecond.getTime() - dateFirst.getTime();
         // days difference
         var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
         if (pick_up_date.value && return_date.value) {
-            var price = document.getElementById("price_per_day").value;
-            document.getElementById("message").innerHTML = price * diffDays;
+            if (diffDays > 0) {
+                var price = document.getElementById("price_per_day").value;
+                document.getElementById("message").innerHTML = `Total amount = ${price * diffDays}`;
+            } else {
+                document.getElementById("message").innerHTML = "Return date must be after Pick up date";
+            }
+        } else {
+            if (document.getElementById("message").innerHTML) {
+                document.getElementById("message").innerHTML = "Return date must be after Pick up date";
+            }
         }
     }
     console.log(plate_id);
