@@ -5,8 +5,24 @@
 <?php
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+  session_start();
 }
+// if not logged in
+if (!isset($_SESSION['logged'])) {
+  header("Location: " . URL . "views/site/LogIn.php");
+  exit;
+}
+$user_id = $_SESSION['logged']['user_id'];
+
+$query = "SELECT * FROM `reservation`
+INNER JOIN `car`
+ON `reservation`.`plate_id` = `car`.`plate_id`
+WHERE `reservation`.`user_id` = $user_id;";
+
+$result = mysqli_query($conn, $query);
+
+$reservations = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -134,52 +150,52 @@ if (session_status() === PHP_SESSION_NONE) {
 </head>
 
 <body>
- 
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
-            <!-- AHEZ -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
 
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="../site/index.php" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="../site/about.php" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="../site/services.php" class="nav-link">Services</a></li>
-                    <li class="nav-item"><a href="../site/car.php" class="nav-link">Cars</a></li>
-                    <li class="nav-item"><a href="../site/contact.php" class="nav-link">Contact</a></li>
-                    <?php
-                    if (isset($_SESSION['logged'])) {
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
+      <!-- AHEZ -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
 
-                    ?>
-                        <li class="nav-item">
-                            <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello <?= $_SESSION['logged']['full_name'] ?></strong></a>
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"><a href="../site/index.php" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="../site/about.php" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="../site/services.php" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="../site/car.php" class="nav-link">Cars</a></li>
+          <li class="nav-item"><a href="../site/contact.php" class="nav-link">Contact</a></li>
+          <?php
+          if (isset($_SESSION['logged'])) {
 
-                        </li>
-                        <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign out</a></li>
-                        <?php
-                        if ($_SESSION['logged']['is_admin'] == "1") {
-                        ?>
-                            <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin Panel</a></li>
-                        <?php
-                        }
+          ?>
+            <li class="nav-item">
+              <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello <?= $_SESSION['logged']['full_name'] ?></strong></a>
 
-                        ?>
+            </li>
+            <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign out</a></li>
+            <?php
+            if ($_SESSION['logged']['is_admin'] == "1") {
+            ?>
+              <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin Panel</a></li>
+            <?php
+            }
 
-                    <?php
-                    } else {
-                    ?>
-                        <li class="nav-item"><a href="../site/LogIn.php" class="nav-link">Log in</a></li>
-                        <li class="nav-item"><a href="../site/SignUp.php" class="nav-link">Sign Up</a></li>
-                    <?php
-                    }
-                    ?>
-                </ul>
-            </div>
-        </div>
-    </nav>
+            ?>
+
+          <?php
+          } else {
+          ?>
+            <li class="nav-item"><a href="../site/LogIn.php" class="nav-link">Log in</a></li>
+            <li class="nav-item"><a href="../site/SignUp.php" class="nav-link">Sign Up</a></li>
+          <?php
+          }
+          ?>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
   <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/image15.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -195,43 +211,35 @@ if (session_status() === PHP_SESSION_NONE) {
           <h2 class="mb-3">Show my cars</h2>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>Plate id</th>
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>body</th>
-                    <th>color</th>
-                    <th>year</th>
-                    <th>price per day</th>
-                    <th>Status</th>
-
+                    <th style="text-align: center;">Plate id</th>
+                    <th style="text-align: center;">Brand</th>
+                    <th style="text-align: center;">Model</th>
+                    <th style="text-align: center;">body</th>
+                    <th style="text-align: center;">color</th>
+                    <th style="text-align: center;">year</th>
+                    <th style="text-align: center;">price per day</th>
+                    <th style="text-align: center;">Status</th>
                   </tr>
                 </thead>
-
-                <tbody>
-                  <tr>
-                    <td>32123</td>
-                    <td>Mercedes</td>
-                    <td>sq</td>
-                    <td>530</td>
-                    <td>body</td>
-                    <td>red</td>
-                    <td>2000</td>
-                    <td>new</td>
-                  </tr>
-                  <tr>
-                    <td>32123</td>
-                    <td>Subaru</td>
-                    <td>aq</td>
-                    <td>230</td>
-                    <td>body</td>
-                    <td>yellow</td>
-                    <td>1980</td>
-                    <td>used </td>
-                  </tr>
-                </tbody>
+                <?php
+                foreach ($reservations as $reservation) {
+                ?>
+                  <tbody>
+                    <tr>
+                      <td style="text-align: center;"><?= $reservation['plate_id'] ?></td>
+                      <td style="text-align: center;"><?= $reservation['brand'] ?></td>
+                      <td style="text-align: center;"><?= $reservation['model'] ?></td>
+                      <td style="text-align: center;"><?= $reservation['body'] ?></td>
+                      <td style="text-align: center;"><?= $reservation['color'] ?></td>
+                      <td style="text-align: center;"><?= $reservation['year'] ?></td>
+                      <td style="text-align: center;"><?= $reservation['price_per_day'] ?></td>
+                      <td style="text-align: center;"><?= $reservation['status'] ?></td>
+                    </tr>
+                  <?php } ?>
+                  </tbody>
               </table>
             </div>
           </div>
@@ -246,7 +254,7 @@ if (session_status() === PHP_SESSION_NONE) {
       <div class="row mb-5">
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
-          <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
+            <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
               <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
@@ -255,7 +263,7 @@ if (session_status() === PHP_SESSION_NONE) {
             </ul>
           </div>
         </div>
-        
+
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">Have a Questions?</h2>
