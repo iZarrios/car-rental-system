@@ -138,32 +138,148 @@ $car = mysqli_fetch_assoc($result);
             <img style="text-align: center;  max-height: 100%;
   max-width: 100%;" src="<?= URL . "uploads/images/cars/" . $car['plate_id'] . ".jpg" ?>" alt="Car of The Image">
 
-            <div class="row">
-                <div class="col-md-8 ftco-animate">
-                    <table style="text-align:center;width:100%">
-                        <tr>
-                            <th>plate_id</th>
-                            <th>brand</th>
-                            <th>model</th>
-                            <th>body</th>
-                            <th>color</th>
-                            <th>year</th>
-                            <th>status</th>
-                            <th>price_per_day</th>
-                        </tr>
-                        <tr>
-                            <td><?= $car['plate_id'] ?></td>
-                            <td><?= $car['brand'] ?></td>
-                            <td><?= $car['model'] ?></td>
-                            <td><?= $car['body'] ?></td>
-                            <td><?= $car['color'] ?></td>
-                            <td><?= $car['year'] ?></td>
-                            <td><?= $car['status'] ?></td>
-                            <td><?= $car['price_per_day'] ?></td>
-                        </tr>
-                    </table>
+            <div class="row justify-content-center">
+
+                <div class="col-md-12 d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services">
+                        <div class="media-body py-md-4">
+                            <div class="d-flex mb-3 align-items-center">
+
+                                <div class="icon d-flex align-items-center justify-content-center user-img mb-2"
+                                    style="background-image: url(../../public/images/license-plate.png)">
+                                </div>
+                                <div class="text">
+                                    <h3 class="heading mb-0 pl-3">
+                                        Plate id
+                                        <span><?= $car['plate_id'] ?></span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services">
+                        <div class="media-body py-md-4">
+                            <div class="d-flex mb-3 align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center user-img mb-2"
+                                    style="background-image: url(../../public/images/brand-image.png)">
+                                </div>
+                                <div class="text">
+                                    <h3 class="heading mb-0 pl-3">
+                                        Brand
+                                        <span><?= $car['brand'] ?></span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services">
+                        <div class="media-body py-md-4">
+                            <div class="d-flex mb-3 align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center user-img mb-2"
+                                    style="background-image: url(../../public/images/sedan-car-model.png)">
+                                </div>
+                                <div class="text">
+                                    <h3 class="heading mb-0 pl-3">
+                                        Model
+                                        <span><?= $car['model'] ?></span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services">
+                        <div class="media-body py-md-4">
+                            <div class="d-flex mb-3 align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center user-img mb-2"
+                                    style="background-image: url(../../public/images/chassis.png)">
+                                </div>
+                                <div class="text">
+                                    <h3 class="heading mb-0 pl-3">
+                                        Body
+                                        <span><?= $car['body'] ?></span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services">
+                        <div class="media-body py-md-4">
+                            <div class="d-flex mb-3 align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center user-img mb-2"
+                                    style="background-image: url(../../public/images/color-palette.png)">
+                                </div>
+                                <div class="text">
+                                    <h3 class="heading mb-0 pl-3">
+                                        Colour
+                                        <span><?= $car['color'] ?></span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services">
+                        <div class="media-body py-md-4">
+                            <div class="d-flex mb-3 align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center user-img mb-2"
+                                    style="background-image: url(../../public/images/calendar.png)">
+                                </div>
+                                <div class="text">
+                                    <h3 class="heading mb-0 pl-3">
+                                        Year
+                                        <span><?= $car['year'] ?></span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md d-flex align-self-stretch ftco-animate pb-5">
+                    <div class="media block-6 services">
+                        <div class="media-body py-md-4">
+                            <div class="d-flex mb-3 align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center user-img mb-2"
+                                    style="background-image: url(../../public/images/check-list.png)">
+                                </div>
+                                <div class="text">
+                                    <h3 class="heading mb-0 pl-3">
+                                        Status
+                                        <span><?= $car['status'] ?></span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-12 d-flex align-self-stretch ftco-animate center">
+                <div class="media block-6 services">
+                    <div class="media-body py-md-4">
+                        <div class="d-flex mb-3 align-items-center">
+                            <div class="icon d-flex align-items-center justify-content-center user-img mb-2"
+                                style="background-image: url(../../public/images/dollar.png)">
+                            </div>
+                            <div class="text">
+                                <h3 class="heading mb-0 pl-3">
+                                    Price Per Day
+                                    <span><?= $car['price_per_day'] ?></span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <?php
 			} else {
 			?>
@@ -223,10 +339,9 @@ $car = mysqli_fetch_assoc($result);
 
                 </div>
             </div>
-    </footer>
 
-    <!-- loader -->
-    <!-- <div id="ftco-loader" class="show fullscreen">
+            <!-- loader -->
+            <!-- <div id="ftco-loader" class="show fullscreen">
     <svg class="circular" width="48px" height="48px">
       <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
       <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
@@ -234,25 +349,25 @@ $car = mysqli_fetch_assoc($result);
   </div> -->
 
 
-    <script src="../../public/js/jquery.min.js"></script>
-    <script src="../../public/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="../../public/js/popper.min.js"></script>
-    <script src="../../public/js/bootstrap.min.js"></script>
-    <script src="../../public/js/jquery.easing.1.3.js"></script>
-    <script src="../../public/js/jquery.waypoints.min.js"></script>
-    <script src="../../public/js/jquery.stellar.min.js"></script>
-    <script src="../../public/js/owl.carousel.min.js"></script>
-    <script src="../../public/js/jquery.magnific-popup.min.js"></script>
-    <script src="../../public/js/aos.js"></script>
-    <script src="../../public/js/jquery.animateNumber.min.js"></script>
-    <script src="../../public/js/bootstrap-datepicker.js"></script>
-    <script src="../../public/js/jquery.timepicker.min.js"></script>
-    <script src="../../public/js/scrollax.min.js"></script>
-    <script
-        src="../../public/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
-    </script>
-    <script src="../../public/js/google-map.js"></script>
-    <script src="../../public/js/main.js"></script>
+            <script src="../../public/js/jquery.min.js"></script>
+            <script src="../../public/js/jquery-migrate-3.0.1.min.js"></script>
+            <script src="../../public/js/popper.min.js"></script>
+            <script src="../../public/js/bootstrap.min.js"></script>
+            <script src="../../public/js/jquery.easing.1.3.js"></script>
+            <script src="../../public/js/jquery.waypoints.min.js"></script>
+            <script src="../../public/js/jquery.stellar.min.js"></script>
+            <script src="../../public/js/owl.carousel.min.js"></script>
+            <script src="../../public/js/jquery.magnific-popup.min.js"></script>
+            <script src="../../public/js/aos.js"></script>
+            <script src="../../public/js/jquery.animateNumber.min.js"></script>
+            <script src="../../public/js/bootstrap-datepicker.js"></script>
+            <script src="../../public/js/jquery.timepicker.min.js"></script>
+            <script src="../../public/js/scrollax.min.js"></script>
+            <script
+                src="../../public/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+            </script>
+            <script src="../../public/js/google-map.js"></script>
+            <script src="../../public/js/main.js"></script>
 </body>
 
 </html>
