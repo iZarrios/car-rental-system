@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             padding-bottom: 10px;
             padding-top: 10px;
             font-family: 'Ubuntu', sans-serif;
-            margin-left: 20%;
+            margin-left: 45%;
             font-size: 13px;
             box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
         }
@@ -130,6 +130,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         .forgot {
             width: 104%;
             padding-top: 15px;
+        }
+
+        value {
+            clear: both;
+            float: right;
+            margin-bottom: 10px;
+            width: 100px;
         }
     </style>
     <script src='http://code.jquery.com/jquery-1.9.1.js'></script>
@@ -281,13 +288,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             </div>
                             <br>
                             <div>
-                                <input type="radio" id="purchase" name="purchase" value="cash_on_delivery"> cash on delivery
+                                <input type="radio" id="purchase" name="purchase" value="cash_on_delivery" required> cash on delivery
                                 <br>
-                                <input type="radio" id="purchase" name="purchase" value="using_balance"> buy using your balance
+                                <input type="radio" id="purchase" name="purchase" value="using_balance" required> buy using your balance
                             </div>
                             <br>
                             <div class="d-flex">
-                                <input type="submit" name="submit" value="submit">
+                                <input class="submit" type="submit" name="submit" value="submit">
                             </div>
 
                             <?php
@@ -299,9 +306,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             $price_per_day = floatval($cars[0]['price_per_day']);
                             ?>
 
-                            <div>
-                                <input type="hidden" name="price_per_day" id="price_per_day" value="<?php echo $price_per_day ?>"></input>
-                                <span id="message"></span>
+                            <div><br>
+                            <input type="hidden" name="price_per_day" id="price_per_day" value="<?php echo $price_per_day ?>"></input>
+                            <span  STYLE="font-size:18.0pt;margin-left: 35%;" id="message"></span>
                             </div>
 
                         </form>
