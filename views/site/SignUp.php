@@ -117,60 +117,173 @@ if (isset($_SESSION['logged'])) {
 			width: 104%;
 			padding-top: 15px;
 		}
+
+
+
+
+		/* The message box is shown when the user clicks on the password field */
+		#message {
+			display: none;
+			background: #f1f1f1;
+			color: #000;
+			position: relative;
+			padding: 20px;
+			margin-top: 10px;
+		}
+
+		#message p {
+			padding: 10px 35px;
+			font-size: 18px;
+		}
+
+		/* Add a green text color and a checkmark when the requirements are right */
+		.valid {
+			color: green;
+		}
+
+		.valid:before {
+			position: relative;
+			left: -35px;
+			content: "&#10004;";
+		}
+
+		/* Add a red text color and an "x" icon when the requirements are wrong */
+		.invalid {
+			color: red;
+		}
+
+		.invalid:before {
+			position: relative;
+			left: -35px;
+			content: "&#10006;";
+		}
 	</style>
 	<script>
-		// function validateForm1() {
-		//   var x1 = document.forms["myform1"]["lname"].value;
-		//   var x2 = document.forms["myform1"]["fname"].value;
-		//   var y = document.forms["myform1"]["pass"].value;
-		//   var z = document.forms["myform1"]["email"].value;
-		//   if (x1 == null || x1 == "") {
-		//     alert("Last name must be filled out");
-		//     return false;
-		//   }
-		//   if (x2 == null || x2 == "") {
-		//     alert("First name must be filled out");
-		//     return false;
-		//   }
-		//   if (y == null || y == "") {
-		//     alert("password must be filled out");
-		//     return false;
-		//   }
-		//   var emailRegEx = /^[A-Z0-9_-]+@[A-Z0-9]+\.[A-Z]{2,4}$/i;
-		//   if (z.search(emailRegEx) == -1) {
-		//     alert("Please enter a valid email address.");
-		//     return false;
-		//   }
-		//   return true;
-		// }
+		function validateForm1() {
+			var x1 = document.getElementById("lname");
+			var x2 = document.getElementById("fname");
+			//   var y = document.forms["myform1"]["pass"].value;
+			var myInput = document.getElementById("password");
+			var z = document.getElementById("email");
+			if (x1 == null || x1 == "") {
+				alert("Last name must be filled out");
+				return false;
+			}
+			if (x2 == null || x2 == "") {
+				alert("First name must be filled out");
+				return false;
+			}
+			var emailRegEx = /^[A-Z0-9_-]+@[A-Z0-9]+\.[A-Z]{2,4}$/i;
+			if (z.search(emailRegEx) == -1) {
+				alert("Please enter a valid email address.");
+				return false;
+			}
+
+			// When the user clicks on the password field, show the message box
+			myInput.onfocus = function() {
+				document.getElementById("message").style.display = "block";
+			}
+
+			// When the user clicks outside of the password field, hide the message box
+			myInput.onblur = function() {
+				document.getElementById("message").style.display = "none";
+			}
+
+			// When the user starts to type something inside the password field
+			myInput.onkeyup = function() {
+				// Validate lowercase letters
+				var lowerCaseLetters = /[a-z]/g;
+				if (myInput.value.match(lowerCaseLetters)) {
+					letter.classList.remove("invalid");
+					letter.classList.add("valid");
+				} else {
+					letter.classList.remove("valid");
+					letter.classList.add("invalid");
+				}
+
+				// Validate capital letters
+				var upperCaseLetters = /[A-Z]/g;
+				if (myInput.value.match(upperCaseLetters)) {
+					capital.classList.remove("invalid");
+					capital.classList.add("valid");
+				} else {
+					capital.classList.remove("valid");
+					capital.classList.add("invalid");
+				}
+
+				// Validate numbers
+				var numbers = /[0-9]/g;
+				if (myInput.value.match(numbers)) {
+					number.classList.remove("invalid");
+					number.classList.add("valid");
+				} else {
+					number.classList.remove("valid");
+					number.classList.add("invalid");
+				}
+
+				// Validate length
+				if (myInput.value.length >= 8) {
+					length.classList.remove("invalid");
+					length.classList.add("valid");
+				} else {
+					length.classList.remove("valid");
+					length.classList.add("invalid");
+				}
+				return true;
+			}
+		}
 	</script>
 </head>
 
 <body>
 
+
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.php">Car<span>Book</span></a>
+			<a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
+			<!-- AHEZ -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 			</button>
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+					<li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
 					<li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
 					<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
-					<li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
-					<li class="nav-item"><a href="SignUp.php" class="nav-link">Sign UP</a></li>
-					<li class="nav-item"><a href="../user/Welcome_User.php" class="nav-link">My profile</a></li>
+					<?php
+					if (isset($_SESSION['logged'])) {
 
+					?>
+						<li class="nav-item">
+							<a href="../user/Welcome_User.php" class="nav-link"><strong>Hello <?= $_SESSION['logged']['full_name'] ?></strong></a>
+
+						</li>
+						<li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign out</a></li>
+						<?php
+						if ($_SESSION['logged']['is_admin'] == "1") {
+						?>
+							<li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin Panel</a></li>
+						<?php
+						}
+
+						?>
+
+					<?php
+					} else {
+					?>
+						<li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
+						<li class="nav-item"><a href="SignUp.php" class="nav-link">Sign Up</a></li>
+					<?php
+					}
+					?>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<!-- END nav -->
+
 
 	<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/yellowCar.jpeg');" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
@@ -192,7 +305,7 @@ if (isset($_SESSION['logged'])) {
 				<div class="col-md-12 ftco-animate">
 					<div class="card-body">
 						<?php require_once PATH . "views/inc/messages.php" ?>
-						<form class="form1" method="POST" action="<?= URL . "handlers/auth/register.php" ?>">
+						<form id="myform1" class="myform1" method="POST" onsubmit="validateForm1()" action="<?= URL . "handlers/auth/register.php" ?>">
 							<p class="sign" align="center"><b>Sign Up</b></p>
 							<div class="d-flex">
 								<input class="un" type="text" name="fname" id="fname" placeholder="First name" required />
@@ -203,8 +316,16 @@ if (isset($_SESSION['logged'])) {
 							<div class="d-flex">
 								<input class="un" type="text" name="email" id="email" placeholder="Email" required />
 								<br />
-								<input class="un" type="password" name="password" id="password" placeholder="password" required />
+								<input class="un" type="password" name="password" id="password" placeholder="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
 								<br />
+							</div>
+
+							<div id="message">
+								<h3>Password must contain the following:</h3>
+								<p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+								<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+								<p id="number" class="invalid">A <b>number</b></p>
+								<p id="length" class="invalid">Minimum <b>8 characters</b></p>
 							</div>
 							<div class="d-flex">
 								<input class="un" type="date" name="bdate" id="bdate" placeholder="bdate" required />
@@ -233,7 +354,7 @@ if (isset($_SESSION['logged'])) {
 			<div class="row mb-5">
 				<div class="col-md">
 					<div class="ftco-footer-widget mb-4">
-						<h2 class="ftco-heading-2"><a href="../site/index.php" class="logo">Car<span>book</span></a></h2>
+						<h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
 						<p>A small new car rent office which provide multiple types of car to rent starting from low end to high end and luxurious cars .</p>
 						<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
 							<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>

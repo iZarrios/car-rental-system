@@ -23,7 +23,7 @@ $car = mysqli_fetch_assoc($result);
 <html lang="en">
 
 <head>
-	<title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+	<title>Car Singlr</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -50,40 +50,53 @@ $car = mysqli_fetch_assoc($result);
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="index.html">Car<span>Book</span></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
+	
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
+            <!-- AHEZ -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
 
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item">
-						<a href="index.php" class="nav-link">Home</a>
-					</li>
-					<li class="nav-item">
-						<a href="about.php" class="nav-link">About</a>
-					</li>
-					<li class="nav-item">
-						<a href="services.php" class="nav-link">Services</a>
-					</li>
-					<li class="nav-item active">
-						<a href="car.php" class="nav-link">Cars</a>
-					</li>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
+                    <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+                    <?php
+                    if (isset($_SESSION['logged'])) {
 
-					<li class="nav-item">
-						<a href="contact.php" class="nav-link">Contact</a>
-					</li>
-					<li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
-					<li class="nav-item"><a href="SignUp.php" class="nav-link">Sign UP</a></li>
-					<li class="nav-item"><a href="../user/Welcome_User.php" class="nav-link">My profile</a></li>
+                    ?>
+                        <li class="nav-item">
+                            <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello <?= $_SESSION['logged']['full_name'] ?></strong></a>
 
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<!-- END nav -->
+                        </li>
+                        <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign out</a></li>
+                        <?php
+                        if ($_SESSION['logged']['is_admin'] == "1") {
+                        ?>
+                            <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin Panel</a></li>
+                        <?php
+                        }
+
+                        ?>
+
+                    <?php
+                    } else {
+                    ?>
+                        <li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
+                        <li class="nav-item"><a href="SignUp.php" class="nav-link">Sign Up</a></li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
 
 	<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/bg_3.jpg')" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
@@ -169,7 +182,7 @@ $car = mysqli_fetch_assoc($result);
 				<div class="col-md">
 					<div class="ftco-footer-widget mb-4">
 						<h2 class="ftco-heading-2">
-							<a href="../site/index.php" class="logo">Car<span>book</span></a>
+                        <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
 						</h2>
 						<p>
 							Far far away, behind the word mountains, far from the countries

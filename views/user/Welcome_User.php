@@ -42,11 +42,11 @@ if (!isset($_SESSION['logged'])) {
     <style type="text/css">
         a {
 
-            color: #000000;
+            color: #FFFFFF;
         }
 
         a:link {
-            color: rgb(15, 0, 0);
+            color: rgb(245, 245, 245);
             background-color: transparent;
             text-decoration: none;
         }
@@ -118,28 +118,53 @@ if (!isset($_SESSION['logged'])) {
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="../site/index.php">Car<span>Book</span></a>
+            <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
+            <!-- AHEZ -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="../site/index.php" class="nav-link">Home</a></li>
+                    <li class="nav-item active"><a href="../site/index.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="../site/about.php" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="../site/services.php" class="nav-link">Services</a></li>
                     <li class="nav-item"><a href="../site/car.php" class="nav-link">Cars</a></li>
                     <li class="nav-item"><a href="../site/contact.php" class="nav-link">Contact</a></li>
-                    <li class="nav-item"><a href="../site/LogIn.php" class="nav-link">Log in</a></li>
-                    <li class="nav-item"><a href="../site/SignUp.php" class="nav-link">Sign UP</a></li>
-                    <li class="nav-item"><a href="Welcome_User.php" class="nav-link">My profile</a></li>
+                    <?php
+                    if (isset($_SESSION['logged'])) {
 
+                    ?>
+                        <li class="nav-item">
+                            <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello <?= $_SESSION['logged']['full_name'] ?></strong></a>
+
+                        </li>
+                        <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign out</a></li>
+                        <?php
+                        if ($_SESSION['logged']['is_admin'] == "1") {
+                        ?>
+                            <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin Panel</a></li>
+                        <?php
+                        }
+
+                        ?>
+
+                    <?php
+                    } else {
+                    ?>
+                        <li class="nav-item"><a href="../site/LogIn.php" class="nav-link">Log in</a></li>
+                        <li class="nav-item"><a href="../site/SignUp.php" class="nav-link">Sign Up</a></li>
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
     </nav>
+
     <!-- END nav -->
 
     <section class="hero-wrap  js-fullheight " style="background-image: url('../../public/images/pexels-photo.jpg');" data-stellar-background-ratio="0.5">
@@ -171,7 +196,7 @@ if (!isset($_SESSION['logged'])) {
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2"><a href="../site/index.php" class="logo">Car<span>book</span></a>
+                    <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
                         </h2>
                         <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
                             there live the blind texts.</p>

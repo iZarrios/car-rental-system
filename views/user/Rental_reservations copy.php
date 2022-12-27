@@ -1,25 +1,23 @@
 <?php require_once '../../core/config.php'; ?>
 <?php require_once PATH . 'core/connection.php'; ?>
+<?php require_once PATH . 'core/validations.php'; ?>
 
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
-if (!isset($_SESSION['logged'])) {
-  header("Location: " . URL . "views/site/index.php");
-  exit;
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+  <title>my balance</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="../../public/css/open-iconic-bootstrap.min.css">
   <link rel="stylesheet" href="../../public/css/animate.css">
 
@@ -97,7 +95,7 @@ if (!isset($_SESSION['logged'])) {
       padding-bottom: 10px;
       padding-top: 10px;
       font-family: 'Ubuntu', sans-serif;
-      margin-left: 45%;
+      margin-left: 20%;
       font-size: 13px;
       box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
     }
@@ -107,58 +105,81 @@ if (!isset($_SESSION['logged'])) {
       padding-top: 15px;
     }
   </style>
+  <script>
+    function validateForm1() {
+      var x1 = document.forms["myform1"]["lname"].value;
+      var x2 = document.forms["myform1"]["fname"].value;
+      var y = document.forms["myform1"]["pass"].value;
+      var z = document.forms["myform1"]["email"].value;
+      if (x1 == null || x1 == "") {
+        alert("Last name must be filled out");
+        return false;
+      }
+      if (x2 == null || x2 == "") {
+        alert("First name must be filled out");
+        return false;
+      }
+      if (y == null || y == "") {
+        alert("password must be filled out");
+        return false;
+      }
+      var emailRegEx = /^[A-Z0-9_-]+@[A-Z0-9]+\.[A-Z]{2,4}$/i;
+      if (z.search(emailRegEx) == -1) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+      return true;
+    }
+  </script>
 </head>
 
 <body>
-    
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
-            <!-- AHEZ -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
 
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="../site/index.php" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="../site/about.php" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="../site/services.php" class="nav-link">Services</a></li>
-                    <li class="nav-item"><a href="../site/car.php" class="nav-link">Cars</a></li>
-                    <li class="nav-item"><a href="../site/contact.php" class="nav-link">Contact</a></li>
-                    <?php
-                    if (isset($_SESSION['logged'])) {
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
+      <!-- AHEZ -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
 
-                    ?>
-                        <li class="nav-item">
-                            <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello <?= $_SESSION['logged']['full_name'] ?></strong></a>
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"><a href="../site/index.php" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="../site/about.php" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="../site/services.php" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="../site/car.php" class="nav-link">Cars</a></li>
+          <li class="nav-item"><a href="../site/contact.php" class="nav-link">Contact</a></li>
+          <?php
+          if (isset($_SESSION['logged'])) {
 
-                        </li>
-                        <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign out</a></li>
-                        <?php
-                        if ($_SESSION['logged']['is_admin'] == "1") {
-                        ?>
-                            <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin Panel</a></li>
-                        <?php
-                        }
+          ?>
+            <li class="nav-item">
+              <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello <?= $_SESSION['logged']['full_name'] ?></strong></a>
 
-                        ?>
+            </li>
+            <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign out</a></li>
+            <?php
+            if ($_SESSION['logged']['is_admin'] == "1") {
+            ?>
+              <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin Panel</a></li>
+            <?php
+            }
 
-                    <?php
-                    } else {
-                    ?>
-                        <li class="nav-item"><a href="../site/LogIn.php" class="nav-link">Log in</a></li>
-                        <li class="nav-item"><a href="../site/SignUp.php" class="nav-link">Sign Up</a></li>
-                    <?php
-                    }
-                    ?>
-                </ul>
-            </div>
-        </div>
-    </nav>
+            ?>
 
-    <!-- END nav -->
-
+          <?php
+          } else {
+          ?>
+            <li class="nav-item"><a href="../site/LogIn.php" class="nav-link">Log in</a></li>
+            <li class="nav-item"><a href="../site/SignUp.php" class="nav-link">Sign Up</a></li>
+          <?php
+          }
+          ?>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
   <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/image15.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -169,59 +190,25 @@ if (!isset($_SESSION['logged'])) {
 
   <section class="ftco-section ftco-degree-bg">
     <div class="container">
-      <div class="row">
-        <div class="col-md-8 ftco-animate">
-          <h2 class="mb-3">Edit your info</h2>
-
-          <!-- TODO: Update user info -->
-          <?php require_once PATH . "views/inc/messages.php" ?>
-          <form class="form1" name="form" id="form" method="POST" action="<?= URL . "handlers/auth/update.php" ?>">
-            <!-- <div>
-              <input class="un " type="text" name="user_id" id="user_id" placeholder="User_id" value="<?= $_SESSION['logged']['user_id'] ?>" />
-            </div> -->
-            <div class="d-flex">
-              <input class="un " type="text" name="fname" id="fname" placeholder="First name" value="<?= $_SESSION['logged']['fname'] ?>" />
-              <br />
-              <input class="un " type="text" name="lname" id="lname" placeholder="last name" value="<?= $_SESSION['logged']['lname'] ?>" />
-              <br />
-            </div>
-            <div class="d-flex">
-              <input class="un " type="text" name="email" id="email" placeholder="Email" value="<?= $_SESSION['logged']['email'] ?>" />
-              <br />
-              <input class="un " disabled="disabled" type="text" name="pass" id="pass" placeholder="password" value="<?= $_SESSION['logged']['password'] ?>" />
-              <br />
-            </div>
-            <div class="d-flex">
-              <input class="un " type="country" name="country" id="country" placeholder="Country" value="<?= $_SESSION['logged']['country'] ?>" />
-              <input class="un " type="city" name="city" id="city" placeholder="City" value="<?= $_SESSION['logged']['city'] ?>" />
-
-            </div>
-            <div class="d-flex">
-              <!-- <input class="un " type="city" name="city" id="city" placeholder="City" value="<?= $_SESSION['logged']['city'] ?>" />  -->
-              <input class="un " disabled="disabled" type="date" name="bdate" id="bdate" placeholder="bdate" value="<?= $_SESSION['logged']['bdate'] ?>" />
-              <?php
-              if ($_SESSION['logged']['gender'] == 1) {
-              ?>
-                <input class="un " disabled="disabled" type="text" name="gender" id="gender" placeholder="Gender" value="male" />
-              <?php
-              } else {
-              ?>
-            </div>
-            <input class="un " type="text" name="gender" id="gender" placeholder="Gender" value="female" />
-          <?php
-              }
-          ?>
-          <br />
-          <div class="d-flex">
-            <input class="submit" type="submit" id="submit" value="Edit" />
-          </div>
-          </form>
-
-
-        </div>
-
-      </div>
-    </div>
+    <?php require_once PATH . "views/inc/messages.php" ?>
+    <form method="POST" action="<?= URL . "handlers/balance/credit_card.php"; ?>">
+        <label for="user_id">User id:</label><br>
+        <input type="text" id="user_id" name="user_id"><br>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"><br>
+        <label for="cvv">CVV</label><br>
+        <input type="password" id="cvv" name="cvv"><br>
+        <label for="card_number">Card Number</label><br>
+        <input type="text" id="card_number" name="card_number"><br>
+        <label for="expiration_date">Expiration date</label><br>
+        <input type="text" id="expiration_month" name="expiration_month" placeholder="month">
+        <input type="text" id="expiration_year" name="expiration_year" placeholder="year"><br>
+        <label for="added_balance">Balance to be added</label><br>
+        <input type="text" id="added_balance" name="added_balance"><br>
+        <input type="submit" name="submit" value="Confirm">
+    </form>
   </section> <!-- .section -->
 
   <footer class="ftco-footer ftco-bg-dark ftco-section">
@@ -229,7 +216,7 @@ if (!isset($_SESSION['logged'])) {
       <div class="row mb-5">
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
-          <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
+            <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
               <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
