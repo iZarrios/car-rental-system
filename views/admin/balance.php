@@ -3,13 +3,20 @@
 <?php require_once PATH . 'core/validations.php'; ?>
 
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+// if user is already logged in
 if (!isset($_SESSION['logged'])) {
+    header("Location: " . URL . "views/site/LogIn.php");
+    exit;
+}
+if ($_SESSION['logged']['is_admin'] == "0") {
     header("Location: " . URL . "views/site/index.php");
     exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -449,49 +456,71 @@ if (!isset($_SESSION['logged'])) {
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
-            <!-- AHEZ -->
+            <a class="navbar-brand" href="../admin/admin.php">ADMIN<span>CONTROLSECTION</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="../site/index.php" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="../site/about.php" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="../site/services.php" class="nav-link">Services</a></li>
-                    <li class="nav-item"><a href="../site/car.php" class="nav-link">Cars</a></li>
-                    <li class="nav-item"><a href="../site/contact.php" class="nav-link">Contact</a></li>
-                    <?php
-                    if (isset($_SESSION['logged'])) {
-
-                    ?>
-                        <li class="nav-item">
-                            <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello <?= $_SESSION['logged']['full_name'] ?></strong></a>
-
-                        </li>
-                        <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign out</a></li>
-                        <?php
-                        if ($_SESSION['logged']['is_admin'] == "1") {
-                        ?>
-                            <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin Panel</a></li>
-                        <?php
-                        }
-
-                        ?>
-
-                    <?php
-                    } else {
-                    ?>
-                        <li class="nav-item"><a href="../site/LogIn.php" class="nav-link">Log in</a></li>
-                        <li class="nav-item"><a href="../site/SignUp.php" class="nav-link">Sign Up</a></li>
-                    <?php
-                    }
-                    ?>
+                    <li class="nav-item active"><a href="../admin/admin.php" class="nav-link">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Office
+                        </a>
+                        <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="../office/Add_office.php" class="nav-link">Add Office</a>
+                            </li>
+                            <li><a class="dropdown-item" href="../office/delete_office.php" class="nav-link">Delete
+                                    Office</a></li>
+                            <li><a class="dropdown-item" href="../office/all.php" class="nav-link">View
+                                    Offices</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Customization Tools
+                        </a>
+                        <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="<?= URL . "views/car/all_cars.php" ?> " class="nav-link">View cars</a></li>
+                            <li><a class="dropdown-item" href="../car/Add_Car.php" class="nav-link">Add car</a></li>
+                            <!-- <li><a class="dropdown-item" href="../car/Edit_car.php" class="nav-link">Customize car</a> -->
+                    </li>
+                    <li><a class="dropdown-item" href="../car/Delete_car.php" class="nav-link">Delete car</a>
+                    </li>
                 </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Reports
+                    </a>
+                    <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="../reports/report1.php" class="nav-link">Report1</a></li>
+                        <li><a class="dropdown-item" href="../reports/report2.php" class="nav-link">Report2</a></li>
+                        <li><a class="dropdown-item" href="../reports/report3.php" class="nav-link">Report3</a></li>
+                        <li><a class="dropdown-item" href="../reports/report4.php" class="nav-link">Report4</a></li>
+                        <li><a class="dropdown-item" href="../reports/report5.php" class="nav-link">Report5</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Reservations
+                    </a>
+                    <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="../reservation/all.php" class="nav-link">View
+                                Reservations</a></li>
+                        <li><a class="dropdown-item" href="../reservation/cancel_reservation.php" class="nav-link">Delete Reservations</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= URL . "views/site/index.php" ?>" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        To User Pages
+                    </a>
+                </li>
             </div>
         </div>
     </nav>
+
 
     <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/image15.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
@@ -509,8 +538,8 @@ if (!isset($_SESSION['logged'])) {
                     <?php require_once PATH . "views/inc/messages.php" ?>
                     <form method="POST" action="<?= URL . "handlers/balance/credit_card.php"; ?>">
                         <h1>Payment Information</h1>
-                        <!-- <label for="user_id">User id:</label><br> -->
-                        <input type="hidden" id="user_id" name="user_id" value="<?= $_SESSION['logged']['user_id'] ?>"><br>
+                        <label for="user_id">User id:</label><br>
+                        <input type="text" id="user_id" name="user_id" value=""><br>
                         <label for="fname">First name:</label><br>
                         <input type="text" id="fname" name="fname"><br>
                         <label for="lname">Last name:</label><br>
@@ -638,37 +667,33 @@ if (!isset($_SESSION['logged'])) {
 
     </section> <!-- .section -->
 
+
     <footer class="ftco-footer ftco-bg-dark ftco-section">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2"><a href="#" class="logo">Hot<span>Wheels</span></a></h2>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Have a Questions?</h2>
-                        <div class="block-23 mb-3">
-                            <ul>
-                                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-                            </ul>
+                        <h2 class="ftco-heading-2"><a href="#" class="logo">Admin<span>ControlSection</span></a></h2>
+                        <div class="col-md">
+                            <div class="ftco-footer-widget mb-4">
+                                <h2 class="ftco-heading-2">Admin Information</h2>
+                                <div class="block-23 mb-3">
+                                    <ul>
+                                        <li><span class="icon icon-map-marker"></span><span class="text">678 gish road,
+                                                Mandara, Alexandria, Egypt</span></li>
+                                        <li><a href="#"><span class="icon icon-phone"></span><span class="text">+20 0106
+                                                    820 8828</span></a></li>
+                                        <li><a href="https://mail.google.com/"><span class="icon icon-envelope"></span><span class="text">a.salem3214@gmail.com</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+
                 </div>
+
             </div>
-            <div class="row">
-            </div>
-        </div>
     </footer>
 
 

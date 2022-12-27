@@ -92,20 +92,22 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             $query = "
             UPDATE user SET `balance` = balance + $added_balance WHERE `user_id`=$user_id
             ";
-
             $result = mysqli_query($conn, $query);
             $affectedRows = mysqli_affected_rows($conn);
 
-            // close connection
-            mysqli_close($conn);
-
             if ($affectedRows >= 1) {
-                $_SESSION['success'] = "Reservation is done successfully";
+                $_SESSION['success'] = "Balance is added successfully";
+
+                $result = mysqli_query($conn, "SELECT * FROM `user` WHERE `user_id` = '$user_id'");
+                $user = mysqli_fetch_assoc($result);
+                $_SESSION['logged'] = $user;
+                $_SESSION['logged']['full_name'] = $user['fname'] . " " . $user['lname'];
             } else {
                 $errors[] = "Please enter a vaild user_id!";
                 $_SESSION['errors'] = $errors;
             }
-            $_SESSION['success'] = "Balance is added successfully";
+            // close connection
+            mysqli_close($conn);
             header("Location: " . URL . "views/user/balance.php");
             exit;
         } catch (\Throwable $th) {;

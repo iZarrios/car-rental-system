@@ -133,7 +133,10 @@ if (session_status() === PHP_SESSION_NONE) {
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
+                                    <!-- <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4"> -->
+                                    <!-- <button type="button" class="btn btn-secondary py-3 px-4"> <a href="car.php"> Rent A Car</a></button> -->
+                                    <p><a href="../site/car.php" class="btn btn-secondary py-3 px-4">Reserve Your Perfect
+                                            Car</a></p>
                                 </div>
                             </form>
                         </div>
@@ -190,7 +193,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <p>We Have a lot of customers around the world, due to our commitment, high service and support
                             that we provide to our customers, we seek to be one of the top car rental office around the
                             wolrd, you can contact us by our website or Application .</p>
-                        <p><a href="car.php" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
+                        <p><a href="../car/search_by_specs.php" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
                     </div>
                 </div>
             </div>
