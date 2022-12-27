@@ -89,22 +89,22 @@ if (isset($_SESSION['search_result'])) {
             padding-top: 40px;
         }
 
-        .submit {
 
-            cursor: pointer;
-            border-radius: 5em;
-            color: rgb(255, 255, 255);
-            background: #a2a3a3;
-            border: 0;
-            padding-left: 40px;
-            padding-right: 40px;
-            padding-bottom: 10px;
-            padding-top: 10px;
-            font-family: 'Ubuntu', sans-serif;
-            margin-left: 20%;
-            font-size: 13px;
-            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-        }
+        .submit {
+      cursor: pointer;
+      border-radius: 5em;
+      color: rgb(255, 255, 255);
+      background: #000e11;
+      border: 0;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      font-family: 'Ubuntu', sans-serif;
+      margin-left: 45%;
+      font-size: 13px;
+      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
 
         .forgot {
             width: 104%;
@@ -224,10 +224,6 @@ if (isset($_SESSION['search_result'])) {
 
                         <?php require_once PATH . "views/inc/messages.php" ?>
                         <form class="form1" name="myform1" id="myform1" action="<?= URL . "handlers/car/search.php"; ?>" method="POST" onsubmit="return validateForm1();">
-                            <div>
-                                <label>user_id: </label>
-                                <input type="text" name="user_id" placeholder="Any">
-                            </div>
                             <br>
                             <div>
                                 <label>brand: </label>
@@ -261,7 +257,7 @@ if (isset($_SESSION['search_result'])) {
                                 <input type="text" name="upper_price" placeholder="Any">
                             </div>
                             <br>
-                            <input class="submit" type="submit" name="submit" value="submit">
+                            <input  class="submit" type="submit" name="submit" value="submit"><br><br>
                         </form>
                         <?php
                         if (isset($query_res)) {
