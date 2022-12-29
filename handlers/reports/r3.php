@@ -27,28 +27,21 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($errors)) {
         try {
-            // SELECT `car`.* FROM `car`
-            // WHERE `car`.plate_id NOT IN (
-            //     SELECT `car`.plate_id FROM `car`
-            //     JOIN `reservation`ON `reservation`.plate_id=`car`.plate_id
-            //     WHERE '2011-1-18' BETWEEN   `reservation`.pick_up_date AND  `reservation`.return_date
-            // );
-            $query_not_reserved_cars = "
-            SELECT `car`.* FROM `car`
+            $query_not_reserved_cars = "SELECT `car`.* FROM `car`
             WHERE `car`.plate_id NOT IN (
                 SELECT `car`.plate_id FROM `car`
                 JOIN `reservation`ON `reservation`.plate_id=`car`.plate_id
                 WHERE '$date' BETWEEN   `reservation`.pick_up_date AND  `reservation`.return_date
-            );
+            ) AND `status`!='out of service';
             ";
-            // SELECT `car`.* FROM `car`
-            // JOIN `reservation`ON `reservation`.plate_id=`car`.plate_id
-            // WHERE '2011-1-18' BETWEEN   `reservation`.pick_up_date AND  `reservation`.return_date ;
-            $query_reserved_cars = "
-            SELECT `car`.* FROM `car`
+
+            $query_reserved_cars = "SELECT `car`.* FROM `car`
             JOIN `reservation`ON `reservation`.plate_id=`car`.plate_id
             WHERE '$date' BETWEEN  `reservation`.`pick_up_date` AND  `reservation`.`return_date`;
             ";
+
+            $query_out_of_service_cars = "SELECT `car`.* FROM `car`
+                WHERE `status`='out of service'";
 
             $result1 = mysqli_query($conn, $query_not_reserved_cars);
             $affectedRows = mysqli_affected_rows($conn);
@@ -56,15 +49,17 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             $result2 = mysqli_query($conn, $query_reserved_cars);
             $affectedRows += mysqli_affected_rows($conn);
 
+            $result3 = mysqli_query($conn, $query_out_of_service_cars);
+            $affectedRows += mysqli_affected_rows($conn);
+
 
             // close connection
             mysqli_close($conn);
 
 
-            // Printing Cars reserved
             $not_reserved_cars = mysqli_fetch_all($result1, MYSQLI_ASSOC);
             $reserved_cars = mysqli_fetch_all($result2, MYSQLI_ASSOC);
-
+            $out_of_service_cars = mysqli_fetch_all($result3, MYSQLI_ASSOC);
 
             foreach ($not_reserved_cars as $key => $value) {
                 $not_reserved_cars[$key]["status"] = "active";
@@ -73,7 +68,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                 $reserved_cars[$key]["status"] = "reserved";
             }
 
-            $result = [...$not_reserved_cars, ...$reserved_cars];
+            $result = [...$not_reserved_cars, ...$reserved_cars, ...$out_of_service_cars];
 
             // dd($result);
             if ($affectedRows >= 1) {
