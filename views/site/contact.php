@@ -57,11 +57,11 @@ $offices = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
+                    <li class="nav-item "><a href="index.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
                     <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
-                    <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+                    <li class="nav-item active"><a href="contact.php" class="nav-link">Contact</a></li>
                     <?php
                     if (isset($_SESSION['logged'])) {
 
@@ -122,30 +122,32 @@ $offices = mysqli_fetch_all($result, MYSQLI_ASSOC);
                         <span class="icon-map-o"></span>
                     </div>
                     <p>
-                        <span>Address:</span> 198 West 21th Street, Suite 721 New
-                        York NY 10016
+                        <span>Address:</span> 203 Fawzy Moaz, Smouha,
+                        Alexandria, Egypt
                     </p>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="row d-flex mb-5 contact-info">
                 <div class="border w-100 p-4 rounded mb-2 d-flex">
                     <div class="icon mr-3">
                         <span class="icon-mobile-phone"></span>
                     </div>
                     <p>
                         <span>Phone:</span>
-                        <a href="tel://1234567920">+ 1235 2355 98</a>
+                        <a href="tel://+20 0106
+                            820 8828">+20 0106
+                            820 8828</a>
                     </p>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="row d-flex mb-5 contact-info">
                 <div class="border w-100 p-4 rounded mb-2 d-flex">
                     <div class="icon mr-3">
                         <span class="icon-envelope-o"></span>
                     </div>
                     <p>
                         <span>Email:</span>
-                        <a href="mailto:info@yoursite.com">info@yoursite.com</a>
+                        <a href="mailto:info@yoursite.com">Hotwheels@gmail.com</a>
                     </p>
                 </div>
             </div>
@@ -217,7 +219,8 @@ $offices = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                 <li><a href="tel://+20 0106
                                             820 8828"><span class="icon icon-phone"></span><span class="text">+20 0106
                                             820 8828</span></a></li>
-                                <li><a href="mailto:info@yoursite.com">HotWheels@gmail.com</a></li>
+                                <li><a href="https://mail.google.com/"><span class="icon icon-envelope"></span><span
+                                            class="text">Hotwheels@gmail.com</span></a></li>
                             </ul>
                         </div>
                     </div>

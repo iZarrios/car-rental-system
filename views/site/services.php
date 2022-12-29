@@ -10,18 +10,14 @@ if (session_status() === PHP_SESSION_NONE) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Services</title>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="../../public/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../../public/css/animate.css">
 
@@ -40,39 +36,44 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="../../public/css/flaticon.css">
     <link rel="stylesheet" href="../../public/css/icomoon.css">
     <link rel="stylesheet" href="../../public/css/style.css">
-  </head>
-  <body>
-    
-  
-  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
             <!-- AHEZ -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
+                    <li class="nav-item "><a href="index.php" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
+                    <li class="nav-item active"><a href="services.php" class="nav-link">Services</a></li>
                     <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
                     <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
                     <?php
                     if (isset($_SESSION['logged'])) {
 
                     ?>
-                        <li class="nav-item">
-                            <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello <?= $_SESSION['logged']['full_name'] ?></strong></a>
+                    <li class="nav-item">
+                        <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello
+                                <?= $_SESSION['logged']['full_name'] ?></strong></a>
 
-                        </li>
-                        <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign out</a></li>
-                        <?php
+                    </li>
+                    <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign
+                            out</a></li>
+                    <?php
                         if ($_SESSION['logged']['is_admin'] == "1") {
                         ?>
-                            <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin Panel</a></li>
-                        <?php
+                    <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin
+                            Panel</a></li>
+                    <?php
                         }
 
                         ?>
@@ -80,8 +81,8 @@ if (session_status() === PHP_SESSION_NONE) {
                     <?php
                     } else {
                     ?>
-                        <li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
-                        <li class="nav-item"><a href="SignUp.php" class="nav-link">Sign Up</a></li>
+                    <li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
+                    <li class="nav-item"><a href="SignUp.php" class="nav-link">Sign Up</a></li>
                     <?php
                     }
                     ?>
@@ -92,105 +93,89 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 
-    <section
-      class="hero-wrap hero-wrap-2 js-fullheight"
-      style="background-image: url('../../public/images/bg_3.jpg')"
-      data-stellar-background-ratio="0.5"
-    >
-      <div class="overlay"></div>
-      <div class="container">
-        <div
-          class="row no-gutters slider-text js-fullheight align-items-end justify-content-start"
-        >
-          <div class="col-md-9 ftco-animate pb-5">
-            <p class="breadcrumbs">
-              <span class="mr-2"
-                ><a href="index.php"
-                  >Home <i class="ion-ios-arrow-forward"></i></a
-              ></span>
-              <span>Services <i class="ion-ios-arrow-forward"></i></span>
-            </p>
-            <h1 class="mb-3 bread">Our Services</h1>
-          </div>
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/bg_3.jpg')"
+        data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+                <div class="col-md-9 ftco-animate pb-5">
+                    <p class="breadcrumbs">
+                        <span class="mr-2"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span>
+                        <span>Services <i class="ion-ios-arrow-forward"></i></span>
+                    </p>
+                    <h1 class="mb-3 bread">Our Services</h1>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
     <section class="ftco-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center heading-section ftco-animate">
-            <span class="subheading">Services</span>
-            <h2 class="mb-3">Our Latest Services</h2>
-          </div>
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-7 text-center heading-section ftco-animate">
+                    <span class="subheading">Services</span>
+                    <h2 class="mb-3">Our Latest Services</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="services services-2 w-100 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="flaticon-route"></span>
+                        </div>
+                        <div class="text w-100">
+                            <h3 class="heading mb-2">Wedding Ceremony</h3>
+                            <p>
+                                A small river named Duden flows by their place and supplies it
+                                with the necessary regelialia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="services services-2 w-100 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="flaticon-route"></span>
+                        </div>
+                        <div class="text w-100">
+                            <h3 class="heading mb-2">City Transfer</h3>
+                            <p>
+                                A small river named Duden flows by their place and supplies it
+                                with the necessary regelialia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="services services-2 w-100 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="flaticon-route"></span>
+                        </div>
+                        <div class="text w-100">
+                            <h3 class="heading mb-2">Airport Transfer</h3>
+                            <p>
+                                A small river named Duden flows by their place and supplies it
+                                with the necessary regelialia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="services services-2 w-100 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="flaticon-route"></span>
+                        </div>
+                        <div class="text w-100">
+                            <h3 class="heading mb-2">Whole City Tour</h3>
+                            <p>
+                                A small river named Duden flows by their place and supplies it
+                                with the necessary regelialia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row">
-          <div class="col-md-3">
-            <div class="services services-2 w-100 text-center">
-              <div
-                class="icon d-flex align-items-center justify-content-center"
-              >
-                <span class="flaticon-route"></span>
-              </div>
-              <div class="text w-100">
-                <h3 class="heading mb-2">Wedding Ceremony</h3>
-                <p>
-                  A small river named Duden flows by their place and supplies it
-                  with the necessary regelialia.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="services services-2 w-100 text-center">
-              <div
-                class="icon d-flex align-items-center justify-content-center"
-              >
-                <span class="flaticon-route"></span>
-              </div>
-              <div class="text w-100">
-                <h3 class="heading mb-2">City Transfer</h3>
-                <p>
-                  A small river named Duden flows by their place and supplies it
-                  with the necessary regelialia.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="services services-2 w-100 text-center">
-              <div
-                class="icon d-flex align-items-center justify-content-center"
-              >
-                <span class="flaticon-route"></span>
-              </div>
-              <div class="text w-100">
-                <h3 class="heading mb-2">Airport Transfer</h3>
-                <p>
-                  A small river named Duden flows by their place and supplies it
-                  with the necessary regelialia.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="services services-2 w-100 text-center">
-              <div
-                class="icon d-flex align-items-center justify-content-center"
-              >
-                <span class="flaticon-route"></span>
-              </div>
-              <div class="text w-100">
-                <h3 class="heading mb-2">Whole City Tour</h3>
-                <p>
-                  A small river named Duden flows by their place and supplies it
-                  with the necessary regelialia.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
@@ -202,9 +187,12 @@ if (session_status() === PHP_SESSION_NONE) {
                         <p>A small new car rent office which provide multiple types of car to rent starting from low end
                             to high end and luxurious cars .</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                            <li class="ftco-animate"><a href="https://twitter.com/login"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="https://www.facebook.com/"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="https://www.instagram.com/"><span class="icon-instagram"></span></a></li>
+                            <li class="ftco-animate"><a href="https://twitter.com/login"><span
+                                        class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.facebook.com/"><span
+                                        class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.instagram.com/"><span
+                                        class="icon-instagram"></span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -216,8 +204,11 @@ if (session_status() === PHP_SESSION_NONE) {
                             <ul>
                                 <li><span class="icon icon-map-marker"></span><span class="text">203 Fawzy Moaz, Smouha,
                                         Alexandria, Egypt</span></li>
-                                <li><a href="#"><span class="icon icon-phone"></span><a href="tel://1234567920">+ 1235 2355 98</a></span></a></li>
-                                <li><a href="mailto:info@yoursite.com">HotWheels@gmail.com</a></li>
+                                <li><a href="tel://+20 0106
+                                            820 8828"><span class="icon icon-phone"></span><span class="text">+20 0106
+                                            820 8828</span></a></li>
+                                <li><a href="https://mail.google.com/"><span class="icon icon-envelope"></span><span
+                                            class="text">Hotwheels@gmail.com</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -232,27 +223,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen">
-      <svg class="circular" width="48px" height="48px">
-        <circle
-          class="path-bg"
-          cx="24"
-          cy="24"
-          r="22"
-          fill="none"
-          stroke-width="4"
-          stroke="#eeeeee"
-        />
-        <circle
-          class="path"
-          cx="24"
-          cy="24"
-          r="22"
-          fill="none"
-          stroke-width="4"
-          stroke-miterlimit="10"
-          stroke="#F96D00"
-        />
-      </svg>
+        <svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg>
     </div>
 
 
@@ -275,5 +250,6 @@ if (session_status() === PHP_SESSION_NONE) {
     </script>
     <script src="../../public/js/google-map.js"></script>
     <script src="../../public/js/main.js"></script>
-  </body>
+</body>
+
 </html>
