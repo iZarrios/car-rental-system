@@ -164,7 +164,10 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                                 <h2><a href="<?= URL . "views/admin/balance.php" ?>" class="nav-link">Add Balance</a>
                                 </h2>
                             </li>
-
+                            <li>
+                                <h2><a href="<?= URL . "views/admin/serach.php" ?>" class="nav-link">Advanced Search</a>
+                                </h2>
+                            </li>
                         </ul>
                     </div>
                 </div>
