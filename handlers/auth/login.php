@@ -52,6 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: " . URL . "views/site/login.php");
             exit;
         }
+    } else {
+
+        $errors[] = "Not Found";
+        $_SESSION['errors'] = $errors;
+        header("Location: " . URL . "views/site/login.php");
     }
 } else {
     header("Location: " . URL . "views/site/login.php");
