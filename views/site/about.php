@@ -5,7 +5,7 @@
 <?php
 
 if (session_status() === PHP_SESSION_NONE) {
-	session_start();
+    session_start();
 }
 ?>
 <!DOCTYPE html>
@@ -16,8 +16,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../public/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../../public/css/animate.css">
 
@@ -44,8 +43,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="container">
             <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
             <!-- AHEZ -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
@@ -57,42 +55,41 @@ if (session_status() === PHP_SESSION_NONE) {
                     <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
                     <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
                     <?php
-					if (isset($_SESSION['logged'])) {
+                    if (isset($_SESSION['logged'])) {
 
-					?>
-                    <li class="nav-item">
-                        <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello
-                                <?= $_SESSION['logged']['full_name'] ?></strong></a>
+                    ?>
+                        <li class="nav-item">
+                            <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello
+                                    <?= $_SESSION['logged']['full_name'] ?></strong></a>
 
-                    </li>
-                    <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign
-                            out</a></li>
-                    <?php
-						if ($_SESSION['logged']['is_admin'] == "1") {
-						?>
-                    <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin
-                            Panel</a></li>
-                    <?php
-						}
+                        </li>
+                        <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign
+                                out</a></li>
+                        <?php
+                        if ($_SESSION['logged']['is_admin'] == "1") {
+                        ?>
+                            <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin
+                                    Panel</a></li>
+                        <?php
+                        }
 
-						?>
+                        ?>
 
                     <?php
-					} else {
-					?>
-                    <li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
-                    <li class="nav-item"><a href="SignUp.php" class="nav-link">Sign Up</a></li>
+                    } else {
+                    ?>
+                        <li class="nav-item"><a href="LogIn.php" class="nav-link">Log in</a></li>
+                        <li class="nav-item"><a href="SignUp.php" class="nav-link">Sign Up</a></li>
                     <?php
-					}
-					?>
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
     </nav>
 
 
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/bg_3.jpg')"
-        data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/bg_3.jpg')" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
@@ -110,8 +107,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <section class="ftco-section ftco-about">
         <div class="container">
             <div class="row no-gutters">
-                <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center"
-                    style="background-image: url(../../public/images/about2.jpg)"></div>
+                <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../../public/images/about2.jpg)"></div>
                 <div class="col-md-6 wrap-about ftco-animate">
                     <div class="heading-section heading-section-white pl-md-5">
                         <span class="subheading">About us</span>
@@ -161,8 +157,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         </div>
                         <div class="item">
                             <div class="testimony-wrap rounded text-center py-4 pb-5">
-                                <div class="user-img mb-2"
-                                    style="background-image: url(../../public/images/shayboun.jpg)">
+                                <div class="user-img mb-2" style="background-image: url(../../public/images/shayboun.jpg)">
                                 </div>
                                 <div class="text pt-4">
                                     <p class="mb-4">thanks for your services, with out you service , I would have been
@@ -200,39 +195,55 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </section>
 
-    <section class="ftco-counter ftco-section img" id="section-counter">
+    <section class="ftco-counter ftco-section img bg-light" id="section-counter">
         <div class="overlay"></div>
         <div class="container">
+            <?php
+            $query = "SELECT COUNT(*) AS number_of_offices FROM `office`";
+            $result = mysqli_query($conn, $query);
+            $offices = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            $number_of_offices = $offices["number_of_offices"];
+
+            $query = "SELECT COUNT(*) AS number_of_cars FROM `car`";
+            $result = mysqli_query($conn, $query);
+            $cars = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            $number_of_cars = $cars["number_of_cars"];
+
+            $query = "SELECT COUNT(*) AS number_of_users FROM `user`";
+            $result = mysqli_query($conn, $query);
+            $users = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            $number_of_users = $users["number_of_users"];
+            ?>
             <div class="row">
                 <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                     <div class="block-18">
                         <div class="text text-border d-flex align-items-center">
                             <strong class="number" data-number="60">0</strong>
-                            <span>Year <br />Experienced</span>
+                            <span>Year <br>Experienced</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                     <div class="block-18">
                         <div class="text text-border d-flex align-items-center">
-                            <strong class="number" data-number="1090">0</strong>
-                            <span>Total <br />Cars</span>
+                            <strong class="number" data-number=<?php echo $number_of_cars; ?>>0</strong>
+                            <span>Total <br>Cars</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                     <div class="block-18">
                         <div class="text text-border d-flex align-items-center">
-                            <strong class="number" data-number="2590">0</strong>
-                            <span>Happy <br />Customers</span>
+                            <strong class="number" data-number=<?php echo $number_of_users; ?>>0</strong>
+                            <span>Happy <br>Customers</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                     <div class="block-18">
                         <div class="text d-flex align-items-center">
-                            <strong class="number" data-number="67">0</strong>
-                            <span>Total <br />Branches</span>
+                            <strong class="number" data-number=<?php echo $number_of_offices; ?>>0</strong>
+                            <span>Total <br>Branches</span>
                         </div>
                     </div>
                 </div>
@@ -250,12 +261,9 @@ if (session_status() === PHP_SESSION_NONE) {
                         <p>A small new car rent office which provide multiple types of car to rent starting from low end
                             to high end and luxurious cars .</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                            <li class="ftco-animate"><a href="https://twitter.com/login"><span
-                                        class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="https://www.facebook.com/"><span
-                                        class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="https://www.instagram.com/"><span
-                                        class="icon-instagram"></span></a></li>
+                            <li class="ftco-animate"><a href="https://twitter.com/login"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.facebook.com/"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.instagram.com/"><span class="icon-instagram"></span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -287,8 +295,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <div id="ftco-loader" class="show fullscreen">
         <svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
         </svg>
     </div>
 
@@ -307,8 +314,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <script src="../../public/js/bootstrap-datepicker.js"></script>
     <script src="../../public/js/jquery.timepicker.min.js"></script>
     <script src="../../public/js/scrollax.min.js"></script>
-    <script
-        src="../../public/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+    <script src="../../public/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
     </script>
     <script src="../../public/js/google-map.js"></script>
     <script src="../../public/js/main.js"></script>
