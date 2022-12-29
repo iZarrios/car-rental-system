@@ -3,11 +3,11 @@
 
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-  session_start();
+    session_start();
 }
 if (!isset($_SESSION['logged'])) {
-  header("Location: " . URL . "views/site/index.php");
-  exit;
+    header("Location: " . URL . "views/site/index.php");
+    exit;
 }
 ?>
 
@@ -19,8 +19,7 @@ if (!isset($_SESSION['logged'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../public/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../../public/css/animate.css">
 
@@ -40,73 +39,73 @@ if (!isset($_SESSION['logged'])) {
     <link rel="stylesheet" href="../../public/css/icomoon.css">
     <link rel="stylesheet" href="../../public/css/style.css">
     <style type="text/css">
-    a:link {
-        color: rgb(34, 34, 34);
-        background-color: transparent;
-        text-decoration: none;
-    }
+        a:link {
+            color: rgb(34, 34, 34);
+            background-color: transparent;
+            text-decoration: none;
+        }
 
-    a:hover {
-        color: rgb(196, 207, 212);
-        background-color: transparent;
-        text-decoration: underline;
-    }
+        a:hover {
+            color: rgb(196, 207, 212);
+            background-color: transparent;
+            text-decoration: underline;
+        }
 
-    .sign {
-        width: 104%;
-    }
+        .sign {
+            width: 104%;
+        }
 
-    .gender {
-        width: 30%;
-        color: rgb(15, 0, 0);
+        .gender {
+            width: 30%;
+            color: rgb(15, 0, 0);
 
-    }
+        }
 
-    .un {
-        width: 76%;
-        color: rgb(15, 0, 0);
-        font-weight: 700;
-        font-size: 14px;
-        letter-spacing: 1px;
-        background: rgb(236, 236, 236);
-        padding: 10px 20px;
-        border: none;
-        border-radius: 20px;
-        outline: none;
-        box-sizing: border-box;
-        border: 2px solid rgba(255, 255, 255, 0.02);
-        margin-bottom: 50px;
-        margin-left: 46px;
-        text-align: center;
-        margin-bottom: 27px;
-        font-family: 'Ubuntu', sans-serif;
-    }
+        .un {
+            width: 76%;
+            color: rgb(15, 0, 0);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            background: rgb(236, 236, 236);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            box-sizing: border-box;
+            border: 2px solid rgba(255, 255, 255, 0.02);
+            margin-bottom: 50px;
+            margin-left: 46px;
+            text-align: center;
+            margin-bottom: 27px;
+            font-family: 'Ubuntu', sans-serif;
+        }
 
-    form.form1 {
-        padding-top: 40px;
-    }
+        form.form1 {
+            padding-top: 40px;
+        }
 
-    .submit {
+        .submit {
 
-        cursor: pointer;
-        border-radius: 5em;
-        color: rgb(255, 255, 255);
-        background: #a2a3a3;
-        border: 0;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        font-family: 'Ubuntu', sans-serif;
-        margin-left: 45%;
-        font-size: 13px;
-        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-    }
+            cursor: pointer;
+            border-radius: 5em;
+            color: rgb(255, 255, 255);
+            background: #a2a3a3;
+            border: 0;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-family: 'Ubuntu', sans-serif;
+            margin-left: 45%;
+            font-size: 13px;
+            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+        }
 
-    .forgot {
-        width: 104%;
-        padding-top: 15px;
-    }
+        .forgot {
+            width: 104%;
+            padding-top: 15px;
+        }
     </style>
 </head>
 
@@ -116,8 +115,7 @@ if (!isset($_SESSION['logged'])) {
         <div class="container">
             <a class="navbar-brand" href="../site/index.php">Hot<span>Wheels</span></a>
             <!-- AHEZ -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
@@ -132,19 +130,19 @@ if (!isset($_SESSION['logged'])) {
                     if (isset($_SESSION['logged'])) {
 
                     ?>
-                    <li class="nav-item">
-                        <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello
-                                <?= $_SESSION['logged']['full_name'] ?></strong></a>
+                        <li class="nav-item">
+                            <a href="../user/Welcome_User.php" class="nav-link"><strong>Hello
+                                    <?= $_SESSION['logged']['full_name'] ?></strong></a>
 
-                    </li>
-                    <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign
-                            out</a></li>
-                    <?php
+                        </li>
+                        <li class="nav-item"><a href=" <?= URL . "handlers/auth/logout.php"; ?>" class="nav-link">Sign
+                                out</a></li>
+                        <?php
                         if ($_SESSION['logged']['is_admin'] == "1") {
                         ?>
-                    <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin
-                            Panel</a></li>
-                    <?php
+                            <li class="nav-item"><a href="<?= URL . "views/admin/admin.php" ?>" class=" nav-link">To Admin
+                                    Panel</a></li>
+                        <?php
                         }
 
                         ?>
@@ -152,8 +150,8 @@ if (!isset($_SESSION['logged'])) {
                     <?php
                     } else {
                     ?>
-                    <li class="nav-item"><a href="../site/LogIn.php" class="nav-link">Log in</a></li>
-                    <li class="nav-item"><a href="../site/SignUp.php" class="nav-link">Sign Up</a></li>
+                        <li class="nav-item"><a href="../site/LogIn.php" class="nav-link">Log in</a></li>
+                        <li class="nav-item"><a href="../site/SignUp.php" class="nav-link">Sign Up</a></li>
                     <?php
                     }
                     ?>
@@ -165,9 +163,7 @@ if (!isset($_SESSION['logged'])) {
     <!-- END nav -->
 
 
-    <section class="hero-wrap hero-wrap-2 js-fullheight"
-        style="background-image: url('../../public/images/bugatti-w16-mistral-4500x3000-9459.jpg');"
-        data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/bugatti-w16-mistral-4500x3000-9459.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
 
@@ -182,55 +178,46 @@ if (!isset($_SESSION['logged'])) {
 
                     <!-- TODO: Update user info -->
                     <?php require_once PATH . "views/inc/messages.php" ?>
-                    <form class="form1" name="form" id="form" method="POST"
-                        action="<?= URL . "handlers/auth/update.php" ?>">
+                    <form class="form1" name="form" id="form" method="POST" action="<?= URL . "handlers/auth/update.php" ?>">
                         <!-- <div>
               <input class="un " type="text" name="user_id" id="user_id" placeholder="User_id" value="<?= $_SESSION['logged']['user_id'] ?>" />
             </div> -->
                         <div class="d-flex">
-                            <input class="un " type="text" name="fname" id="fname" placeholder="First name"
-                                value="<?= $_SESSION['logged']['fname'] ?>" />
+                            <input class="un " type="text" name="fname" id="fname" placeholder="First name" value="<?= $_SESSION['logged']['fname'] ?>" />
                             <br />
-                            <input class="un " type="text" name="lname" id="lname" placeholder="last name"
-                                value="<?= $_SESSION['logged']['lname'] ?>" />
+                            <input class="un " type="text" name="lname" id="lname" placeholder="last name" value="<?= $_SESSION['logged']['lname'] ?>" />
                             <br />
                         </div>
                         <div class="d-flex">
-                            <input class="un " type="text" name="email" id="email" placeholder="Email"
-                                value="<?= $_SESSION['logged']['email'] ?>" />
+                            <input class="un " type="text" name="email" id="email" placeholder="Email" value="<?= $_SESSION['logged']['email'] ?>" />
                             <br />
-                            <input class="un " disabled="disabled" type="text" name="pass" id="pass"
-                                placeholder="password" value="<?= $_SESSION['logged']['password'] ?>" />
+                            <input class="un " disabled="disabled" type="password" name="pass" id="pass" placeholder="password" value="<?= $_SESSION['logged']['password'] ?>" />
                             <br />
                         </div>
                         <div class="d-flex">
-                            <input class="un " type="country" name="country" id="country" placeholder="Country"
-                                value="<?= $_SESSION['logged']['country'] ?>" />
-                            <input class="un " type="city" name="city" id="city" placeholder="City"
-                                value="<?= $_SESSION['logged']['city'] ?>" />
+                            <input class="un " type="country" name="country" id="country" placeholder="Country" value="<?= $_SESSION['logged']['country'] ?>" />
+                            <input class="un " type="city" name="city" id="city" placeholder="City" value="<?= $_SESSION['logged']['city'] ?>" />
 
                         </div>
                         <div class="d-flex">
                             <!-- <input class="un " type="city" name="city" id="city" placeholder="City" value="<?= $_SESSION['logged']['city'] ?>" />  -->
-                            <input class="un " disabled="disabled" type="date" name="bdate" id="bdate"
-                                placeholder="bdate" value="<?= $_SESSION['logged']['bdate'] ?>" />
+                            <input class="un " disabled="disabled" type="date" name="bdate" id="bdate" placeholder="bdate" value="<?= $_SESSION['logged']['bdate'] ?>" />
                             <?php
-              if ($_SESSION['logged']['gender'] == 1) {
-              ?>
-                            <input class="un " disabled="disabled" type="text" name="gender" id="gender"
-                                placeholder="Gender" value="male" />
+                            if ($_SESSION['logged']['gender'] == 1) {
+                            ?>
+                                <input class="un " disabled="disabled" type="text" name="gender" id="gender" placeholder="Gender" value="male" />
                             <?php
-              } else {
-              ?>
+                            } else {
+                            ?>
                         </div>
                         <input class="un " type="text" name="gender" id="gender" placeholder="Gender" value="female" />
-                        <?php
-              }
-          ?>
-                        <br />
-                        <div class="d-flex">
-                            <input class="submit" type="submit" id="submit" value="Edit" />
-                        </div>
+                    <?php
+                            }
+                    ?>
+                    <br />
+                    <div class="d-flex">
+                        <input class="submit" type="submit" id="submit" value="Edit" />
+                    </div>
                     </form>
 
 
@@ -249,12 +236,9 @@ if (!isset($_SESSION['logged'])) {
                         <p>A small new car rent office which provide multiple types of car to rent starting from low end
                             to high end and luxurious cars .</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                            <li class="ftco-animate"><a href="https://twitter.com/login"><span
-                                        class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="https://www.facebook.com/"><span
-                                        class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="https://www.instagram.com/"><span
-                                        class="icon-instagram"></span></a></li>
+                            <li class="ftco-animate"><a href="https://twitter.com/login"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.facebook.com/"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.instagram.com/"><span class="icon-instagram"></span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -269,8 +253,7 @@ if (!isset($_SESSION['logged'])) {
                                 <li><a href="tel://+20 0106
                                             820 8828"><span class="icon icon-phone"></span><span class="text">+20 0106
                                             820 8828</span></a></li>
-                                <li><a href="https://mail.google.com/"><span class="icon icon-envelope"></span><span
-                                            class="text">Hotwheels@gmail.com</span></a></li>
+                                <li><a href="https://mail.google.com/"><span class="icon icon-envelope"></span><span class="text">Hotwheels@gmail.com</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -288,8 +271,7 @@ if (!isset($_SESSION['logged'])) {
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
 
 
@@ -308,8 +290,7 @@ if (!isset($_SESSION['logged'])) {
     <script src="../../public/js/bootstrap-datepicker.js"></script>
     <script src="../../public/js/jquery.timepicker.min.js"></script>
     <script src="../../public/js/scrollax.min.js"></script>
-    <script
-        src="../../public/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
+    <script src="../../public/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
     </script>
     <script src="../../public/js/google-map.js"></script>
     <script src="../../public/js/main.js"></script>

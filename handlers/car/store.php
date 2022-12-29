@@ -2,6 +2,16 @@
 <?php require_once PATH . 'core/connection.php'; ?>
 
 <?php
+
+// if user is already logged in
+if (!isset($_SESSION['logged'])) {
+    header("Location: " . URL . "views/site/LogIn.php");
+    exit;
+}
+if ($_SESSION['logged']['is_admin'] == "0") {
+    header("Location: " . URL . "views/site/index.php");
+    exit;
+}
 if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
