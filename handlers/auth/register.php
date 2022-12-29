@@ -39,6 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $password = trim($_POST['password']);
 
+    //encrypt the user's password
+    $password = sha1($_POST['password']);
+
     $b_date = validString($_POST['bdate']);
 
     $b_date_exploded = explode('-', $b_date);

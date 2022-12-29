@@ -21,8 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Inputs
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ?? "";
-    // $password = sha1($_POST['password']);
     $password = trim($_POST['password']);
+
+    // add sha1 encryption
+    $password = sha1($_POST['password']);
 
     if (empty($email)) {
         $errors[] = "Insufficient info";
