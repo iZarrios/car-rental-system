@@ -62,14 +62,14 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $lower_price_col = 'price_per_day';
     }
-    
+
     if (empty($upper_price)) {
         $upper_price_col = 1;
         $upper_price = 1;
     } else {
         $upper_price_col = 'price_per_day';
     }
-    
+
 
     // SELECT * FROM `car` 
     // WHERE `brand`= 'Dodge' AND `model`='MIMI' AND `body`='Sedan' AND `color`='blue' AND `year`=2010 AND `price_per_day` <700;
@@ -81,7 +81,8 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         AND $color_col='$color' 
         AND $year_col='$year' 
         AND $lower_price_col>=$lower_price
-        AND $upper_price_col<= $upper_price ";
+        AND $upper_price_col<= $upper_price
+        AND `status` = 'active'";
 
         $result = mysqli_query($conn, $query);
         $affectedRows = mysqli_affected_rows($conn);
