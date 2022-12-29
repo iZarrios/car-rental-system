@@ -22,10 +22,8 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = [];
 
     $lower_date = validString($_POST['lower_date']);
-    $lower_date_exploded = explode('-', $lower_date);
 
     $upper_date = validString($_POST['upper_date']);
-    $upper_date_exploded = explode('-', $upper_date);
 
     $lower_date_col = 'reservation_date';
     $upper_date_col = 'reservation_date';
