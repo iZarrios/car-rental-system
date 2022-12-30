@@ -13,6 +13,14 @@ function minVal($string, $min)
     return false;
 }
 
+function alphabet_only($var)
+{
+    if (preg_match("/^[a-zA-Z]+$/", $var) == 1) {
+        return true;
+    }
+    return false;
+}
+
 function maxVal($string, $max)
 {
     if (strlen($string) > $max) {
