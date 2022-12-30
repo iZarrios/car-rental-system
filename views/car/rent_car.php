@@ -326,7 +326,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             </div>
 
                             <div class="d-flex">
-                                <input class="submit" type="submit" name="submit" value="submit">
+                                <input class="btn btn-primary py-3 px-5" type="submit" name="submit" value="Rent">
                             </div>
 
                         </form>

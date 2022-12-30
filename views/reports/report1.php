@@ -236,7 +236,7 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                         <th scope="col" class="text-center">fname</th>
                         <th scope="col" class="text-center">lname</th>
                         <th colspan="2" scope="col" class="text-center">email</th>
-                        <th scope="col" class="text-center">password</th>
+
                         <th scope="col" class="text-center">bdate</th>
                         <th scope="col" class="text-center">gender</th>
                         <th scope="col" class="text-center">country</th>
@@ -260,7 +260,7 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                         <td> <?php echo $car["fname"] ?></td>
                         <td> <?php echo $car["lname"] ?></td>
                         <td colspan="2"> <?php echo $car["email"] ?></td>
-                        <td> <?php echo $car["password"] ?></td>
+
                         <td> <?php echo $car["bdate"] ?></td>
                         <td>
                             <?php
