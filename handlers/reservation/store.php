@@ -66,10 +66,11 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "return_date is empty";
     }
 
-    // dd($cars[0]['status']);
+    /* Check if rented ? No, we can rent it from another office
     if ($cars[0]['status'] == 'rented') {
         $errors[] = "The car you are trying to rent is rented";
     }
+    */
 
     if ($cars[0]['status'] == 'out of service') {
         $errors[] = "The car you are trying to rent is out of service";
@@ -120,7 +121,8 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: " . URL . "views/car/rent_car.php?plate_id=" . $plate_id);
             exit;
         } catch (\Throwable $th) {;
-            $errors[] = $th;
+            // $errors[] = $th;
+            $errors[] = "Can't reserve your car. The car is rented, try to rent it from another office or reserve another car.";
             $_SESSION['errors'] = $errors;
             header("Location: " . URL . "views/car/rent_car.php?plate_id=" . $plate_id);
         }
