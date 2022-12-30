@@ -162,6 +162,7 @@ if ($_SESSION['logged']['is_admin'] == "0") {
             ?>
 
                 <h1 class="mb-3 bread">Reservations :</h1>
+                <?php require_once PATH . "views/inc/messages.php" ?>
                 <table class="  table table-bordered text-center table-hover" style="width:100%">
                     <thead class="thead-dark">
                         <tr>
@@ -204,7 +205,7 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                                 <td> <?php echo $reservation["return_date"] ?></td>
                                 <td> <?php echo $reservation["payment"] ?></td>
                                 <td class="text-center">
-                                    <a class="btn btn-primary" href="<?= URL . "views/reservation/edit_reservation.php?plate_id=" . $reservation['plate_id'] . "&required_payment=" . $payment_v . "&old_payment= " . $old_payment . "&user_id=" . $reservation['user_id'] ?>" role=" button">Edit</a>
+                                    <a class="btn btn-primary" href="<?= URL . "views/reservation/edit_reservation.php?plate_id=" . $reservation['plate_id'] . "&required_payment=" . $payment_v . "&old_payment= " . $old_payment . "&user_id=" . $reservation['user_id'] . "&office_Id=" . $reservation['office_Id'] ?>" role=" button">Edit</a>
                                     <a class="btn btn-danger" href="<?= URL . "views/reservation/cancel_reservation.php" ?>" role="button">Delete</a>
                                 </td>
                             </tr>

@@ -142,31 +142,31 @@ if ($_SESSION['logged']['is_admin'] == "0") {
 
     <section class="ftco-section contact-section">
         <div class="container">
-            <?php require_once PATH . "views/inc/messages.php" ?>
             <div class="row d-flex mb-5 contact-info">
-
-                <div class="col-md-8 block-9 mb-md-5">
-                    <form action="<?= URL . "handlers/reservation/edit.php"; ?>" class="bg-light p-5 contact-form" method="POST">
+                <form action="<?= URL . "handlers/reservation/edit.php"; ?>" class="bg-light p-5 contact-form" method="POST">
+                    <div class="col-md-8 block-9 mb-md-5">
                         <div class="form-group">
-                            <input type="tex" class="form-control" placeholder="user_id" name="user_id" required>
+                            <input type="text" class="form-control" placeholder="user_id" name="user_id" value="<?php echo $_GET['user_id'] ?>" required readonly>
                             <!-- value=<? $_SESSION['logged']['user_id'] ?> -->
                         </div>
                         <div class="form-group">
-                            <input type="number" class="form-control" placeholder="plate_id" name="plate_id" required>
+                            <input type="text" class="form-control" placeholder="plate_id" name="plate_id" value="<?php echo $_GET['plate_id'] ?>" required readonly>
                         </div>
                         <div class="form-group">
-                            <input type="number" class="form-control" placeholder="office_Id" name="office_Id" required>
+                            <input type="text" class="form-control" placeholder="office_Id" name="office_Id" value="<?php echo $_GET['office_Id'] ?>" required readonly>
                         </div>
                         <div class="form-group">
-                            <label for="payment">Required Payment = <?= "hi" ?> </label>
-                            <input type="number" class="form-control" placeholder="payment" name="payment" required>
+                            <label for="payment">Old Payment = <?php echo $_GET['old_payment'] ?> </label>
+                            <br>
+                            <label for="payment">Required Payment = <?php echo $_GET['required_payment'] ?> </label>
+                            <input type="number" class="form-control" step="any" placeholder="payment" name="payment" required>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Edit Payment" class="btn btn-primary py-3 px-5" name="submit">
+                            <input type="submit" value="Edit Payment" class="btn btn-primary py-3 px-5 formfield3" value="<?php echo $_GET['old_payment'] ?>" name="submit">
                         </div>
-                    </form>
-                </div>
+                </form>
             </div>
+        </div>
         </div>
     </section>
 

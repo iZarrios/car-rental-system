@@ -24,7 +24,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = filter_var($_POST['user_id'], FILTER_VALIDATE_INT);
     $plate_id = filter_var($_POST['plate_id'], FILTER_VALIDATE_INT);
     $office_Id = filter_var($_POST['office_Id'], FILTER_VALIDATE_INT);
-    $payment = filter_var($_POST['payment'], FILTER_VALIDATE_INT);
+    $payment = filter_var($_POST['payment'], FILTER_VALIDATE_FLOAT);
 
     // dd($plate_id);
 
@@ -58,21 +58,21 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             mysqli_close($conn);
 
             if ($affectedRows >= 1) {
-                $_SESSION['success'] = "Payment Added Successfully";
+                $_SESSION['success'] = "Payment Edited Successfully";
             } else {
                 $errors[] = "No Changes, Please check your data";
                 $_SESSION['errors'] = $errors;
             }
-            header("Location: " . URL . "views/reservation/edit_reservation.php");
+            header("Location: " . URL . "views/reservation/all.php");
             exit;
         } catch (\Throwable $th) {;
             $errors[] = $th;
             $_SESSION['errors'] = $errors;
-            header("Location: " . URL . "views/reservation/edit_reservation.php");
+            header("Location: " . URL . "views/reservation/all.php");
         }
     } else {
         $_SESSION['errors'] = $errors;
-        header("Location: " . URL . "views/reservation/edit_reservation.php");
+        header("Location: " . URL . "views/reservation/all.php");
         exit;
     }
 }
