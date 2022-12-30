@@ -227,6 +227,7 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                         <th style="font-size: 14px;" scope="col">gender</th>
                         <th style="font-size: 14px;" scope="col">country</th>
                         <th style="font-size: 14px;" scope="col">city</th>
+                        <th style="font-size: 14px;" scope="col">Actions</th>
                     </tr>
                 </thead>
 
@@ -252,6 +253,9 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                             </td>
                             <td style="font-size: 14px;"> <?php echo $user["country"] ?></td>
                             <td style="font-size: 14px;"> <?php echo $user["city"] ?></td>
+                            <td class="text-center">
+                                <a class="btn btn-danger" href="<?= URL . "handlers/user/delete.php?user_id=" . $user['user_id'] ?>">Delete</a>
+                            </td>
                         </tr>
                     <?php
                     }
