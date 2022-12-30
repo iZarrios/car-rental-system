@@ -242,7 +242,14 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                             <td style="font-size: 14px;"> <?php echo $user["email"] ?></td>
                             <td style="font-size: 14px;"> <?php echo $user["balance"] ?></td>
                             <td style="font-size: 14px;"> <?php echo $user["bdate"] ?></td>
-                            <td style="font-size: 14px;"> <?php echo $user["gender"] ?></td>
+                            <td style="font-size: 14px;">
+                                <?php
+                                if ($user["gender"] == 0)
+                                    echo "Female";
+                                else
+                                    echo "Male";
+                                ?>
+                            </td>
                             <td style="font-size: 14px;"> <?php echo $user["country"] ?></td>
                             <td style="font-size: 14px;"> <?php echo $user["city"] ?></td>
                         </tr>
