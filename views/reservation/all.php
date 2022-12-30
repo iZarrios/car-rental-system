@@ -206,7 +206,7 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                                 <td> <?php echo $reservation["payment"] ?></td>
                                 <td class="text-center">
                                     <a class="btn btn-primary" href="<?= URL . "views/reservation/edit_reservation.php?plate_id=" . $reservation['plate_id'] . "&required_payment=" . $payment_v . "&old_payment= " . $old_payment . "&user_id=" . $reservation['user_id'] . "&office_Id=" . $reservation['office_Id'] ?>" role=" button">Edit</a>
-                                    <a class="btn btn-danger" href="<?= URL . "views/reservation/cancel_reservation.php" ?>" role="button">Delete</a>
+                                    <a class="btn btn-danger" href="<?= URL . "handlers/reservation/delete.php?user_id=" . $reservation['user_id'] . "&plate_id=" . $reservation['plate_id'] . "&office_Id=" . $reservation['office_Id'] ?>" role="button">Delete</a>
                                 </td>
                             </tr>
                         <?php
