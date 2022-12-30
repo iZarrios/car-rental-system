@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2022 at 09:04 PM
+-- Generation Time: Dec 30, 2022 at 02:12 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -43,14 +43,21 @@ CREATE TABLE `car` (
 --
 
 INSERT INTO `car` (`plate_id`, `brand`, `model`, `body`, `color`, `year`, `status`, `price_per_day`) VALUES
-(84252265, 'BMW', 'Harley', 'Hatchback', 'blue', 2020, 'active', 699.85),
+(22408392, 'Dodge', 'MIMI', 'Sedan', 'blue', 2010, 'active', 519.16),
+(79511257, 'Porsche', 'cupcake', 'CUV', 'black', 2022, 'active', 629.52),
+(79902974, 'Alfa Romeo', 'Midnight', 'Cabriolet', 'blue', 2007, 'active', 631.23),
+(81421388, 'Smart', 'Gizmo', 'Hatchback', 'red', 2010, 'active', 522.71),
+(82503457, 'Iveco', 'Cali', 'Sedan', 'blue', 2021, 'rented', 506.74),
+(83874324, 'Alfa Romeo', 'Baby', 'Coupe', 'white', 2001, 'active', 576.52),
+(84252265, 'BMW', 'Harley', 'Hatchback', 'blue', 2020, 'active', 700),
 (84596939, 'Fisker', 'Noodle', 'Sedan', 'white', 2010, 'active', 571.5),
-(90198969, 'Land Rover', 'Rocky', 'Kammback', 'blue', 2001, 'active', 511.74),
+(90198969, 'Land Rover', 'Rocky', 'Kammback', 'blue', 2001, 'rented', 511.74),
 (93466522, 'Volkswagen', 'Nala', 'CUV', 'black', 2003, 'active', 503.76),
-(94656589, 'Maybach', 'Marley', 'Cabriolet', 'black', 2006, 'active', 571.44),
+(94656589, 'Maybach', 'Marley', 'Cabriolet', 'black', 2006, 'rented', 571.44),
 (95695504, 'Tesla', 'Blackie', 'Roadster', 'red', 2003, 'active', 634),
-(97470234, 'Mitsubishi', 'Ginger', 'CUV', 'red', 2004, 'active', 671.4),
-(99308913, 'Lada', 'Sassy', 'Cabriolet', 'blue', 2010, 'active', 643.98),
+(97065179, 'Abarth', 'Milo', 'Hatchback', 'yellow', 2020, 'active', 576.3),
+(97470234, 'Mitsubishi', 'Ginger', 'CUV', 'red', 2004, 'rented', 671.4),
+(99308913, 'Lada', 'Sassy', 'Cabriolet', 'blue', 2010, 'out of service', 643.98),
 (99655700, 'Tesla', 'Sasha', 'Coupe', 'black', 2022, 'active', 664.9),
 (99871125, 'DS', 'Muffin', 'Roadster', 'red', 2022, 'active', 552.82);
 
@@ -94,6 +101,16 @@ CREATE TABLE `reservation` (
   `payment` double UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`user_id`, `plate_id`, `office_Id`, `reservation_id`, `reservation_date`, `pick_up_date`, `return_date`, `payment`) VALUES
+(1, 90198969, 1, 43, '2022-12-30', '2022-12-01', '2022-12-30', 14840.46),
+(1, 90198969, 2, 45, '2022-12-30', '2022-12-05', '2022-12-22', 0),
+(6, 82503457, 1, 46, '2022-12-30', '2022-12-27', '2022-12-30', 0),
+(6, 94656589, 2, 47, '2022-12-30', '2022-12-15', '2022-12-17', 1142.88);
+
 -- --------------------------------------------------------
 
 --
@@ -119,12 +136,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `fname`, `lname`, `balance`, `email`, `password`, `bdate`, `gender`, `country`, `city`, `is_admin`) VALUES
-(1, 'Joeann', 'Enoch', 10000, 'zula8732@hotmail.com', 'b6eed1ceec6d0ecc74cc6e17f078938ba4431764', '2015-05-10', 1, 'Djibouti', 'Minneapolis', 1),
+(1, 'Joeann', 'Enoch', 10500.3, 'zula8732@hotmail.com', 'b6eed1ceec6d0ecc74cc6e17f078938ba4431764', '2015-05-10', 1, 'Djibouti', 'Minneapolis', 1),
 (2, 'Aimee', 'Kathryn', 5000.59, 'daronvanmeter4828@played.yugawa.fukushima.jp', 'b6eed1ceec6d0ecc74cc6e17f078938ba4431764', '1984-11-06', 0, 'Bolivia', 'New Bedford', 0),
 (3, 'Nigel', 'Bruce', 550.68, 'thuybeck75@recordings.edu.ar', 'b6eed1ceec6d0ecc74cc6e17f078938ba4431764', '2008-03-27', 0, 'Belgium', 'Orange', 0),
 (4, 'Brandy', 'Hattie', 1.83, 'hung908@gmail.com', 'b6eed1ceec6d0ecc74cc6e17f078938ba4431764', '1986-03-21', 1, 'Ivory Coast', 'Syracuse', 0),
 (5, 'Elizabet', 'Eleonore', 60.21, 'laurie0@yahoo.com', 'b6eed1ceec6d0ecc74cc6e17f078938ba4431764', '2008-02-10', 1, 'Angola', 'Huntsville', 0),
-(6, 'Dani', 'Cara', 3.03, 'keely_richie@populations.wake.okayama.jp', 'b6eed1ceec6d0ecc74cc6e17f078938ba4431764', '1975-05-25', 0, 'Haiti', 'Hampton', 0),
+(6, 'Dani', 'Cara', 3000.03, 'keely_richie@populations.wake.okayama.jp', 'b6eed1ceec6d0ecc74cc6e17f078938ba4431764', '1975-05-25', 0, 'Haiti', 'Hampton', 0),
 (7, 'Teodoro', 'Kathryne', 83.18, 'elodia.barrios@dates.com', 'b6eed1ceec6d0ecc74cc6e17f078938ba4431764', '2004-11-19', 0, 'Mongolia', 'New York City', 0),
 (8, 'Cathrine', 'Towanda', 43.91, 'jenniffer.slagle312@flags.com', 'b6eed1ceec6d0ecc74cc6e17f078938ba4431764', '2001-01-28', 0, 'Dominican Republic', 'Topeka', 0),
 (9, 'Madison', 'Rory', 19.58, 'denyse-conover-griffis718@yahoo.com', 'b6eed1ceec6d0ecc74cc6e17f078938ba4431764', '1978-03-06', 1, 'Qatar', 'Joliet', 0),
@@ -210,7 +227,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `reservation_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `reservation_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -228,9 +245,6 @@ ALTER TABLE `user`
 ALTER TABLE `reservation`
   ADD CONSTRAINT `office_id_update_delete_cascade` FOREIGN KEY (`office_Id`) REFERENCES `office` (`office_Id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `plate_id_update_delete_cascade` FOREIGN KEY (`plate_id`) REFERENCES `car` (`plate_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reservation_office_id_fk` FOREIGN KEY (`office_Id`) REFERENCES `office` (`office_Id`),
-  ADD CONSTRAINT `reservation_plate_id_fk` FOREIGN KEY (`plate_id`) REFERENCES `car` (`plate_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `reservation_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `user_id_update_delete_cascade` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
