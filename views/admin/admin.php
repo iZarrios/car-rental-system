@@ -160,7 +160,10 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                                 </h2>
                             </li>
                             <li>
-                                <h2><a href="<?= URL . "views/admin/all_users.php" ?>" class="nav-link">View Users</a></h2>
+                                <h2><a href="<?= URL . "views/user/search_user.php" ?>" class="nav-link">Search Users</a></h2>
+                            </li>
+                            <li>
+                                <h2><a href="<?= URL . "views/user/all.php" ?>" class="nav-link">View Users</a></h2>
                             </li>
                         </ul>
                     </div>

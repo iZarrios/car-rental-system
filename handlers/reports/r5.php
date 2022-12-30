@@ -33,6 +33,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
             // HAVING reservation_date BETWEEN '2010-1-1'  AND '2012-1-1';
             $query = "
             SELECT reservation_date,SUM(payment) AS 'daily_payment' FROM `reservation`
+            WHERE payment>0
             GROUP BY (reservation_date)
             HAVING reservation_date BETWEEN '$lower_date'  AND '$upper_date';
             ";

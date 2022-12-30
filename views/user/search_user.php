@@ -5,13 +5,11 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$query = "SELECT `user`.* 
-        FROM `user`
-";
+if (isset($_SESSION['search_result'])) {
 
-$result = mysqli_query($conn, $query);
-
-$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $query_res = $_SESSION['search_result'];
+    unset($_SESSION['search_result']);
+}
 ?>
 <?php
 
@@ -33,7 +31,7 @@ if ($_SESSION['logged']['is_admin'] == "0") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search by Specs</title>
+    <title>Admin Main</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
@@ -125,7 +123,48 @@ if ($_SESSION['logged']['is_admin'] == "0") {
             padding-top: 15px;
         }
     </style>
+    <script>
+        function validateForm1() {
+            var year = document.forms["myform1"]["year"].value;
+            var lower_price = document.forms["myform1"]["lower_price"].value;
+            var upper_price = document.forms["myform1"]["upper_price"].value;
+
+            if (year > 0 || year < 10000) {
+
+            } else {
+                alert("year must be a valid number");
+                return false;
+            }
+            if (lower_price > 0 || lower_price < 1000000) {
+
+            } else {
+                alert("lower price must be a valid number");
+                return false;
+            }
+            if (upper_price > 0 || upper_price < 1000000) {
+
+            } else {
+                alert("upper price must be a valid number");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
+
+<!-- 
+
+
+
+    Very important note!!
+    1. There must be a validation for input data in the form (Front-end)
+    2. Placeholder="Any" just a place holder not a text
+    3. Fields are not required to be filled
+
+
+    
+
+    -->
 
 <body>
 
@@ -204,8 +243,8 @@ if ($_SESSION['logged']['is_admin'] == "0") {
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
                 <div class="col-md-9 ftco-animate pb-5">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Advanced Search<i class="ion-ios-arrow-forward"></i></span></p>
-                    <h1 class="mb-3 bread">Advanced Search</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Users<i class="ion-ios-arrow-forward"></i></span></p>
+                    <h1 class="mb-3 bread">Users</h1>
                 </div>
             </div>
         </div>
@@ -213,44 +252,126 @@ if ($_SESSION['logged']['is_admin'] == "0") {
     </section>
 
     <section class="ftco-section contact-section">
+        <div class="container">
+
+
+            <?php require_once PATH . "views/inc/messages.php" ?>
+            <div class="row d-flex mb-5 contact-info">
+                <div class="col-md-8 block-9 mb-md-5">
+
+                    <form class="form1 bg-light p-5 contact-form" name="myform1" id="myform1" action="<?= URL . "handlers/user/search.php"; ?>" method="POST" onsubmit="return validateForm1();">
+                        <div class="form-group">
+                            <label for="html">User id:</label><br>
+                            <input type="text" name="user_id" id="user_id" placeholder="user_id">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="html">First name: </label><br>
+                            <input type="text" name="fname" placeholder="First name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="html">Last name: </label><br>
+                            <input type="text" name="lname" placeholder="Any">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-group">email: </label><br>
+                            <input type="text" name="email" placeholder="Any">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="html">Birth date Range is from:</label><br>
+                            <input type="date" name="lower_bdate" id="lower_bdate" placeholder="Start Date" value="1930-01-01" required>
+                            <label for="html">To:</label>
+                            <input type="date" name="upper_bdate" id="upper_bdate" placeholder="End Date" value="2022-12-31" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>gender: </label><br>
+                            <select name="gender" id="gender">
+                                <option value="Both">Both</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>country: </label><br>
+                            <input type="text" name="country" placeholder="Any">
+                        </div>
+
+                        <div class="form-group">
+                            <label>city: </label><br>
+                            <input type="text" name="city" placeholder="Any">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Balance is from</label><br>
+                            <input type="text" name="lower_balance" id="lower_balance" placeholder="Any"><br>
+                            <label>to</label><br>
+                            <input type="text" name="upper_balance" id="upper_balance" placeholder="Any">
+                        </div>
+
+                        <br>
+                        <input class="btn btn-primary py-3 px-5" type="submit" name="submit" value="submit"><br><br>
+                    </form>
+                    <?php
+                    if (isset($query_res)) {
+                        // print_r($query_res);
+                        // unset($query_res);
+                    ?>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid">
             <table class=" table table-bordered text-center table-hover" style="width:100%">
                 <thead class="thead-dark ">
                     <tr>
                         <!-- by user -->
-                        <th style="font-size: 14px;" scope="col">user_id</th>
-                        <th style="font-size: 14px;" scope="col">fname</th>
-                        <th style="font-size: 14px;" scope="col">lname</th>
-                        <th style="font-size: 14px;" scope="col">email</th>
-                        <th style="font-size: 14px;" scope="col">balance</th>
-                        <th style="font-size: 14px;" scope="col">bdate</th>
-                        <th style="font-size: 14px;" scope="col">gender</th>
-                        <th style="font-size: 14px;" scope="col">country</th>
-                        <th style="font-size: 14px;" scope="col">city</th>
+                        <th scope="col">user_id</th>
+                        <th scope="col">fname</th>
+                        <th scope="col">lname</th>
+                        <th scope="col">email</th>
+                        <th scope="col">balance</th>
+                        <th scope="col">bdate</th>
+                        <th scope="col">gender</th>
+                        <th scope="col">country</th>
+                        <th scope="col">city</th>
+                        <th scope="col">balance</th>
                     </tr>
                 </thead>
 
                 <tbody class="text-center">
                     <?php
-                    foreach ($users as  $user) {
+                        foreach ($query_res as  $user) {
                     ?>
                         <tr>
                             <!-- by user -->
-                            <td style="font-size: 14px;"> <?php echo $user["user_id"] ?></td>
-                            <td style="font-size: 14px;"> <?php echo $user["fname"] ?></td>
-                            <td style="font-size: 14px;"> <?php echo $user["lname"] ?></td>
-                            <td style="font-size: 14px;"> <?php echo $user["email"] ?></td>
-                            <td style="font-size: 14px;"> <?php echo $user["balance"] ?></td>
-                            <td style="font-size: 14px;"> <?php echo $user["bdate"] ?></td>
-                            <td style="font-size: 14px;"> <?php echo $user["gender"] ?></td>
-                            <td style="font-size: 14px;"> <?php echo $user["country"] ?></td>
-                            <td style="font-size: 14px;"> <?php echo $user["city"] ?></td>
+                            <td> <?php echo $user["user_id"] ?></td>
+                            <td> <?php echo $user["fname"] ?></td>
+                            <td> <?php echo $user["lname"] ?></td>
+                            <td> <?php echo $user["email"] ?></td>
+                            <td> <?php echo $user["balance"] ?></td>
+                            <td> <?php echo $user["bdate"] ?></td>
+                            <td>
+                                <?php
+                                if ($user["gender"] == 0)
+                                    echo "Female";
+                                else
+                                    echo "Male";
+                                ?>
+                            </td>
+                            <td> <?php echo $user["country"] ?></td>
+                            <td> <?php echo $user["city"] ?></td>
+                            <td> <?php echo $user["balance"] ?></td>
                         </tr>
                     <?php
-                    }
+                        }
                     ?>
                 </tbody>
             </table>
+        <?php } ?>
         </div>
 
 
