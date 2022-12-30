@@ -1,8 +1,13 @@
 <?php require_once '../../core/config.php'; ?>
 <?php require_once PATH . 'core/connection.php'; ?>
+<?php require_once PATH . 'core/validations.php'; ?>
 
 <?php
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+// dd($_SESSION['logged']);
 // if user is already logged in
 if (!isset($_SESSION['logged'])) {
     header("Location: " . URL . "views/site/LogIn.php");
@@ -72,9 +77,19 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "The Product Price is required!";
     }
 
+    if (!alphabet_only($brand)) {
+        $errors[] = "We only accept alphabets only in brand";
+    }
+    if (!alphabet_only($body)) {
+        $errors[] = "We only accept alphabets only in body";
+    }
+    if (!alphabet_only($color)) {
+        $errors[] = "We only accept alphabets only in color";
+    }
+
+
     if (empty($errors)) {
 
-        //FIXME:
         $image = $plate_id . ".jpg";
         move_uploaded_file($imgTmp, PATH . "uploads/images/cars/" . $image);
 
@@ -88,16 +103,22 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         mysqli_close($conn);
 
         if ($affectedRow >= 1) {
-            echo "Success car insert";
-            // $_SESSION['success'] = "Product Inserted Successfully";
-            header("Location:" . URL . "views/site/car.php");
+            $_SESSION['success'] = "Car Inserted Successfully";
+            header("Location:" . URL . "views/car/Add_Car.php");
+            exit;
+        } else {
+            $errors[] = "Could not add car";
+
+            $_SESSION['Errors'] = $errors;
+            header("Location:" . URL . "views/car/Add_Car.php");
             exit;
         }
     } else {
-        echo "error car insert";
-        // $_SESSION['errors'] = $errors;
-        // header("Location:" . URL . "views/products/add.php");
-        // exit;
+        $_SESSION['errors'] = $errors;
+        header("Location:" . URL . "views/car/Add_Car.php");
+        exit;
     }
+} else {
+    dd("hi");
 }
 ?>
