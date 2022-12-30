@@ -381,32 +381,32 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                 <thead class="thead-dark ">
                     <tr>
                         <!-- by user -->
-                        <th style="font-size: 7px;" scope="col">user_id</th>
-                        <th style="font-size: 7px;" scope="col">fname</th>
-                        <th style="font-size: 7px;" scope="col">lname</th>
-                        <th style="font-size: 7px;" scope="col">email</th>
-                        <th style="font-size: 7px;" scope="col">balance</th>
-                        <th style="font-size: 7px;" scope="col">bdate</th>
-                        <th style="font-size: 7px;" scope="col">gender</th>
-                        <th style="font-size: 7px;" scope="col">country</th>
-                        <th style="font-size: 7px;" scope="col">city</th>
+                        <th style="font-size: 10px;" scope="col">user_id</th>
+                        <th style="font-size: 10px;" scope="col">fname</th>
+                        <th style="font-size: 10px;" scope="col">lname</th>
+                        <th style="font-size: 10px;" scope="col">email</th>
+                        <th style="font-size: 10px;" scope="col">balance</th>
+                        <th style="font-size: 10px;" scope="col">bdate</th>
+                        <th style="font-size: 10px;" scope="col">gender</th>
+                        <th style="font-size: 10px;" scope="col">country</th>
+                        <th style="font-size: 10px;" scope="col">city</th>
 
                         <!-- by car -->
-                        <th style="font-size: 5px;" scope="col">plate_id</th>
-                        <th style="font-size: 7px;" scope="col">brand</th>
-                        <th style="font-size: 5px;" scope="col" class="text-center">Car Image</th>
-                        <th style="font-size: 7px;" scope="col">model</th>
-                        <th style="font-size: 7px;" scope="col">body</th>
-                        <th style="font-size: 7px;" scope="col">color</th>
-                        <th style="font-size: 7px;" scope="col">year</th>
-                        <th style="font-size: 5px;" scope="col"> price_per_day </th>
+                        <th style="font-size: 7px;" scope="col">plate_id</th>
+                        <th style="font-size: 10px;" scope="col">brand</th>
+                        <th style="font-size: 10px;" scope="col" class="text-center">Car Image</th>
+                        <th style="font-size: 10px;" scope="col">model</th>
+                        <th style="font-size: 10px;" scope="col">body</th>
+                        <th style="font-size: 10px;" scope="col">color</th>
+                        <th style="font-size: 10px;" scope="col">year</th>
+                        <th style="font-size: 7px;" scope="col"> price_per_day </th>
 
                         <!-- by reservation -->
-                        <th style="font-size: 5px;" scope="col">reservation_id</th>
-                        <th style="font-size: 5px;" scope="col">reservation_date</th>
-                        <th style="font-size: 5px;" scope="col">pick_up_date</th>
-                        <th style="font-size: 5px;" scope="col">return_date</th>
-                        <th style="font-size: 7px;" scope="col">payment</th>
+                        <th style="font-size: 6px;" scope="col">reservation_id</th>
+                        <th style="font-size: 6px;" scope="col">reservation_date</th>
+                        <th style="font-size: 6px;" scope="col">pick_up_date</th>
+                        <th style="font-size: 7px;" scope="col">return_date</th>
+                        <th style="font-size: 10px;" scope="col">payment</th>
 
                     </tr>
                 </thead>
@@ -430,7 +430,7 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                         <!-- by car -->
                         <td style="font-size: 9px;"> <?php echo $car["plate_id"] ?></td>
                         <td style="font-size: 9px;"> <?php echo $car["brand"] ?></td>
-                        <td width="300px"> <img style="  height: 50%; width: 50%;"
+                        <td width="150px"> <img style="  height: 100%; width: 100%;"
                                 src="<?= URL . "uploads/images/cars/" . $car['plate_id'] . ".jpg" ?>"
                                 alt="Car of The Image"></td>
                         <td style="font-size: 9px;"> <?php echo $car["model"] ?></td>
