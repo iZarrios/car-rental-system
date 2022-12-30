@@ -142,7 +142,9 @@ if (isset($_GET['plate_id'])) {
                 <div class="col-md-8 block-9 mb-md-5">
                     <?php require_once PATH . "views/inc/messages.php" ?>
                     <form class="bg-light p-5 contact-form" method="POST" action="<?= URL . "handlers/car/update.php" ?>" enctype="multipart/form-data">
-                        <input type="hidden" name="plate_id" id="plate_id" value="<?= $car['plate_id'] ?>" />
+                        <div class="form-group">
+                            <input type="hidden" name="plate_id" id="plate_id" class="form-control" value="<?= $car['plate_id'] ?>" />
+                        </div>
 
                         <div class="form-group">
                             <input type="text" name="brand" id="brand" class="form-control" placeholder="Brand" value="<?= $car['brand'] ?>" required>
