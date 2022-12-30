@@ -128,8 +128,6 @@ if ($_SESSION['logged']['is_admin'] == "0") {
 </head>
 
 <body>
-
-
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="../admin/admin.php">ADMIN<span>CONTROLSECTION</span></a>
@@ -214,6 +212,7 @@ if ($_SESSION['logged']['is_admin'] == "0") {
 
     <section class="ftco-section contact-section">
         <div class="container-fluid">
+            <?php require_once PATH . "views/inc/messages.php" ?>
             <table class=" table table-bordered text-center table-hover" style="width:100%">
                 <thead class="thead-dark ">
                     <tr>
