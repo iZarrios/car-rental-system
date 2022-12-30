@@ -33,6 +33,12 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($city)) {
         $errors[] = "city is invalid";
     }
+    if (preg_match("/^[a-zA-Z]+$/", $country) == 0) {
+        $errors[] = "Wrong Country Name";
+    }
+    if (preg_match("/^[a-zA-Z]+$/", $city) == 0) {
+        $errors[] = "Wrong City Name";
+    }
 
     if (empty($errors)) {
         if (session_status() === PHP_SESSION_NONE) {
