@@ -109,5 +109,9 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location:" . URL . "views/car/Edit_car.php?plate_id=" . $plate_id);
         exit;
     }
+} else {
+
+    header("Location: " . URL . "views/site/index.php");
+    exit;
 }
 ?>
