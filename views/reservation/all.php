@@ -7,15 +7,18 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-$query = "SELECT `reservation`.* 
+// `car`.`price_per_day`
+$query = "SELECT `reservation`.* , `car`.*
         FROM `reservation`
+        JOIN `car`
+        ON `reservation`.`plate_id` = `car`.`plate_id`
 ";
 
 $result = mysqli_query($conn, $query);
 
 $reservations = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
+// dd($reservations);
 ?>
 <?php
 
@@ -173,11 +176,24 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
-
                     <tbody class="text-center">
                         <?php
                         foreach ($reservations as  $reservation) {
                         ?>
+                            <!-- calculating payment -->
+                            <?php
+                            $pick_up_date = $reservation['pick_up_date'];
+                            $price_per_day = $reservation['price_per_day'];
+                            $pick_up_date_v = new DateTime($pick_up_date);
+
+                            $return_date = $reservation['return_date'];
+                            $return_date_v = new DateTime($return_date);
+
+                            $number_of_days = $pick_up_date_v->diff($return_date_v)->format("%r%a");
+                            $payment_v = $reservation['price_per_day'] * $number_of_days;
+
+                            $old_payment = $reservation['payment'];
+                            ?>
                             <tr>
                                 <td> <?php echo $reservation["user_id"] ?></td>
                                 <td> <?php echo $reservation["plate_id"] ?></td>
@@ -188,9 +204,8 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                                 <td> <?php echo $reservation["return_date"] ?></td>
                                 <td> <?php echo $reservation["payment"] ?></td>
                                 <td class="text-center">
-                                    <h1>TODO:</h1>
-                                    <a class="btn btn-primary" href="<?= URL . "views/car/Edit_car.php?plate_id=" . $car['plate_id'] ?>" role="button">Edit</a>
-                                    <a class="btn btn-danger" href="<?= URL . "handlers/car/delete.php?plate_id=" . $car['plate_id'] ?>" role="button">Delete</a>
+                                    <a class="btn btn-primary" href="<?= URL . "views/reservation/edit_reservation.php?plate_id=" . $reservation['plate_id'] . "&required_payment=" . $payment_v . "&old_payment= " . $old_payment . "&user_id=" . $reservation['user_id'] ?>" role=" button">Edit</a>
+                                    <a class="btn btn-danger" href="<?= URL . "views/reservation/cancel_reservation.php" ?>" role="button">Delete</a>
                                 </td>
                             </tr>
                         <?php

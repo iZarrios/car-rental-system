@@ -11,6 +11,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged']['is_admin'] == '0') {
     header("Location: " . URL . "views/site/index.php");
     exit;
 }
+// dd($_GET);
 
 ?>
 
@@ -157,7 +158,7 @@ if ($_SESSION['logged']['is_admin'] == "0") {
                             <input type="number" class="form-control" placeholder="office_Id" name="office_Id" required>
                         </div>
                         <div class="form-group">
-                            <label for="payment">Required Payment =</label>
+                            <label for="payment">Required Payment = <?= "hi" ?> </label>
                             <input type="number" class="form-control" placeholder="payment" name="payment" required>
                         </div>
                         <div class="form-group">
