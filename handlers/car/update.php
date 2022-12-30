@@ -100,9 +100,9 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($affectedRow >= 1) {
             echo "Success car update";
             $_SESSION['success'] = "Car Updated Successfully";
-            header("Location:" . URL . "views/car/Edit_car.php?plate_id=" . $plate_id);
-            exit;
         }
+        header("Location:" . URL . "views/car/Edit_car.php?plate_id=" . $plate_id);
+        exit;
     } else {
         echo "error car insert";
         $_SESSION['errors'] = $errors;
