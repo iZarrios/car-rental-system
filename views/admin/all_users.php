@@ -1,15 +1,18 @@
 <?php require_once '../../core/config.php'; ?>
 <?php require_once PATH . 'core/connection.php'; ?>
-<?php require_once PATH . 'core/validations.php'; ?>
 
 <?php
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+$query = "SELECT `user`.* 
+        FROM `user`
+";
+
+$result = mysqli_query($conn, $query);
+
+$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
-
-
 <?php
 
 // if user is already logged in
@@ -27,8 +30,10 @@ if ($_SESSION['logged']['is_admin'] == "0") {
 <html lang="en">
 
 <head>
-    <title>Admin Main</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search by Specs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
@@ -52,27 +57,78 @@ if ($_SESSION['logged']['is_admin'] == "0") {
     <link rel="stylesheet" href="../../public/css/icomoon.css">
     <link rel="stylesheet" href="../../public/css/style.css">
     <style type="text/css">
-        a {
-
-            color: #FFFFFF;
-        }
-
         a:link {
-            color: rgb(245, 245, 245);
+            color: rgb(34, 34, 34);
             background-color: transparent;
             text-decoration: none;
         }
-
 
         a:hover {
             color: rgb(196, 207, 212);
             background-color: transparent;
             text-decoration: underline;
         }
+
+        .sign {
+            width: 104%;
+        }
+
+        .gender {
+            width: 30%;
+            color: rgb(15, 0, 0);
+
+        }
+
+        .un {
+            width: 76%;
+            color: rgb(15, 0, 0);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            background: rgb(236, 236, 236);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            box-sizing: border-box;
+            border: 2px solid rgba(255, 255, 255, 0.02);
+            margin-bottom: 50px;
+            margin-left: 46px;
+            text-align: center;
+            margin-bottom: 27px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        form.form1 {
+            padding-top: 40px;
+        }
+
+
+        .submit {
+            cursor: pointer;
+            border-radius: 5em;
+            color: rgb(255, 255, 255);
+            background: #000e11;
+            border: 0;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-family: 'Ubuntu', sans-serif;
+            margin-left: 45%;
+            font-size: 13px;
+            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+        }
+
+        .forgot {
+            width: 104%;
+            padding-top: 15px;
+        }
     </style>
 </head>
 
 <body>
+
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
@@ -141,39 +197,66 @@ if ($_SESSION['logged']['is_admin'] == "0") {
         </div>
     </nav>
 
+    <!-- END nav -->
 
-    <section class="hero-wrap  js-fullheight" style="background-image: url('../../public/images/test1.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('../../public/images/test1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
-            <div class="row">
-                <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
-                    <div class=" ftco-animate pb-5">
-                        <h1 class="mb-3 bread">Welcome, <?= $_SESSION['logged']['full_name'] ?></h1>
-                        <ul>
-                            <li>
-                                <h2><a href="<?= URL . "views/admin/balance.php" ?>" class="nav-link">Add Balance</a>
-                                </h2>
-                            </li>
-                            <li>
-                                <h2><a href="<?= URL . "views/admin/advanced_search.php" ?>" class="nav-link">Advanced
-                                        Search</a>
-                                </h2>
-                            </li>
-                            <li>
-                                <h2><a href="<?= URL . "views/admin/all_users.php" ?>" class="nav-link">View Users</a></h2>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+                <div class="col-md-9 ftco-animate pb-5">
+                    <p class="breadcrumbs"><span class="mr-2"><a href="../admin/admin.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Advanced Search<i class="ion-ios-arrow-forward"></i></span></p>
+                    <h1 class="mb-3 bread">Advanced Search</h1>
                 </div>
             </div>
         </div>
     </section>
-    </div>
-    </div>
     </section>
 
+    <section class="ftco-section contact-section">
+        <div class="container-fluid">
+            <table class=" table table-bordered text-center table-hover" style="width:100%">
+                <thead class="thead-dark ">
+                    <tr>
+                        <!-- by user -->
+                        <th style="font-size: 14px;" scope="col">user_id</th>
+                        <th style="font-size: 14px;" scope="col">fname</th>
+                        <th style="font-size: 14px;" scope="col">lname</th>
+                        <th style="font-size: 14px;" scope="col">email</th>
+                        <th style="font-size: 14px;" scope="col">balance</th>
+                        <th style="font-size: 14px;" scope="col">bdate</th>
+                        <th style="font-size: 14px;" scope="col">gender</th>
+                        <th style="font-size: 14px;" scope="col">country</th>
+                        <th style="font-size: 14px;" scope="col">city</th>
+                    </tr>
+                </thead>
+
+                <tbody class="text-center">
+                    <?php
+                    foreach ($users as  $user) {
+                    ?>
+                        <tr>
+                            <!-- by user -->
+                            <td style="font-size: 14px;"> <?php echo $user["user_id"] ?></td>
+                            <td style="font-size: 14px;"> <?php echo $user["fname"] ?></td>
+                            <td style="font-size: 14px;"> <?php echo $user["lname"] ?></td>
+                            <td style="font-size: 14px;"> <?php echo $user["email"] ?></td>
+                            <td style="font-size: 14px;"> <?php echo $user["balance"] ?></td>
+                            <td style="font-size: 14px;"> <?php echo $user["bdate"] ?></td>
+                            <td style="font-size: 14px;"> <?php echo $user["gender"] ?></td>
+                            <td style="font-size: 14px;"> <?php echo $user["country"] ?></td>
+                            <td style="font-size: 14px;"> <?php echo $user["city"] ?></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
 
 
+
+
+    </section> <!-- .section -->
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
         <div class="container">
@@ -204,12 +287,12 @@ if ($_SESSION['logged']['is_admin'] == "0") {
     </footer>
 
 
-
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
+
 
 
     <script src="../../public/js/jquery.min.js"></script>

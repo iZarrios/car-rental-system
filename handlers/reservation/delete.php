@@ -133,7 +133,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                 $errors[] = "Not deleted, Please check your data";
                 $_SESSION['errors'] = $errors;
             }
-            header("Location: " . URL . "/views/reservation/cancel_reservation.php");
+            header("Location: " . URL . "/views/reservation/all.php");
             exit;
         } catch (\Throwable $th) {;
             $errors[] = $th;
