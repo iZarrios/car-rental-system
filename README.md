@@ -9,7 +9,7 @@ To get started with the system, follow these steps:
 
 1. `Clone the repository` to your local machine using the git clone command.
 1. Install the dependencies by running `composer install`.
-1. **Configure the database** by editing the `config.php` file with your database credentials.
+1. **Configure the database** by editing the `core/config.php` file with your database credentials.
 1. Import the SQL file `car_rental_system.sql` into your MySQL database.
 1. Start the server by running `php -S localhost:8000` command (you can also use [XAMPP](https://www.apachefriends.org/)).
 1. The system should now be up and running on `http://localhost:8000`.
