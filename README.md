@@ -3,7 +3,6 @@
 This is a web-based car rental system built using PHP, MySQL, HTML, CSS, and JavaScript. It allows users to rent cars online and manage bookings. The system has various features such as a user dashboard, admin dashboard, vehicle management, customer management, and booking management.
 
 
-
 ## Getting Started
 
 To get started with the system, follow these steps:
@@ -16,6 +15,8 @@ To get started with the system, follow these steps:
 1. The system should now be up and running on `http://localhost:8000`.
 
 The system should now be up and running on `http://localhost:8000`.
+
+There is also a [Report](https://github.com/iZarrios/car-rental-system/blob/master/report.pdf) Included for further documentation about our project as well as other UML diagrams for our project.
 
 ## Usage
 
